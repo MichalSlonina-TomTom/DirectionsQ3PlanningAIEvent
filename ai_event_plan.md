@@ -52,6 +52,7 @@ TomTom | 1.5 Days | ~30 Engineers + 6 AI Champions + 6 AI Evangelists
 | 10 | TBD | Claude in CI/CD — automated test generation, linting, and review gates |
 | 11 | TBD | Multi-Agent Workflows in Production — when to fan out and how to control it |
 | 12 | TBD | Lessons from the Field — what failed, what we fixed, what we'd do differently |
+| 13 | TBD | How We Use AI — usage patterns and insights Claude surfaces about our own engineering behaviour |
 
 ### End of Day 1 — Team Presentations (16:00–17:00)
 

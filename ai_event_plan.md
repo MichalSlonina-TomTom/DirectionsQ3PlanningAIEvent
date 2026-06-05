@@ -17,6 +17,18 @@ TomTom | Amsterdam | June 16–17, 2026 | 1.5 Days | ~30 Engineers + 6 AI Champi
 
 ---
 
+## Why join
+
+This isn't a vendor demo or a course on prompts. It's 1.5 days in Amsterdam, June 16–17: your team picks a **real feature from your backlog** and builds it with Claude, on your stack, with people on hand all day to unblock you. The goal is to find out, hands-on, where this actually helps and where it doesn't.
+
+- **See the workflow early** — form your own opinion before it's the default, instead of catching up later.
+- **You stay in control** — you make the hard calls; the tool does the legwork. The engineer who uses it well becomes **more** valuable, not less.
+- **Try it with a safety net** — nothing graded, nothing shipped to prod, and help on hand the whole time. The lowest-risk way to actually find out.
+
+Docs won't unblock you in real time — this will. **Join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0) — that's the only step for now.**
+
+---
+
 ## Day 1 — Full Day (Tuesday, June 16, 2026)
 
 | Time | Duration | Block |

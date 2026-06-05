@@ -34,7 +34,7 @@ AI is coming to your workflow either way. The only choice is whether you **shape
 - **The people are the point.** Judgment and hard-won experience are the new edge — and they spread engineer to engineer, never through docs.
 - **Shape it, don't inherit it.** The conventions are being written right now. Help set them, or live with someone else's.
 
-Nothing graded, nothing shipped to prod. The only real risk is sitting it out. **Join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0) — that's the only step for now.**
+Nothing graded, nothing shipped to prod. The only real risk is sitting it out. **Join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).**
 
 ---
 

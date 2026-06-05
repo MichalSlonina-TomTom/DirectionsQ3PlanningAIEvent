@@ -52,43 +52,43 @@ Docs won't unblock you in real time — this will. **Join [#directions-ai-sessio
 
 Topics are grouped by goal below. AI champions pick 6 for the Day 1 scheduled block and place the rest across Day 1 overflow and Day 2.
 
-#### Goal 1 — Lower the entry barrier (get productive fast)
+#### Goal A — Lower the entry barrier (get productive fast)
 
 | # | Owner | Topic |
 |---|-------|-------|
-| 1 | TBD | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session |
-| 2 | TBD | TomTom Marketplaces and Skills — what's available and how to use them |
-| 3 | TBD | Building Workflows for Daily Use — practical automation you can ship this week |
-| 4 | TBD | Prompt Patterns for Large Codebases — what works at TomTom's scale |
-| 18 | TBD | Sandbox Mode & Permissions — run Claude safely without constant approval prompts; how to configure allow/deny rules |
+| A1 | TBD | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session |
+| A2 | TBD | TomTom Marketplaces and Skills — what's available and how to use them |
+| A3 | TBD | Building Workflows for Daily Use — practical automation you can ship this week |
+| A4 | TBD | Prompt Patterns for Large Codebases — what works at TomTom's scale |
+| A5 | TBD | Sandbox Mode & Permissions — run Claude safely without constant approval prompts; how to configure allow/deny rules |
 
-#### Goal 2 — Make our work more efficient (hands-on, real tasks)
-
-| # | Owner | Topic |
-|---|-------|-------|
-| 5 | TBD | Mining Slack, JIRA & Confluence with Claude — turn scattered data into answers |
-| 6 | TBD | Data Mining in Practice — generating architecture docs and PR verification |
-| 7 | TBD | Spec-Driven Development — from a written spec to working code with Claude |
-| 8 | TBD | AI-Assisted Code Review — integrating Claude into your PR workflow |
-| 9 | TBD | Claude in CI/CD — automated test generation, linting, and review gates |
-
-#### Goal 3 — Level up your tooling (keep pace with the tools)
+#### Goal B — Make our work more efficient (hands-on, real tasks)
 
 | # | Owner | Topic |
 |---|-------|-------|
-| 10 | TBD | MCP Servers at TomTom — internal servers, how to connect and extend them |
-| 11 | TBD | How to Build and Evaluate Skills — authoring, testing, and measuring quality |
-| 12 | TBD | Multi-Agent Workflows in Production — when to fan out and how to control it |
-| 13 | TBD | Using Worktrees Efficiently — and where worktrees + sandboxing break down |
-| 14 | TBD | Using the Anthropic API to Build Internal Tools — from script to product |
+| B1 | TBD | Mining Slack, JIRA & Confluence with Claude — turn scattered data into answers |
+| B2 | TBD | Data Mining in Practice — generating architecture docs and PR verification |
+| B3 | TBD | Spec-Driven Development — from a written spec to working code with Claude |
+| B4 | TBD | AI-Assisted Code Review — integrating Claude into your PR workflow |
+| B5 | TBD | Claude in CI/CD — automated test generation, linting, and review gates |
 
-#### Goal 4 — Where humans still lead (perspective & experience)
+#### Goal C — Level up your tooling (keep pace with the tools)
 
 | # | Owner | Topic |
 |---|-------|-------|
-| 15 | TBD | Overview of AI Projects at TomTom — what teams are building right now |
-| 16 | TBD | How We Use AI — usage patterns and insights Claude surfaces about our own engineering behaviour |
-| 17 | TBD | Lessons from the Field — what failed, what we fixed, what we'd do differently |
+| C1 | TBD | MCP Servers at TomTom — internal servers, how to connect and extend them |
+| C2 | TBD | How to Build and Evaluate Skills — authoring, testing, and measuring quality |
+| C3 | TBD | Multi-Agent Workflows in Production — when to fan out and how to control it |
+| C4 | TBD | Using Worktrees Efficiently — and where worktrees + sandboxing break down |
+| C5 | TBD | Using the Anthropic API to Build Internal Tools — from script to product |
+
+#### Goal D — Where humans still lead (perspective & experience)
+
+| # | Owner | Topic |
+|---|-------|-------|
+| D1 | TBD | Overview of AI Projects at TomTom — what teams are building right now |
+| D2 | TBD | How We Use AI — usage patterns and insights Claude surfaces about our own engineering behaviour |
+| D3 | TBD | Lessons from the Field — what failed, what we fixed, what we'd do differently |
 
 ### End of Day 1 — Team Presentations (16:00–17:00)
 

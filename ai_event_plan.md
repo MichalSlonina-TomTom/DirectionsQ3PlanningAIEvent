@@ -129,6 +129,7 @@ Each team presents:
 ## Suggested Execution Plan (per feature)
 
 This is the **suggested** way to take a feature from pick to share-out. It lines up with the agenda above and gives each team a default rhythm — adapt it to your feature, it's a starting point, not a rule. The *Techniques to lean on* column points to the kinds of techniques covered in the lightning talks that fit each phase.
+Please note that we may need to accomodate changes in this plan depending on external topics coming from the management and new lightning talks that will be submitted.
 
 | Phase | When | What you do | Techniques to lean on |
 |-------|------|-------------|------------------------|
@@ -145,10 +146,8 @@ This is the **suggested** way to take a feature from pick to share-out. It lines
 
 | Role | Responsibility |
 |------|---------------|
-| Facilitator | Runs keynote, timekeeping, plenary sessions |
 | AI Champion (×6) | Presents Day 1 lightning talk, embeds in team, unblocks during labs, seeds Day 2 sign-up |
 | AI Evangelist (×6) | Presents Day 1 lightning talk, embeds in team, brings external perspective |
-| Timekeeper | Enforces 3 min Q&A limit per lightning talk (visible countdown on screen) |
 
 ---
 

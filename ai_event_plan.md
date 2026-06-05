@@ -21,13 +21,16 @@ TomTom | Amsterdam | June 16–17, 2026 | 1.5 Days | More than 30 Engineers + 6 
 
 ## Why join
 
-This isn't a vendor demo or a course on prompts. It's 1.5 days in Amsterdam, June 16–17: your team picks a **real feature from your backlog** and builds it with Claude, on your stack, with people on hand all day to unblock you. The goal is to find out, hands-on, where this actually helps and where it doesn't.
+Within a year, building with AI won't be a choice — it'll just be how engineering is done at TomTom. The only open question is whether you helped shape how we do it, or inherited someone else's version of it.
 
-- **See the workflow early** — form your own opinion before it's the default, instead of catching up later.
-- **You stay in control** — you make the hard calls; the tool does the legwork. The engineer who uses it well becomes **more** valuable, not less.
-- **Try it with a safety net** — nothing graded, nothing shipped to prod, and help on hand the whole time. The lowest-risk way to actually find out.
+This isn't a vendor demo or a course on prompts. It's 1.5 days in Amsterdam, June 16–17: you and your team take a **real feature from your own backlog** and build it with Claude, on your stack, with experienced people on hand all day to unblock you. Real work, low stakes, honest answers about where this helps and where it doesn't.
 
-Docs won't unblock you in real time — this will. **Join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0) — that's the only step for now.**
+- **You come out more valuable, not less.** AI does the legwork; you make the calls that matter. The engineers who get on top of it first are the ones who'll define what "good" looks like here — and the ones everyone else will come to for help. Be one of them.
+- **The people in the room are the point.** As AI absorbs the mechanical work, your real edge becomes judgment, taste, and what you've learned from people who already tried it. That spreads engineer to engineer, never through docs — and two days swapping what actually worked with your peers compounds for the rest of your career.
+- **Shape it — don't inherit it.** The workflow, the conventions, the tooling are still being decided right now. Get in early and you set them, and make them genuinely yours — or wait, and live with the defaults someone else picked for you.
+- **The only real risk is sitting it out.** Nothing graded, nothing shipped to prod, help on hand the whole time — about as safe as it gets to form a real opinion. The expensive move is being the last one in the room still guessing.
+
+Places are limited and teams fill up. You don't have to commit to anything today — just claim your spot. **Join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0) — that's the only step for now.**
 
 ---
 

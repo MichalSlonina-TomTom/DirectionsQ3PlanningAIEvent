@@ -3,6 +3,12 @@ TomTom | Amsterdam | June 16–17, 2026 | 1.5 Days | ~30 Engineers + 6 AI Champi
 
 ---
 
+> 📣 **We're looking for AI Evangelists!** Genuinely enthusiastic about AI and have some hands-on experience? Embed with a team for the day, bring an outside perspective, and share what you've learned — no deep expertise required.
+> 👉 DM **Michał Słonina** on Slack, or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
+
+> ⚡ **We're looking for Lightning Talk speakers!** Got something worth 5 minutes (+ 3 min Q&A)? Every speaker gets a slot — in person or remotely.
+> 👉 DM **Michał Słonina** on Slack, or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
+
 > # 🚀 INTERESTED? JOIN US!
 > ## 👉 **[#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0)**
 > ### Keynote speakers · lightning talk presenters · AI champions · AI evangelists — all teams welcome!
@@ -145,7 +151,7 @@ Your team's designated AI Engineering Champion under the [Directions AI Engineer
 ### AI Evangelist
 Someone who's genuinely enthusiastic about AI and has some practical experience with AI-assisted engineering. You'll bring an outside perspective, embed in a team for the day, and share what you've learned — no deep expertise required, just real curiosity and a few miles on the clock.
 
-**Interested in any of these?** Let us know which role and we'll follow up on availability and budget.
+**Interested in any of these?** Let us know which role and we'll follow up on availability and budget. 👉 DM **Michał Słonina** on Slack.
 
 ---
 

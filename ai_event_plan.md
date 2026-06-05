@@ -180,7 +180,9 @@ Open the event with a vision-setting talk on AI in engineering at TomTom. If you
 Got an interesting topic to share, or want to claim one of the available topics from the list above? Take a 5-minute slot (+ 3 min Q&A). Present in person or remotely. **Everyone who wants to present will be accommodated** — our AI champions set the running order across Day 1 and Day 2.
 
 ### AI Champion
-Acting AI Engineering Champion for the team working on the feature, under the [Directions AI Engineering Championship program](ai_championship_program.md) — an engineer (excited about AI Engineering, or willing to become so) whose job is to learn fast, coach colleagues, and drive hands-on adoption in the team. At this event you put that role into practice: you're accountable for your team's execution plan (you can delegate the execution itself to teammates), embed in a team for the full day, help others get productive with Claude, and unblock people during the labs.
+Acting AI Engineering Champion for the team working on the feature, under the [Engineering Championship program](ai_championship_program.md) — an engineer (excited about AI Engineering, or willing to become so) whose job is to learn fast, coach colleagues, and drive hands-on adoption in the team. At this event you put that role into practice: you're accountable for your team's execution plan (you can delegate the execution itself to teammates), embed in a team for the full day, help others get productive with Claude, and unblock people during the labs.
+
+**Open to everyone** — you don't have to be part of PU Directions. We welcome AI champions from both inside and outside Directions.
 
 ### AI Evangelist
 Someone who's genuinely enthusiastic about AI and has some practical experience with AI-assisted engineering. You'll bring an outside perspective, embed in a team for the day, and share what you've learned — no deep expertise required, just real curiosity and a few miles on the clock. You don't have to give a lightning talk, but you're highly encouraged to — your external perspective is exactly what makes them valuable.

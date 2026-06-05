@@ -122,6 +122,32 @@ Good topics that naturally emerge from Day 1 experience:
 
 ---
 
+## Mob Programming Sessions
+
+A complement to the solo and pair work in the labs: the whole team works on **one task, one screen**, with a rotating driver and Claude in the loop. It's the fastest way to spread AI-pairing technique and to build a shared sense of where the tool helps and where it doesn't.
+
+**Format:** ~7-minute driver rotations; navigator(s) decide direction, Claude does the legwork. A champion or evangelist seeds the first rotation, then steps back so the team takes the wheel.
+
+### Suggested goals
+
+- **MG1 — Transfer technique fast.** Everyone watches how an experienced person prompts, steers, and corrects Claude, then takes the wheel themselves. Tacit skill that's hard to convey in a talk.
+- **MG2 — Calibrate trust and review habits.** The mob decides together when to accept, reject, or rework Claude's output — building shared judgment on where to lead and where to delegate.
+- **MG3 — Take on the hard stuff together.** Gnarly tasks — legacy refactors, deep debugging, ambiguous specs — where collective context plus AI beats anyone working solo.
+
+### Topics
+
+| # | Goals | Topic |
+|---|-------|-------|
+| M1 | MG1, MG2 | Mob a real backlog feature with Claude — rotating driver, navigators steer the prompts |
+| M2 | MG2, MG3 | Mob debugging — drop a live bug on the room and solve it with Claude as a group |
+| M3 | MG3 | Mob a legacy refactor — understand-then-change, with Claude mapping the blast radius |
+| M4 | MG1, MG2 | Spec → implementation as a mob — write the spec together, Claude builds, review as a group |
+| M5 | MG2 | Mob review of an AI-generated PR — calibrate what "good enough to merge" looks like |
+| M6 | MG1 | "Prompt golf" — the mob iteratively refines one prompt to get the best result |
+| M7 | MG3 | Mob test generation and verification — agree on coverage, Claude drafts, sanity-check together |
+
+---
+
 ## Roles Summary
 
 | Role | Responsibility |

@@ -146,8 +146,8 @@ Please note that we may need to accommodate changes in this plan depending on ex
 
 | Role | Responsibility |
 |------|---------------|
-| AI Champion (×6) | Presents Day 1 lightning talk, embeds in team, unblocks during labs, seeds Day 2 sign-up |
-| AI Evangelist (×6) | Presents Day 1 lightning talk, embeds in team, brings external perspective |
+| AI Champion (×6) | Acting AI Engineering Champion for the team working on the feature. Accountable for the team's execution plan (may delegate the execution itself); embeds in team, unblocks during labs, seeds Day 2 sign-up |
+| AI Evangelist (×6) | Embeds in team, brings external perspective; not required to give a lightning talk, but highly encouraged |
 
 ---
 
@@ -170,10 +170,10 @@ Open the event with a vision-setting talk on AI in engineering at TomTom. If you
 Got an interesting topic to share, or want to claim one of the available topics from the list above? Take a 5-minute slot (+ 3 min Q&A). Present in person or remotely. **Everyone who wants to present will be accommodated** — our AI champions set the running order across Day 1 and Day 2.
 
 ### AI Champion
-Your team's designated AI Engineering Champion under the [Directions AI Engineering Championship program](ai_championship_program.md) — an engineer (excited about AI Engineering, or willing to become so) whose job is to learn fast, coach colleagues, and drive hands-on adoption in the team. At this event you put that role into practice: embed in a team for the full day, help others get productive with Claude, unblock people during the labs, and present a lightning talk.
+Acting AI Engineering Champion for the team working on the feature, under the [Directions AI Engineering Championship program](ai_championship_program.md) — an engineer (excited about AI Engineering, or willing to become so) whose job is to learn fast, coach colleagues, and drive hands-on adoption in the team. At this event you put that role into practice: you're accountable for your team's execution plan (you can delegate the execution itself to teammates), embed in a team for the full day, help others get productive with Claude, and unblock people during the labs.
 
 ### AI Evangelist
-Someone who's genuinely enthusiastic about AI and has some practical experience with AI-assisted engineering. You'll bring an outside perspective, embed in a team for the day, and share what you've learned — no deep expertise required, just real curiosity and a few miles on the clock.
+Someone who's genuinely enthusiastic about AI and has some practical experience with AI-assisted engineering. You'll bring an outside perspective, embed in a team for the day, and share what you've learned — no deep expertise required, just real curiosity and a few miles on the clock. You don't have to give a lightning talk, but you're highly encouraged to — your external perspective is exactly what makes them valuable.
 
 **Interested in any of these?** Let us know which role and we'll follow up on availability and budget. 👉 DM **Michał Słonina** on Slack.
 

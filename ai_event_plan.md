@@ -17,15 +17,6 @@ TomTom | Amsterdam | June 16–17, 2026 | 1.5 Days | ~30 Engineers + 6 AI Champi
 
 ---
 
-## Team Structure
-
-**6 teams × ~7 people each:**
-- ~5 TomTom engineers
-- 1 AI champion (TomTom engineer, experienced with Claude — embeds in the team all day)
-- 1 AI evangelist (external engineer — brings outside perspective, embeds all day)
-
----
-
 ## Day 1 — Full Day (Tuesday, June 16, 2026)
 
 | Time | Duration | Block |
@@ -182,3 +173,12 @@ Add your name and a one-line pitch of what you're into. **6 spots each — but t
 | 4 |  |  |
 | 5 |  |  |
 | 6 |  |  |
+
+---
+
+## Proposed Team Structure
+
+**6 teams × ~7 people each:**
+- ~5 TomTom engineers
+- 1 AI champion (TomTom engineer, experienced with Claude — embeds in the team all day)
+- 1 AI evangelist (external engineer — brings outside perspective, embeds all day)

@@ -110,6 +110,13 @@ and **[PARENT PAGE]** (the page it should live under, or "top level of the space
 >
 > Close with a call to action: "Interested in any of these? Let us know which role and we'll follow up on
 > availability and budget." Keep the tone energetic and welcoming.
+>
+> **Section "Sign-ups":** Lead line: "Add your name and a one-line pitch of what you're into. 6 spots each —
+> but the more the better, so don't hold back if the table looks full." Then two sub-headings, each with an
+> editable table with columns **#**, **Name**, **What I'm interested in**, pre-filled with 6 numbered, empty
+> rows so people can fill them in directly on the page:
+> - **AI Champions**
+> - **AI Evangelists**
 
 ---
 

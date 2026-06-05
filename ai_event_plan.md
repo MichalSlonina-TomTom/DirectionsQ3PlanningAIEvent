@@ -146,3 +146,31 @@ Your team's designated AI Engineering Champion under the [Directions AI Engineer
 Someone who's genuinely enthusiastic about AI and has some practical experience with AI-assisted engineering. You'll bring an outside perspective, embed in a team for the day, and share what you've learned — no deep expertise required, just real curiosity and a few miles on the clock.
 
 **Interested in any of these?** Let us know which role and we'll follow up on availability and budget.
+
+---
+
+## Sign-ups
+
+Add your name and a one-line pitch of what you're into. **6 spots each — but the more the better, so don't hold back if the table looks full.**
+
+### AI Champions
+
+| # | Name | What I'm interested in |
+|---|------|------------------------|
+| 1 |  |  |
+| 2 |  |  |
+| 3 |  |  |
+| 4 |  |  |
+| 5 |  |  |
+| 6 |  |  |
+
+### AI Evangelists
+
+| # | Name | What I'm interested in |
+|---|------|------------------------|
+| 1 |  |  |
+| 2 |  |  |
+| 3 |  |  |
+| 4 |  |  |
+| 5 |  |  |
+| 6 |  |  |

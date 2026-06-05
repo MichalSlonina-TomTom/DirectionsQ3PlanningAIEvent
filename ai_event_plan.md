@@ -99,6 +99,7 @@ Topics are grouped by goal below. AI champions pick 6 for the Day 1 block and pl
 | B3 | TBD | Spec-Driven Development — from a written spec to working code with Claude |
 | B4 | TBD | AI-Assisted Code Review — integrating Claude into your PR workflow |
 | B5 | TBD | Claude in CI/CD — automated test generation, linting, and review gates |
+| B6 | TBD | Optimizing AI Cost — right-size models, prompt caching, and tight context to cut token spend |
 
 #### Goal C — Level up your tooling (keep pace with the tools)
 

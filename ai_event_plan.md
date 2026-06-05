@@ -46,7 +46,22 @@ Docs won't unblock you in real time — this will. **Join [#directions-ai-sessio
 | 16:00 | 60 min | Team presentations: results + Day 2 work breakdown per person |
 | 17:00 | — | End of Day 1 — sign-up opens for Day 2 optional lightning talks |
 
-### Lightning Talks — Full Schedule
+---
+
+## Day 2 — Half Day (Wednesday, June 17, 2026)
+
+| Time | Duration | Block |
+|------|----------|-------|
+| 09:00 | 48 min | Optional lightning talks: sign-up based, anyone can present (5 min + 3 min Q&A each, up to 6 slots) |
+| 09:48 | 12 min | Break |
+| 10:00 | 90 min | Execute Day 2 plans (champion + evangelist stay embedded in their team) |
+| 11:30 | 15 min | Break |
+| 11:45 | 45 min | Final share-out: what shipped + takeaways + CLAUDE.md templates to take home |
+| 12:30 | — | End |
+
+---
+
+## Lightning Talks — Full Schedule
 
 > **We'll accommodate every lightning talk speaker** — if you want to present, you'll get a slot (across Day 1 and Day 2). The running order is determined by our AI champions.
 
@@ -90,7 +105,17 @@ Topics are grouped by goal below. AI champions pick 6 for the Day 1 scheduled bl
 | D2 | TBD | How We Use AI — usage patterns and insights Claude surfaces about our own engineering behaviour |
 | D3 | TBD | Lessons from the Field — what failed, what we fixed, what we'd do differently |
 
-### End of Day 1 — Team Presentations (16:00–17:00)
+### Optional Lightning Talk Suggestions (Day 2)
+
+Good topics that naturally emerge from Day 1 experience:
+- "Here's what our team actually built yesterday"
+- "I hit this problem and solved it this way"
+- "Here's a prompt pattern that surprised me"
+- "What I'm doing differently today based on yesterday"
+
+---
+
+## End of Day 1 — Team Presentations (16:00–17:00)
 
 Each team presents:
 1. What we built this afternoon (show actual output)
@@ -101,24 +126,18 @@ Each team presents:
 
 ---
 
-## Day 2 — Half Day (Wednesday, June 17, 2026)
+## Suggested Execution Plan (per feature)
 
-| Time | Duration | Block |
-|------|----------|-------|
-| 09:00 | 48 min | Optional lightning talks: sign-up based, anyone can present (5 min + 3 min Q&A each, up to 6 slots) |
-| 09:48 | 12 min | Break |
-| 10:00 | 90 min | Execute Day 2 plans (champion + evangelist stay embedded in their team) |
-| 11:30 | 15 min | Break |
-| 11:45 | 45 min | Final share-out: what shipped + takeaways + CLAUDE.md templates to take home |
-| 12:30 | — | End |
+This is the **suggested** way to take a feature from pick to share-out. It lines up with the agenda above and gives each team a default rhythm — adapt it to your feature, it's a starting point, not a rule. The *Techniques to lean on* column points to the kinds of techniques covered in the lightning talks that fit each phase.
 
-### Optional Lightning Talk Suggestions (Day 2)
-
-Good topics that naturally emerge from Day 1 experience:
-- "Here's what our team actually built yesterday"
-- "I hit this problem and solved it this way"
-- "Here's a prompt pattern that surprised me"
-- "What I'm doing differently today based on yesterday"
+| Phase | When | What you do | Techniques to lean on |
+|-------|------|-------------|------------------------|
+| **1. Pick** | 10:30 | Choose a feature that's valuable, researchable, parallelizable, technique-rich, and safely scoped (off the critical path). | — |
+| **2. Research & design** | 10:50 | Use Claude to map the architecture, read the existing code, and surface edge cases & open questions. Mine Slack/JIRA/Confluence for context and prior decisions. | Mining Slack/JIRA/Confluence; generating architecture docs; prompt patterns for large codebases |
+| **3. Break down & parallelize** | 11:20 | Turn the design into a short spec, then split it into ~5–7 independent tasks with clear seams. Decide where to fan out agents or use worktrees. | Spec-driven development; multi-agent workflows; worktrees; daily-use workflows |
+| **4. Present the plan** | 11:50 | 3–4 min read-out to the room; get a sanity check before lunch. | — |
+| **5. Build** | 13:15 (Day 1) + Day 2 | Each person drives Claude on their task. Set up CLAUDE.md/hooks and sandbox + permissions so Claude can move fast safely; review its output as you go and wire up gates. | CLAUDE.md & hooks; sandbox mode & permissions; AI-assisted code review; Claude in CI/CD |
+| **6. Share-out** | 16:00 Day 1 / 11:45 Day 2 | Show what you built, one thing that worked and one that broke, and where Claude helped vs. where you had to lead. | Reflecting on where humans still lead; lessons from the field |
 
 ---
 
@@ -186,6 +205,23 @@ Add your name and a one-line pitch of what you're into. **6 spots each — but t
 | 4 |  |  |
 | 5 |  |  |
 | 6 |  |  |
+
+---
+
+## Candidate Features
+
+Propose a feature your team could build at the event. Add a row with an owner, a short description, and the business value.
+
+**Feature selection committee:** TBD
+
+| # | Owner | Description | Business value |
+|---|-------|-------------|----------------|
+| 1 |  |  |  |
+| 2 |  |  |  |
+| 3 |  |  |  |
+| 4 |  |  |  |
+| 5 |  |  |  |
+| 6 |  |  |  |
 
 ---
 

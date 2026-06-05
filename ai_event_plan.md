@@ -1,5 +1,5 @@
 # AI Engineering Session — Event Plan
-TomTom | 1.5 Days | ~30 Engineers + 6 AI Champions + 6 AI Evangelists
+TomTom | Amsterdam | June 16–17, 2026 | 1.5 Days | ~30 Engineers + 6 AI Champions + 6 AI Evangelists
 
 ---
 
@@ -12,7 +12,7 @@ TomTom | 1.5 Days | ~30 Engineers + 6 AI Champions + 6 AI Evangelists
 
 ---
 
-## Day 1 — Full Day
+## Day 1 — Full Day (Tuesday, June 16, 2026)
 
 | Time | Duration | Block |
 |------|----------|-------|
@@ -65,7 +65,7 @@ Each team presents:
 
 ---
 
-## Day 2 — Half Day
+## Day 2 — Half Day (Wednesday, June 17, 2026)
 
 | Time | Duration | Block |
 |------|----------|-------|

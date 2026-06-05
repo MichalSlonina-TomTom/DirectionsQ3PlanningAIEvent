@@ -1,9 +1,9 @@
 # AI Engineering Mini Conference — Event Plan
-TomTom | Amsterdam | June 16–17, 2026 | 1.5 Days | More than 30 Engineers + 6 AI Champions + 6 AI Evangelists
+TomTom · Amsterdam · June 16–17, 2026 · 1.5 days · more than 30 engineers + 6 AI champions + 6 AI evangelists.
 
 ---
 
-> 📣 **We're looking for AI Evangelists!** Genuinely enthusiastic about AI and have some hands-on experience? Embed with a team for the day, bring an outside perspective, and share what you've learned — no deep expertise required.
+> 📣 **We're looking for AI Evangelists!** Genuinely enthusiastic about AI and have some hands-on experience? Embed with a team, bring an outside perspective, and share what you've learned — no deep expertise required.
 > 👉 Just add your name to the [AI Evangelists list below](#ai-evangelists), or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
 
 > ⚡ **We're looking for Lightning Talk speakers!** Got something worth 5 minutes (+ 3 min Q&A)? [Here's what's involved](#lightning-talk-presenter).
@@ -48,9 +48,9 @@ Nothing graded, nothing shipped to prod. The only real risk is sitting it out. *
 | 10:30 | 20 min | Teams pick a feature to implement |
 | 10:50 | 30 min | Use Claude to design the feature: architecture, edge cases, open questions |
 | 11:20 | 30 min | Work breakdown: split into per-person tasks for the afternoon |
-| 11:50 | 25 min | Teams present their plan to the room (3-4 min each) |
+| 11:50 | 25 min | Teams present their plan to the room (3–4 min each) |
 | 12:15 | 60 min | Lunch |
-| 13:15 | 150 min | Hands-on labs — implement the feature (champion + evangelist embedded in their team) |
+| 13:15 | 150 min | Hands-on labs — implement the feature (champion + evangelist embedded) |
 | 15:45 | 15 min | Break |
 | 16:00 | 60 min | Team presentations: results + Day 2 work breakdown per person |
 | 17:00 | — | End of Day 1 — sign-up opens for Day 2 optional lightning talks |
@@ -63,7 +63,7 @@ Nothing graded, nothing shipped to prod. The only real risk is sitting it out. *
 |------|----------|-------|
 | 09:00 | 48 min | Optional lightning talks: sign-up based, anyone can present (5 min + 3 min Q&A each, up to 6 slots) |
 | 09:48 | 12 min | Break |
-| 10:00 | 90 min | Execute Day 2 plans (champion + evangelist stay embedded in their team) |
+| 10:00 | 90 min | Execute Day 2 plans (champion + evangelist stay embedded) |
 | 11:30 | 15 min | Break |
 | 11:45 | 45 min | Final share-out: what shipped + takeaways + CLAUDE.md templates to take home |
 | 12:30 | — | End |
@@ -89,6 +89,8 @@ Topics are grouped by goal below. AI champions pick 6 for the Day 1 block and pl
 | A3 | TBD | Building Workflows for Daily Use — practical automation you can ship this week |
 | A4 | TBD | Prompt Patterns for Large Codebases — what works at TomTom's scale |
 | A5 | TBD | Sandbox Mode & Permissions — run Claude safely without constant approval prompts; how to configure allow/deny rules |
+| A6 | TBD | Steering AI Output Style — make AI-produced docs and summaries readable instead of a wall of text |
+| A7 | TBD | Managing Context & Session Size — ask for handovers, save memory, and make sure you can resume |
 
 #### Goal B — Make our work more efficient (hands-on, real tasks)
 
@@ -100,6 +102,7 @@ Topics are grouped by goal below. AI champions pick 6 for the Day 1 block and pl
 | B4 | TBD | AI-Assisted Code Review — integrating Claude into your PR workflow |
 | B5 | TBD | Claude in CI/CD — automated test generation, linting, and review gates |
 | B6 | TBD | Optimizing AI Cost — right-size models, prompt caching, and tight context to cut token spend |
+| B7 | TBD | Script It vs. Re-Running Workflows — when a quick script beats running a workflow over and over |
 
 #### Goal C — Level up your tooling (keep pace with the tools)
 
@@ -110,6 +113,7 @@ Topics are grouped by goal below. AI champions pick 6 for the Day 1 block and pl
 | C3 | TBD | Multi-Agent Workflows in Production — when to fan out and how to control it |
 | C4 | TBD | Using Worktrees Efficiently — and where worktrees + sandboxing break down |
 | C5 | TBD | Using the Anthropic API to Build Internal Tools — from script to product |
+| C6 | TBD | Superskills in Practice — power patterns like "grill me with the docs" |
 
 #### Goal D — Where humans still lead (perspective & experience)
 
@@ -136,7 +140,7 @@ Each team presents:
 2. One thing that worked, one thing that broke
 3. Day 2 plan — who on the team is doing what, specific tasks named per person
 
-**At close:** sign-up opens for Day 2 optional lightning talks. Champions and evangelists seed with one slot each.
+At the close, sign-up opens for Day 2 optional lightning talks. Champions and evangelists seed with one slot each.
 
 ---
 
@@ -156,11 +160,11 @@ Please note that we may need to accommodate changes in this plan depending on ex
 
 ---
 
-## Roles Summary
+## Roles
 
 | Role | Responsibility |
 |------|---------------|
-| AI Champion (×6) | Acting AI Engineering Champion for the team working on the feature. Accountable for the team's execution plan (may delegate the execution itself); embeds in team, unblocks during labs, seeds Day 2 sign-up |
+| AI Champion (×6) | Acting AI Engineering Champion for the team working on the feature. Accountable for the team's execution plan (may delegate the execution itself); embeds in a team, unblocks during labs, seeds Day 2 sign-up |
 | AI Evangelist (×6) | Embeds in team, brings external perspective; not required to give a lightning talk, but highly encouraged |
 
 ---
@@ -168,7 +172,7 @@ Please note that we may need to accommodate changes in this plan depending on ex
 ## Attending & Presenting Remotely
 
 - **Lightning sessions will be streamed live online** — you don't have to be in Amsterdam to attend.
-- **You can present remotely.** If you'd like to give a lightning talk but can't travel, you can present over video.
+- **You can present remotely** over video if you can't travel.
 - **All sessions will be recorded** and shared afterwards, so nothing is lost if you can't make it live.
 
 ---
@@ -181,15 +185,15 @@ We're looking for people to fill these roles. **Engineers from any team are welc
 Open the event with a vision-setting talk on AI in engineering at TomTom. If you have a perspective worth sharing with the whole room, reach out.
 
 ### Lightning Talk Presenter
-Got an interesting topic to share, or want to claim one of the available topics from the list above? Take a 5-minute slot (+ 3 min Q&A). Present in person or remotely. **Everyone who wants to present will be accommodated** — our AI champions set the running order across Day 1 and Day 2.
+Got an interesting topic to share, or want to claim one of the available topics from the list above? Take a 5-minute slot (+ 3 min Q&A), in person or remotely. **Everyone who wants to present will be accommodated** — our AI champions set the running order across Day 1 and Day 2.
 
 ### AI Champion
-Acting AI Engineering Champion for the team working on the feature, under the [AI Engineering Championship program](ai_championship_program.md) — an engineer (excited about AI Engineering) whose job is to learn fast, coach colleagues, and drive hands-on adoption in the team. At this event you put that role into practice: you're accountable for your team's execution plan (you can delegate the execution itself to teammates), embed in a team for the full day, help others get productive with Claude, and unblock people during the labs.
+Acting AI Engineering Champion for the team working on the feature, under the [AI Engineering Championship program](ai_championship_program.md) — an engineer (excited about AI Engineering) whose job is to learn fast, coach colleagues, and drive hands-on adoption. At the event: you're accountable for your team's execution plan (you can delegate the execution itself to teammates), embed in a team for the day, help others get productive with Claude, and unblock people during the labs.
 
 **Open to everyone** — you don't have to be part of PU Directions. We welcome AI champions from both inside and outside Directions.
 
 ### AI Evangelist
-Someone who's genuinely enthusiastic about AI and has some practical experience with AI-assisted engineering. You'll bring an outside perspective, embed in a team for the day, and share what you've learned — no deep expertise required, just real curiosity and a few miles on the clock. You don't have to give a lightning talk, but you're highly encouraged to — your external perspective is exactly what makes them valuable.
+Someone genuinely enthusiastic about AI with some practical experience in AI-assisted engineering. You'll embed with a team, bring an outside perspective, and share what you've learned — no deep expertise required, just real curiosity and a few miles on the clock. You don't have to give a lightning talk, but you're highly encouraged to — your external perspective is exactly what makes them valuable.
 
 **Want in?** Just put your name in the AI Evangelists sign-up table below to reserve a spot — or edit this page directly to add yourself and what you're into. No need to ask anyone first.
 
@@ -247,4 +251,4 @@ Propose a feature your team could build at the event. Add a row with an owner, a
 **6 teams × ~7 people each:**
 - ~5 TomTom engineers
 - 1 AI champion (TomTom engineer, experienced with Claude — embeds in the team all day)
-- 1 AI evangelist (external engineer — brings outside perspective, embeds all day)
+- 1 AI evangelist (external engineer — embeds with a team, brings an outside perspective)

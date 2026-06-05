@@ -5,6 +5,8 @@ TomTom | Amsterdam | June 16–17, 2026 | 1.5 Days | ~30 Engineers + 6 AI Champi
 
 > 📝 **Proposal — not yet confirmed.** This event is still in the proposal phase. The decision will be taken by the organizers of **Q3 Directions planning**. If it isn't included in Q3 Directions planning, we'll make sure to organize it in a different format, time, or place.
 
+> 🗳️ **Tell us what you think of this idea.** Leave **anonymous feedback and an anonymous rating** of the event idea via [this Microsoft Form](https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=JoBPN1R7Okq4fTKPom7BDU5HcAKvxARHjvCxxEE2ejRUQkJPWEdWWDdLVlpXN0pYSzVCQ0hEWk9WMy4u). Prefer to put your name to it? Share non-anonymous feedback on the event Slack channel [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
+
 > 📣 **We're looking for AI Evangelists!** Genuinely enthusiastic about AI and have some hands-on experience? Embed with a team for the day, bring an outside perspective, and share what you've learned — no deep expertise required.
 > 👉 DM **Michał Słonina** on Slack, or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
 

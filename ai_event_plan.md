@@ -34,7 +34,7 @@ Docs won't unblock you in real time — this will. **Join [#directions-ai-sessio
 | Time | Duration | Block |
 |------|----------|-------|
 | 09:00 | 30 min | Keynote |
-| 09:30 | 48 min | Lightning talks: 3 AI champions + 3 AI evangelists alternating (5 min + 3 min Q&A each) |
+| 09:30 | 48 min | Lightning talks: 6 slots, sign-up based — anyone can present (5 min + 3 min Q&A each) |
 | 10:18 | 12 min | Break — teams form with their champion + evangelist |
 | 10:30 | 20 min | Teams pick a feature to implement |
 | 10:50 | 30 min | Use Claude to design the feature: architecture, edge cases, open questions |

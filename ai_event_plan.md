@@ -4,10 +4,12 @@ TomTom | Amsterdam | June 16–17, 2026 | 1.5 Days | More than 30 Engineers + 6 
 ---
 
 > 📣 **We're looking for AI Evangelists!** Genuinely enthusiastic about AI and have some hands-on experience? Embed with a team for the day, bring an outside perspective, and share what you've learned — no deep expertise required.
-> 👉 Just add your name to the AI Evangelists list below, or DM **Michał Słonina** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
+> 👉 Just add your name to the AI Evangelists list below, or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
 
 > ⚡ **We're looking for Lightning Talk speakers!** Got something worth 5 minutes (+ 3 min Q&A)? Every speaker gets a slot — in person or remotely.
-> 👉 Just put your name on a topic in the list below, or DM **Michał Słonina** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
+> 👉 Just put your name on a topic in the list below, or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
+
+> 💡 **We're looking for candidate features!** Got a real feature from your backlog your team could build at the event? Add your idea to the **Candidate Features** table below — owner, a short description, and the business value.
 
 > # 🚀 INTERESTED? JOIN US!
 > ## 👉 **[#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0)**
@@ -69,7 +71,7 @@ Nothing graded, nothing shipped to prod. The only real risk is sitting it out. *
 
 > **We'll accommodate every lightning talk speaker** — if you want to present, you'll get a slot (across Day 1 and Day 2).
 
-> 🕒 **No fixed schedule yet.** There's no set running order — the lineup is finalised just before the conference by our AI champions. If you need a **fixed time slot** (e.g. to plan travel or a remote join), message **Michał Słonina** on Slack and we'll lock one in for you.
+> 🕒 **No fixed schedule yet.** There's no set running order — the lineup is finalised just before the conference by our AI champions. If you need a **fixed time slot** (e.g. to plan travel or a remote join), message **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack and we'll lock one in for you.
 
 Topics are grouped by goal below. AI champions pick 6 for the Day 1 block and place the rest across Day 1 overflow and Day 2.
 
@@ -185,7 +187,7 @@ Someone who's genuinely enthusiastic about AI and has some practical experience 
 
 **Want in?** Just put your name in the AI Evangelists sign-up table below to reserve a spot — or edit this page directly to add yourself and what you're into. No need to ask anyone first.
 
-**Interested in any of these?** Let us know which role and we'll follow up on availability and budget. 👉 DM **Michał Słonina** on Slack.
+**Interested in any of these?** Let us know which role and we'll follow up on availability and budget. 👉 DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack.
 
 ---
 

@@ -3,6 +3,12 @@ TomTom | Amsterdam | June 16–17, 2026 | 1.5 Days | ~30 Engineers + 6 AI Champi
 
 ---
 
+> # 🚀 INTERESTED? JOIN US!
+> ## 👉 **[#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0)**
+> ### Keynote speakers · lightning talk presenters · AI champions · AI evangelists — all teams welcome!
+
+---
+
 ## Team Structure
 
 **6 teams × ~7 people each:**
@@ -31,28 +37,46 @@ TomTom | Amsterdam | June 16–17, 2026 | 1.5 Days | ~30 Engineers + 6 AI Champi
 
 ### Lightning Talks — Full Schedule
 
-#### Day 1 (Scheduled)
+> **We'll accommodate every lightning talk speaker** — if you want to present, you'll get a slot (across Day 1 and Day 2). The running order is determined by our AI champions.
+
+Topics are grouped by goal below. AI champions pick 6 for the Day 1 scheduled block and place the rest across Day 1 overflow and Day 2.
+
+#### Goal 1 — Lower the entry barrier (get productive fast)
 
 | # | Owner | Topic |
 |---|-------|-------|
-| 1 | TBD | TomTom Marketplaces and Skills — what's available and how to use them |
-| 2 | TBD | MCP Servers at TomTom — internal servers, how to connect and extend them |
+| 1 | TBD | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session |
+| 2 | TBD | TomTom Marketplaces and Skills — what's available and how to use them |
 | 3 | TBD | Building Workflows for Daily Use — practical automation you can ship this week |
-| 4 | TBD | How to Build and Evaluate Skills — authoring, testing, and measuring quality |
-| 5 | TBD | Overview of AI Projects at TomTom — what teams are building right now |
-| 6 | TBD | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session |
+| 4 | TBD | Prompt Patterns for Large Codebases — what works at TomTom's scale |
 
-#### Suggested Additional Topics (Day 1 overflow or Day 2 slots)
+#### Goal 2 — Make our work more efficient (hands-on, real tasks)
 
 | # | Owner | Topic |
 |---|-------|-------|
-| 7 | TBD | Prompt Patterns for Large Codebases — what works at TomTom's scale |
+| 5 | TBD | Mining Slack, JIRA & Confluence with Claude — turn scattered data into answers |
+| 6 | TBD | Data Mining in Practice — generating architecture docs and PR verification |
+| 7 | TBD | Spec-Driven Development — from a written spec to working code with Claude |
 | 8 | TBD | AI-Assisted Code Review — integrating Claude into your PR workflow |
-| 9 | TBD | Using the Anthropic API to Build Internal Tools — from script to product |
-| 10 | TBD | Claude in CI/CD — automated test generation, linting, and review gates |
-| 11 | TBD | Multi-Agent Workflows in Production — when to fan out and how to control it |
-| 12 | TBD | Lessons from the Field — what failed, what we fixed, what we'd do differently |
-| 13 | TBD | How We Use AI — usage patterns and insights Claude surfaces about our own engineering behaviour |
+| 9 | TBD | Claude in CI/CD — automated test generation, linting, and review gates |
+
+#### Goal 3 — Level up your tooling (keep pace with the tools)
+
+| # | Owner | Topic |
+|---|-------|-------|
+| 10 | TBD | MCP Servers at TomTom — internal servers, how to connect and extend them |
+| 11 | TBD | How to Build and Evaluate Skills — authoring, testing, and measuring quality |
+| 12 | TBD | Multi-Agent Workflows in Production — when to fan out and how to control it |
+| 13 | TBD | Using Worktrees Efficiently — and where worktrees + sandboxing break down |
+| 14 | TBD | Using the Anthropic API to Build Internal Tools — from script to product |
+
+#### Goal 4 — Where humans still lead (perspective & experience)
+
+| # | Owner | Topic |
+|---|-------|-------|
+| 15 | TBD | Overview of AI Projects at TomTom — what teams are building right now |
+| 16 | TBD | How We Use AI — usage patterns and insights Claude surfaces about our own engineering behaviour |
+| 17 | TBD | Lessons from the Field — what failed, what we fixed, what we'd do differently |
 
 ### End of Day 1 — Team Presentations (16:00–17:00)
 
@@ -94,3 +118,31 @@ Good topics that naturally emerge from Day 1 experience:
 | AI Champion (×6) | Presents Day 1 lightning talk, embeds in team, unblocks during labs, seeds Day 2 sign-up |
 | AI Evangelist (×6) | Presents Day 1 lightning talk, embeds in team, brings external perspective |
 | Timekeeper | Enforces 3 min Q&A limit per lightning talk (visible countdown on screen) |
+
+---
+
+## Attending & Presenting Remotely
+
+- **Lightning sessions will be streamed live online** — you don't have to be in Amsterdam to attend.
+- **You can present remotely.** If you'd like to give a lightning talk but can't travel, you can present over video.
+- **All sessions will be recorded** and shared afterwards, so nothing is lost if you can't make it live.
+
+---
+
+## Call for Participation
+
+We're looking for people to fill these roles. **Engineers from any team are welcome** — if any of these sound like you, let us know and we'll check the budget to make it happen.
+
+### Keynote Speaker
+Open the event with a vision-setting talk on AI in engineering at TomTom. If you have a perspective worth sharing with the whole room, reach out.
+
+### Lightning Talk Presenter
+Got an interesting topic to share, or want to claim one of the available topics from the list above? Take a 5-minute slot (+ 3 min Q&A). Present in person or remotely. **Everyone who wants to present will be accommodated** — our AI champions set the running order across Day 1 and Day 2.
+
+### AI Champion
+Your team's designated AI Engineering Champion under the [Directions AI Engineering Championship program](ai_championship_program.md) — an engineer (excited about AI Engineering, or willing to become so) whose job is to learn fast, coach colleagues, and drive hands-on adoption in the team. At this event you put that role into practice: embed in a team for the full day, help others get productive with Claude, unblock people during the labs, and present a lightning talk.
+
+### AI Evangelist
+Someone who's genuinely enthusiastic about AI and has some practical experience with AI-assisted engineering. You'll bring an outside perspective, embed in a team for the day, and share what you've learned — no deep expertise required, just real curiosity and a few miles on the clock.
+
+**Interested in any of these?** Let us know which role and we'll follow up on availability and budget.

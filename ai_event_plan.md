@@ -1,4 +1,4 @@
-# AI Engineering Session — Event Plan
+# AI Engineering Mini Conference — Event Plan
 TomTom | Amsterdam | June 16–17, 2026 | 1.5 Days | ~30 Engineers + 6 AI Champions + 6 AI Evangelists
 
 ---

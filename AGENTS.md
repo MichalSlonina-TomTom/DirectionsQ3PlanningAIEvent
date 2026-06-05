@@ -2,10 +2,10 @@
 
 ## Confluence sync (required on every change)
 
-This repo is the source of truth for the **AI Engineering Session** event and must be kept in
+This repo is the source of truth for the **AI Engineering Mini Conference** event and must be kept in
 sync with its Confluence page.
 
-- **Confluence page:** AI Engineering Session — Amsterdam, June 16–17, 2026
+- **Confluence page:** AI Engineering Mini Conference — Amsterdam, June 16–17, 2026
 - **Page ID:** `2045706280`
 - **Space:** PU Directions (`DIRECTIONS`, space ID `233897990`)
 - **cloudId:** `tomtom.atlassian.net`

@@ -122,14 +122,14 @@ Each team presents:
 2. One thing that worked, one thing that broke
 3. Day 2 plan — who on the team is doing what, specific tasks named per person
 
-**At close:** facilitator opens sign-up for Day 2 optional lightning talks. Champions and evangelists seed with one slot each.
+**At close:** sign-up opens for Day 2 optional lightning talks. Champions and evangelists seed with one slot each.
 
 ---
 
 ## Suggested Execution Plan (per feature)
 
 This is the **suggested** way to take a feature from pick to share-out. It lines up with the agenda above and gives each team a default rhythm — adapt it to your feature, it's a starting point, not a rule. The *Techniques to lean on* column points to the kinds of techniques covered in the lightning talks that fit each phase.
-Please note that we may need to accomodate changes in this plan depending on external topics coming from the management and new lightning talks that will be submitted.
+Please note that we may need to accommodate changes in this plan depending on external topics coming from the management and new lightning talks that will be submitted.
 
 | Phase | When | What you do | Techniques to lean on |
 |-------|------|-------------|------------------------|

@@ -4,12 +4,12 @@ TomTom | Amsterdam | June 16–17, 2026 | 1.5 Days | More than 30 Engineers + 6 
 ---
 
 > 📣 **We're looking for AI Evangelists!** Genuinely enthusiastic about AI and have some hands-on experience? Embed with a team for the day, bring an outside perspective, and share what you've learned — no deep expertise required.
-> 👉 Just add your name to the AI Evangelists list below, or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
+> 👉 Just add your name to the [AI Evangelists list below](#ai-evangelists), or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
 
 > ⚡ **We're looking for Lightning Talk speakers!** Got something worth 5 minutes (+ 3 min Q&A)? Every speaker gets a slot — in person or remotely.
-> 👉 Just put your name on a topic in the list below, or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
+> 👉 Just put your name on a topic in the [list below](#lightning-talks), or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
 
-> 💡 **We're looking for candidate features!** Got a real feature from your backlog your team could build at the event? Add your idea to the **Candidate Features** table below — owner, a short description, and the business value.
+> 💡 **We're looking for candidate features!** Got a real feature from your backlog your team could build at the event? Add your idea to the [**Candidate Features** table below](#candidate-features) — owner, a short description, and the business value.
 
 > # 🚀 INTERESTED? JOIN US!
 > ## 👉 **[#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0)**

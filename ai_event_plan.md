@@ -65,7 +65,7 @@ Nothing graded, nothing shipped to prod. The only real risk is sitting it out. *
 
 ---
 
-## Lightning Talks — Full Schedule
+## Lightning Talks
 
 > **We'll accommodate every lightning talk speaker** — if you want to present, you'll get a slot (across Day 1 and Day 2).
 

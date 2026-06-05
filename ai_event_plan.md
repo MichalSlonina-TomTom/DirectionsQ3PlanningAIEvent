@@ -247,3 +247,17 @@ Propose a feature your team could build at the event. Add a row with an owner, a
 - ~5 TomTom engineers
 - 1 AI champion (TomTom engineer, experienced with Claude — embeds in the team all day)
 - 1 AI evangelist (external engineer — brings outside perspective, embeds all day)
+
+---
+
+## Open Sign-up — All Teams Welcome
+
+**PT Guidance engineers are signed up by default** if the proposal goes through — no need to add yourself here.
+
+From another team and interested? **Just add a new row** below (as long as your manager is on board). We can't promise everyone a place, but we'll try to make it happen.
+
+| # | Name | Team | What I'm interested in |
+|---|------|------|------------------------|
+| 1 |  |  |  |
+| 2 |  |  |  |
+| 3 |  |  |  |

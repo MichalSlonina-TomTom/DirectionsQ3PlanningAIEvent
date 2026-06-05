@@ -1,0 +1,30 @@
+- spec driven development
+- use claude to mine data in slack, JIRA, confluence
+- data mining talk creating architecture documentation, pr veryfication
+- how to use worktrees efficiently, worktrees and sandboxing don't really work well together,
+  the fact people don't complain maybe
+
+- convert the insights to confluence
+- lightning talks go to confluence, convert it to page
+
+- people could present remotely
+- everything should be recorded, we can make it a live session
+
+- keynote point, high level high stake decision require human relations
+- efficiency increase protects our job, as a single developer you are worth more for a company
+- experience is still important
+
+
+- take over the agenda, prepare the slides, prepare the templates, curate the process of gathering the slides
+- boris sent me the presentation template, create a slide layout based on that
+
+- state the goal is to make PT Guidance more efficient, provide examples
+  - drain the KTLO pool
+  - RCA initatives
+  - Tech improvements
+  - Mass tests improvements
+  - 6 topics from last quarterly planning
+  - datamining and refinement
+
+Catch up with Alex to update the projects/align on initatives.
+Provide a slack channel for messaging.

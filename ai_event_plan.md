@@ -60,6 +60,7 @@ Topics are grouped by goal below. AI champions pick 6 for the Day 1 scheduled bl
 | 2 | TBD | TomTom Marketplaces and Skills — what's available and how to use them |
 | 3 | TBD | Building Workflows for Daily Use — practical automation you can ship this week |
 | 4 | TBD | Prompt Patterns for Large Codebases — what works at TomTom's scale |
+| 18 | TBD | Sandbox Mode & Permissions — run Claude safely without constant approval prompts; how to configure allow/deny rules |
 
 #### Goal 2 — Make our work more efficient (hands-on, real tasks)
 

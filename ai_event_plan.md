@@ -71,6 +71,8 @@ Nothing graded, nothing shipped to prod. The only real risk is sitting it out. *
 
 Topics are grouped by goal below. AI champions pick 6 for the Day 1 scheduled block and place the rest across Day 1 overflow and Day 2.
 
+**Want a slot?** Just put your name in a topic's **Owner** cell to reserve it — or edit this page directly to add a topic idea of your own. No need to ask anyone first.
+
 #### Goal A — Lower the entry barrier (get productive fast)
 
 | # | Owner | Topic |
@@ -178,6 +180,8 @@ Acting AI Engineering Champion for the team working on the feature, under the [D
 
 ### AI Evangelist
 Someone who's genuinely enthusiastic about AI and has some practical experience with AI-assisted engineering. You'll bring an outside perspective, embed in a team for the day, and share what you've learned — no deep expertise required, just real curiosity and a few miles on the clock. You don't have to give a lightning talk, but you're highly encouraged to — your external perspective is exactly what makes them valuable.
+
+**Want in?** Just put your name in the AI Evangelists sign-up table below to reserve a spot — or edit this page directly to add yourself and what you're into. No need to ask anyone first.
 
 **Interested in any of these?** Let us know which role and we'll follow up on availability and budget. 👉 DM **Michał Słonina** on Slack.
 

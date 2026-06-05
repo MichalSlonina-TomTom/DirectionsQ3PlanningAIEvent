@@ -1,0 +1,8 @@
+- bogdan was quiet, ask Bogdan
+- pair programming sessions missing
+- spend the wednesday with the team on 1:1 pairing session
+- on 1:1 sessions figure out where the team is and how to level it
+- spec driven development as a topic
+- retrospective of AI championship
+- check if someone is in stage that someone is not doing something autonomously
+

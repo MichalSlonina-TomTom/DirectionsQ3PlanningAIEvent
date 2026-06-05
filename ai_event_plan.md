@@ -67,9 +67,11 @@ Nothing graded, nothing shipped to prod. The only real risk is sitting it out. *
 
 ## Lightning Talks — Full Schedule
 
-> **We'll accommodate every lightning talk speaker** — if you want to present, you'll get a slot (across Day 1 and Day 2). The running order is determined by our AI champions.
+> **We'll accommodate every lightning talk speaker** — if you want to present, you'll get a slot (across Day 1 and Day 2).
 
-Topics are grouped by goal below. AI champions pick 6 for the Day 1 scheduled block and place the rest across Day 1 overflow and Day 2.
+> 🕒 **No fixed schedule yet.** There's no set running order — the lineup is finalised just before the conference by our AI champions. If you need a **fixed time slot** (e.g. to plan travel or a remote join), message **Michał Słonina** on Slack and we'll lock one in for you.
+
+Topics are grouped by goal below. AI champions pick 6 for the Day 1 block and place the rest across Day 1 overflow and Day 2.
 
 **Want a slot?** Just put your name in a topic's **Owner** cell to reserve it — or edit this page directly to add a topic idea of your own. No need to ask anyone first.
 

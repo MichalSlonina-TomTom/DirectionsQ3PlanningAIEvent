@@ -85,7 +85,7 @@ The talks below already have a speaker; the order is **provisional** — our AI 
 | 4 | Andrii Kasilov | Spec-Driven Development — from a written spec to working code with Claude | 5 min |
 | 5 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle | 5 min |
 | 6 | Yasemin Çalışkan | Pass static analysis skill for GOSDK Android repo | 5 min |
-| 7 |  |  |  |
+| 7 | Borys Zhdanov | Building your own skills — sad DIY or a "different set of tools"? | 5 min |
 | 8 |  |  |  |
 | 9 |  |  |  |
 | 10 |  |  |  |
@@ -197,7 +197,7 @@ Unclaimed topic ideas, grouped by goal. There are **10 lightning-talk slots** on
 
 #### Goal C — Level up your tooling (keep pace with the tools)
 - MCP Servers at TomTom — internal servers, how to connect and extend them
-- How to Build and Evaluate Skills — authoring, testing, and measuring quality
+- How to Build and Evaluate Skills — authoring, testing, and measuring quality *(tentatively claimed by Borys Zhdanov)*
 - Multi-Agent Workflows in Production — when to fan out and how to control it
 - Using Worktrees Efficiently — and where worktrees + sandboxing break down
 - Using the Anthropic API to Build Internal Tools — from script to product

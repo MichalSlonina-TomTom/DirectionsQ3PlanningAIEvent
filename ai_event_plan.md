@@ -79,16 +79,16 @@ The talks below already have a speaker; the order is **provisional** — our AI 
 |---|---------|------|-------------------------------------|
 | 1 | Andrii Kasilov | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session | 5 min |
 | 2 | Luka Milošević | Claude Code Hooks — Deterministic control over an AI coding workflow | 5 min |
-| 3 | Milica Markov | Using Claude to Write a Solution Design | 5 min |
-| 4 | Andrii Kasilov | Spec-Driven Development — from a written spec to working code with Claude | 5 min |
+| 3 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle | 5 min |
+| 4 | Yasemin Çalışkan | Pass static analysis skill for GOSDK Android repo | 5 min |
 | 5 | Borys Zhdanov | Building your own skills — sad DIY or a "different set of tools"? | 5 min |
-| 6 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle | 5 min |
-| 7 | Yasemin Çalışkan | Pass static analysis skill for GOSDK Android repo | 5 min |
-| 8 |  |  |  |
+| 6 | Milica Markov | Using Claude to Write a Solution Design | 5 min |
+| 7 | Andrii Kasilov | Spec-Driven Development — from a written spec to working code with Claude | 5 min |
+| 8 | Borys Zhdanov *(tentative)* | How to Build and Evaluate Skills — authoring, testing, and measuring quality | 5 min |
 | 9 |  |  |  |
 | 10 |  |  |  |
 
-*Suggested arc: set up your repo (1) → control the workflow (2) → plan before you build, design then spec (3–4) → build reusable skills (5) → unify design and build (6) → ship a concrete applied skill (7). Andrii's two talks are spaced (1, 4), and Borys's confirmed talk sits at 5 to leave breathing room before his tentative second talk (How to Build and Evaluate Skills, in Ideas for talks). Order is provisional; new sign-ups slot in wherever they fit best.*
+*Suggested arc: set up your repo (1) → make the workflow deterministic (2) → unify design and build (3) → reusable skills, applied then DIY (4–5) → plan with Claude, design then spec (6–7) → evaluating skills (8, tentative). Order is provisional; Andrii (1, 7) and Borys (5, 8) are spaced so no one runs back-to-back. New sign-ups slot in wherever they fit best.*
 
 ---
 
@@ -195,7 +195,6 @@ Unclaimed topic ideas, grouped by goal. There are **10 lightning-talk slots** on
 
 #### Goal C — Level up your tooling (keep pace with the tools)
 - MCP Servers at TomTom — internal servers, how to connect and extend them
-- How to Build and Evaluate Skills — authoring, testing, and measuring quality *(tentatively claimed by Borys Zhdanov)*
 - Multi-Agent Workflows in Production — when to fan out and how to control it
 - Using Worktrees Efficiently — and where worktrees + sandboxing break down
 - Using the Anthropic API to Build Internal Tools — from script to product

@@ -32,7 +32,7 @@ Nothing graded, nothing shipped to prod. The only real risk is sitting it out. *
 
 ## Schedule
 
-This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda below shows our sessions alongside the co-located sessions run by others (the LLM workshop and the Q3-planning "official part"), so you can see the full two days. **All times are proposed.**
+This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda below shows our sessions alongside the co-located sessions run by others (the LLN workshop and the Q3-planning "official part"), so you can see the full two days. **All times are proposed.**
 
 ### Day 1 — Tuesday, June 16, 2026
 
@@ -42,7 +42,7 @@ This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda 
 | 09:30 | 50 min | Lightning talks — block 1 |
 | 10:20 | 15 min | Break |
 | 10:35 | 50 min | Lightning talks — block 2 |
-| 11:25 | 60 min | LLM workshop — part 1 *(co-located)* |
+| 11:25 | 60 min | LLN workshop — part 1 *(co-located)* |
 | 12:25 | 60 min | Lunch |
 | 13:25 | 30 min | Teams form + pick a feature + design kickoff with Claude |
 | 13:55 | 170 min | AI feature refinement + planning |
@@ -55,7 +55,7 @@ This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda 
 
 | Time | Duration | Block |
 |------|----------|-------|
-| 09:00 | 60 min | LLM workshop — part 2 *(co-located)* |
+| 09:00 | 60 min | LLN workshop — part 2 *(co-located)* |
 | 10:00 | 15 min | Break |
 | 10:15 | 105 min | AI feature refinement + planning (continue) |
 | 12:00 | 30 min | Final share-out — what shipped + takeaways + CLAUDE.md templates to take home |
@@ -64,6 +64,12 @@ This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda 
 | 14:30 | 30 min | Reflect on Q2 — EMs *(official part)* |
 | 15:00 | 30 min | Present Q3 plans — EMs *(official part)* |
 | 15:30 | — | End |
+
+### LLN Workshop (co-located)
+
+Run by **Danna & Serj**, across both days (Tuesday part 1 + Wednesday part 2). Two parts:
+1. **Presentation (Danna)** — a tour of our current **LLN (Lane Level Navigation)** offering, benchmarked against competitors, to set a **north-star goal for LLN**.
+2. **Brainstorm (with the team)** — where we should focus to close the gap to that goal.
 
 ---
 

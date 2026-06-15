@@ -43,7 +43,7 @@ This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda 
 
 | Time | Duration | Block |
 |------|----------|-------|
-| 09:00 | 30 min | Keynote |
+| 09:00 | 30 min | Keynote — Rob van der Most (20 min talk + 10 min Q&A) |
 | 09:30 | 50 min | Lightning talks 1–5 (10 min each) |
 | 10:20 | 15 min | Break |
 | 10:35 | 50 min | Lightning talks 6–10 (10 min each) |

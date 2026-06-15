@@ -3,8 +3,8 @@ TomTom · Amsterdam · June 16–17, 2026 · 1.5 days · more than 30 engineers 
 
 ---
 
-> ⚡ **We're looking for Lightning Talk speakers!** Got something worth 10 minutes (talk + Q&A)? [Here's what's involved](#lightning-talk-presenter).
-> 👉 Just put your name on a topic in the [list below](#lightning-talks), or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
+> ⚡ **We're looking for Lightning Talk speakers!** Got something worth 5 minutes (+ Q&A)? [Here's what's involved](#lightning-talk-presenter).
+> 👉 Just grab a topic from [Ideas for talks](#ideas-for-talks), or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
 
 > 💡 **We're looking for candidate features!** Got a real feature from your backlog your team could build at the event? Add your idea to the [**Candidate Features** table below](#candidate-features) — owner, a short description, and the business value.
 
@@ -41,9 +41,9 @@ This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda 
 | Time | Duration | Block |
 |------|----------|-------|
 | 09:00 | 30 min | Keynote — Rob van der Most (20 min talk + 10 min Q&A) |
-| 09:30 | 50 min | Lightning talks 1–5 (10 min each) |
+| 09:30 | 50 min | Lightning talks — block 1 |
 | 10:20 | 15 min | Break |
-| 10:35 | 50 min | Lightning talks 6–10 (10 min each) |
+| 10:35 | 50 min | Lightning talks — block 2 |
 | 11:25 | 60 min | LLM workshop — part 1 *(co-located)* |
 | 12:25 | 60 min | Lunch |
 | 13:25 | 30 min | Teams form + pick a feature + design kickoff with Claude |
@@ -71,62 +71,26 @@ This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda 
 
 ## Lightning Talks
 
-**10 slots, all on Tuesday morning — 10 minutes each** (talk + Q&A). Sign-up based; anyone can present.
+Lightning talks run **Tuesday morning — about 100 minutes total**, split across two blocks with a break between (see the agenda above). Each talk **defaults to 5 minutes** — set your own in the *Expected talk time* column if you need more or less. **Leave at least 3 minutes after every talk for Q&A and mic handover**, so a default talk takes roughly an 8-minute slot.
 
-> **Claimed topics get the slots first** — once they're taken, AI champions fill any remaining slots from the ideas below. If more than 10 people want to present, message **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** and we'll find a way to fit you in.
+The talks below already have a speaker; the order is **provisional** — our AI champions finalise it just before the offsite. Need a **fixed time slot** (e.g. to plan travel or a remote join)? Message **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** and we'll lock one in.
 
-> 🕒 **No fixed running order yet.** The lineup is finalised just before the offsite by our AI champions. If you need a **fixed time slot** (e.g. to plan travel or a remote join), message **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack and we'll lock one in for you.
+**There's room for more** — add yourself to an empty row below, or grab a topic from **[Ideas for talks](#ideas-for-talks)** at the bottom of the page and bring your own.
 
-Topics are grouped by goal below. AI champions pick the 10 that run on Tuesday from the claimed topics and the ideas below.
+| # | Speaker | Talk | Expected talk time (default 5 mins) |
+|---|---------|------|-------------------------------------|
+| 1 | Andrii Kasilov | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session | 5 min |
+| 2 | Luka Milošević | Claude Code Hooks — Deterministic control over an AI coding workflow | 5 min |
+| 3 | Milica Markov | Using Claude to Write a Solution Design | 5 min |
+| 4 | Andrii Kasilov | Spec-Driven Development — from a written spec to working code with Claude | 5 min |
+| 5 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle | 5 min |
+| 6 | Yasemin Çalışkan | Pass static analysis skill for GOSDK Android repo | 5 min |
+| 7 |  |  |  |
+| 8 |  |  |  |
+| 9 |  |  |  |
+| 10 |  |  |  |
 
-**Want a slot?** Just put your name in a topic's **Owner** cell to reserve it — or edit this page directly to add a topic idea of your own. No need to ask anyone first.
-
-#### Goal A — Lower the entry barrier (get productive fast)
-
-| # | Owner | Topic |
-|---|-------|-------|
-| A1 | Andrii Kasilov | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session |
-| A2 | TBD | TomTom Marketplaces and Skills — what's available and how to use them |
-| A3 | TBD | Building Workflows for Daily Use — practical automation you can ship this week |
-| A4 | TBD | Prompt Patterns for Large Codebases — what works at TomTom's scale |
-| A5 | TBD | Sandbox Mode & Permissions — run Claude safely without constant approval prompts; how to configure allow/deny rules |
-| A6 | TBD | Steering AI Output Style — make AI-produced docs and summaries readable instead of a wall of text |
-| A7 | TBD | Managing Context & Session Size — ask for handovers, save memory, and make sure you can resume |
-| A8 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle |
-| A9 | Luka Milošević | Claude Code Hooks — Deterministic control over an AI coding workflow |
-
-#### Goal B — Make our work more efficient (hands-on, real tasks)
-
-| # | Owner | Topic |
-|---|-------|-------|
-| B1 | TBD | Mining Slack, JIRA & Confluence with Claude — turn scattered data into answers |
-| B2 | TBD | Data Mining in Practice — generating architecture docs and PR verification |
-| B3 | Andrii Kasilov | Spec-Driven Development — from a written spec to working code with Claude |
-| B4 | TBD | AI-Assisted Code Review — integrating Claude into your PR workflow |
-| B5 | TBD | Claude in CI/CD — automated test generation, linting, and review gates |
-| B6 | TBD | Optimizing AI Cost — right-size models, prompt caching, and tight context to cut token spend |
-| B7 | TBD | Script It vs. Re-Running Workflows — when a quick script beats running a workflow over and over |
-| B8 | Milica Markov | Using Claude to Write a Solution Design |
-
-#### Goal C — Level up your tooling (keep pace with the tools)
-
-| # | Owner | Topic |
-|---|-------|-------|
-| C1 | TBD | MCP Servers at TomTom — internal servers, how to connect and extend them |
-| C2 | TBD | How to Build and Evaluate Skills — authoring, testing, and measuring quality |
-| C3 | TBD | Multi-Agent Workflows in Production — when to fan out and how to control it |
-| C4 | TBD | Using Worktrees Efficiently — and where worktrees + sandboxing break down |
-| C5 | TBD | Using the Anthropic API to Build Internal Tools — from script to product |
-| C6 | TBD | Superskills in Practice — power patterns like "grill me with the docs" |
-| C7 | Yasemin Çalışkan | Pass static analysis skill for GOSDK Android repo |
-
-#### Goal D — Where humans still lead (perspective & experience)
-
-| # | Owner | Topic |
-|---|-------|-------|
-| D1 | TBD | Overview of AI Projects at TomTom — what teams are building right now |
-| D2 | TBD | How We Use AI — usage patterns and insights Claude surfaces about our own engineering behaviour |
-| D3 | TBD | Lessons from the Field — what failed, what we fixed, what we'd do differently |
+*Suggested arc: set up your repo (1) → control the workflow (2) → plan before you build, design then spec (3–4) → unify design and build (5) → ship a concrete reusable skill (6). Andrii's two talks are spaced apart so no speaker runs back-to-back. New sign-ups slot in wherever they fit best.*
 
 ---
 
@@ -180,7 +144,7 @@ Please note that we may need to accommodate changes in this plan depending on ex
 We're looking for lightning-talk presenters. **Engineers from any team are welcome** — if this sounds like you, let us know and we'll check the budget to make it happen.
 
 ### Lightning Talk Presenter
-Got an interesting topic to share, or want to claim one of the available topics from the list above? Take a 10-minute slot (talk + Q&A), in person or remotely. **10 slots, all on Tuesday morning** — claimed topics come first, and our AI champions set the running order.
+Got an interesting topic to share, or want to claim one from [Ideas for talks](#ideas-for-talks)? Take a slot on Tuesday morning — **5 minutes by default** (plus at least 3 min for Q&A and handover), or tell us if you need more. In person or remotely; our AI champions set the running order.
 
 **Interested?** Let us know and we'll follow up on availability and budget. 👉 DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack.
 
@@ -208,3 +172,38 @@ Propose a feature your team could build at the event. Add a row with an owner, a
 **6 teams × ~6 people each:**
 - ~5 TomTom engineers
 - 1 AI champion (TomTom engineer, experienced with Claude — embeds in the team all day)
+
+---
+
+## Ideas for talks
+
+Unclaimed topic ideas, grouped by goal. There are **10 lightning-talk slots** on Tuesday and **6 are filled**, so there's room for more. **Want to present?** Steal an idea from below — put your name on it and DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** — or come up with your own. No need to ask anyone first.
+
+#### Goal A — Lower the entry barrier (get productive fast)
+- TomTom Marketplaces and Skills — what's available and how to use them
+- Building Workflows for Daily Use — practical automation you can ship this week
+- Prompt Patterns for Large Codebases — what works at TomTom's scale
+- Sandbox Mode & Permissions — run Claude safely without constant approval prompts; how to configure allow/deny rules
+- Steering AI Output Style — make AI-produced docs and summaries readable instead of a wall of text
+- Managing Context & Session Size — ask for handovers, save memory, and make sure you can resume
+
+#### Goal B — Make our work more efficient (hands-on, real tasks)
+- Mining Slack, JIRA & Confluence with Claude — turn scattered data into answers
+- Data Mining in Practice — generating architecture docs and PR verification
+- AI-Assisted Code Review — integrating Claude into your PR workflow
+- Claude in CI/CD — automated test generation, linting, and review gates
+- Optimizing AI Cost — right-size models, prompt caching, and tight context to cut token spend
+- Script It vs. Re-Running Workflows — when a quick script beats running a workflow over and over
+
+#### Goal C — Level up your tooling (keep pace with the tools)
+- MCP Servers at TomTom — internal servers, how to connect and extend them
+- How to Build and Evaluate Skills — authoring, testing, and measuring quality
+- Multi-Agent Workflows in Production — when to fan out and how to control it
+- Using Worktrees Efficiently — and where worktrees + sandboxing break down
+- Using the Anthropic API to Build Internal Tools — from script to product
+- Superskills in Practice — power patterns like "grill me with the docs"
+
+#### Goal D — Where humans still lead (perspective & experience)
+- Overview of AI Projects at TomTom — what teams are building right now
+- How We Use AI — usage patterns and insights Claude surfaces about our own engineering behaviour
+- Lessons from the Field — what failed, what we fixed, what we'd do differently

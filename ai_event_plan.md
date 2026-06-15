@@ -6,14 +6,11 @@ TomTom · Amsterdam · June 16–17, 2026 · 1.5 days · more than 30 engineers 
 > ⚡ **We're looking for Lightning Talk speakers!** Got something worth 10 minutes (talk + Q&A)? [Here's what's involved](#lightning-talk-presenter).
 > 👉 Just put your name on a topic in the [list below](#lightning-talks), or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
 
-> 🏆 **We're looking for AI Champions!** [Here's what a champion does](#ai-champion) — drive hands-on adoption and own your team's plan; open to everyone, inside or outside Directions.
-> 👉 Add your name to the [AI Champions list below](#ai-champions), or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
-
 > 💡 **We're looking for candidate features!** Got a real feature from your backlog your team could build at the event? Add your idea to the [**Candidate Features** table below](#candidate-features) — owner, a short description, and the business value.
 
 > # 🚀 INTERESTED? JOIN US!
 > ## 👉 **[#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0)**
-> ### Keynote speakers · lightning talk presenters · AI champions — all teams welcome!
+> ### Lightning talk presenters — all teams welcome!
 
 > 🗳️ **Tell us what you think of this idea.** Leave **anonymous feedback and an anonymous rating** of the event idea via [this Microsoft Form](https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=JoBPN1R7Okq4fTKPom7BDU5HcAKvxARHjvCxxEE2ejRUQkJPWEdWWDdLVlpXN0pYSzVCQ0hEWk9WMy4u). Prefer to put your name to it? Share non-anonymous feedback on the event Slack channel [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
 
@@ -180,37 +177,12 @@ Please note that we may need to accommodate changes in this plan depending on ex
 
 ## Call for Participation
 
-We're looking for people to fill these roles. **Engineers from any team are welcome** — if any of these sound like you, let us know and we'll check the budget to make it happen.
-
-### Keynote Speaker
-Open the event with a vision-setting talk on AI in engineering at TomTom. If you have a perspective worth sharing with the whole room, reach out.
+We're looking for lightning-talk presenters. **Engineers from any team are welcome** — if this sounds like you, let us know and we'll check the budget to make it happen.
 
 ### Lightning Talk Presenter
 Got an interesting topic to share, or want to claim one of the available topics from the list above? Take a 10-minute slot (talk + Q&A), in person or remotely. **10 slots, all on Tuesday morning** — claimed topics come first, and our AI champions set the running order.
 
-### AI Champion
-Acting AI Engineering Champion for the team working on the feature, under the [AI Engineering Championship program](ai_championship_program.md) — an engineer (excited about AI Engineering) whose job is to learn fast, coach colleagues, and drive hands-on adoption. At the event: you're accountable for your team's execution plan (you can delegate the execution itself to teammates), embed in a team for the day, help others get productive with Claude, and unblock people during the build.
-
-**Open to everyone** — you don't have to be part of PU Directions. We welcome AI champions from both inside and outside Directions.
-
-**Interested in any of these?** Let us know which role and we'll follow up on availability and budget. 👉 DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack.
-
----
-
-## Sign-ups
-
-Add your name and a one-line pitch of what you're into. **6 spots — but the more the better, so don't hold back if the table looks full.**
-
-### AI Champions
-
-| # | Name | What I'm interested in |
-|---|------|------------------------|
-| 1 |  |  |
-| 2 |  |  |
-| 3 |  |  |
-| 4 |  |  |
-| 5 |  |  |
-| 6 |  |  |
+**Interested?** Let us know and we'll follow up on availability and budget. 👉 DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack.
 
 ---
 

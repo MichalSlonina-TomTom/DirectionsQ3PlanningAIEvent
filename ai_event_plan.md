@@ -3,7 +3,7 @@ TomTom · Amsterdam · June 16–17, 2026 · 1.5 days · more than 30 engineers 
 
 ---
 
-> ⚡ **We're looking for Lightning Talk speakers!** Got something worth 5 minutes (+ Q&A)? [Here's what's involved](#lightning-talk-presenter).
+> ⚡ **We're looking for Lightning Talk speakers!** Got something worth 5 minutes (+ Q&A)? **Any topic — AI or not.** [Here's what's involved](#lightning-talk-presenter).
 > 👉 Just grab a topic from [Ideas for talks](#ideas-for-talks), or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
 
 > 💡 **We're looking for candidate features!** Got a real feature from your backlog your team could build at the event? Add your idea to the [**Candidate Features** table below](#candidate-features) — owner, a short description, and the business value.
@@ -79,7 +79,7 @@ Lightning talks run **Tuesday morning — about 100 minutes total**, split acros
 
 The talks below already have a speaker; the order is **provisional** — our AI champions finalise it just before the offsite. Need a **fixed time slot** (e.g. to plan travel or a remote join)? Message **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** and we'll lock one in.
 
-**There's room for more** — add yourself to an empty row below, or grab a topic from **[Ideas for talks](#ideas-for-talks)** at the bottom of the page and bring your own.
+**There's room for more** — add yourself to an empty row below, or grab a topic from **[Ideas for talks](#ideas-for-talks)** at the bottom of the page and bring your own. **Topics don't have to be about AI** — anything worth sharing with the room is welcome.
 
 | # | Start | Speaker | Talk | Topics covered | Links | Expected talk time (default 5 mins) |
 |---|-------|---------|------|----------------|-------|-------------------------------------|
@@ -151,7 +151,7 @@ Please note that we may need to accommodate changes in this plan depending on ex
 We're looking for lightning-talk presenters. **Engineers from any team are welcome** — if this sounds like you, let us know and we'll check the budget to make it happen.
 
 ### Lightning Talk Presenter
-Got an interesting topic to share, or want to claim one from [Ideas for talks](#ideas-for-talks)? Take a slot on Tuesday morning — **5 minutes by default** (plus at least 3 min for Q&A and handover), or tell us if you need more. In person or remotely; our AI champions set the running order.
+Got an interesting topic to share, or want to claim one from [Ideas for talks](#ideas-for-talks)? Take a slot on Tuesday morning — **5 minutes by default** (plus at least 3 min for Q&A and handover), or tell us if you need more. **It doesn't have to be about AI** — anything worth sharing is welcome. In person or remotely; our AI champions set the running order.
 
 **Interested?** Let us know and we'll follow up on availability and budget. 👉 DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack.
 

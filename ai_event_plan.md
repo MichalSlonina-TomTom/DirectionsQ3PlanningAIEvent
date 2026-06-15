@@ -1,12 +1,9 @@
 # AI Engineering Mini Conference — Event Plan
-TomTom · Amsterdam · June 16–17, 2026 · 1.5 days · more than 30 engineers + 6 AI champions + 6 AI evangelists.
+TomTom · Amsterdam · June 16–17, 2026 · 1.5 days · more than 30 engineers + 6 AI champions.
 
 ---
 
-> 📣 **We're looking for AI Evangelists!** Genuinely enthusiastic about AI and have some hands-on experience? Embed with a team, bring an outside perspective, and share what you've learned — no deep expertise required.
-> 👉 Just add your name to the [AI Evangelists list below](#ai-evangelists), or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
-
-> ⚡ **We're looking for Lightning Talk speakers!** Got something worth 5 minutes (+ 3 min Q&A)? [Here's what's involved](#lightning-talk-presenter).
+> ⚡ **We're looking for Lightning Talk speakers!** Got something worth 10 minutes (talk + Q&A)? [Here's what's involved](#lightning-talk-presenter).
 > 👉 Just put your name on a topic in the [list below](#lightning-talks), or DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack — or join [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
 
 > 🏆 **We're looking for AI Champions!** [Here's what a champion does](#ai-champion) — drive hands-on adoption and own your team's plan; open to everyone, inside or outside Directions.
@@ -16,7 +13,7 @@ TomTom · Amsterdam · June 16–17, 2026 · 1.5 days · more than 30 engineers 
 
 > # 🚀 INTERESTED? JOIN US!
 > ## 👉 **[#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0)**
-> ### Keynote speakers · lightning talk presenters · AI champions · AI evangelists — all teams welcome!
+> ### Keynote speakers · lightning talk presenters · AI champions — all teams welcome!
 
 > 🗳️ **Tell us what you think of this idea.** Leave **anonymous feedback and an anonymous rating** of the event idea via [this Microsoft Form](https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=JoBPN1R7Okq4fTKPom7BDU5HcAKvxARHjvCxxEE2ejRUQkJPWEdWWDdLVlpXN0pYSzVCQ0hEWk9WMy4u). Prefer to put your name to it? Share non-anonymous feedback on the event Slack channel [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
 
@@ -38,45 +35,52 @@ Nothing graded, nothing shipped to prod. The only real risk is sitting it out. *
 
 ---
 
-## Day 1 — Full Day (Tuesday, June 16, 2026)
+## Schedule
+
+This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda below shows our sessions alongside the co-located sessions run by others (the LLM workshop and the Q3-planning "official part"), so you can see the full two days. **All times are proposed.**
+
+### Day 1 — Tuesday, June 16, 2026
 
 | Time | Duration | Block |
 |------|----------|-------|
 | 09:00 | 30 min | Keynote |
-| 09:30 | 48 min | Lightning talks: 6 slots, sign-up based — anyone can present (5 min + 3 min Q&A each) |
-| 10:18 | 12 min | Break — teams form with their champion + evangelist |
-| 10:30 | 20 min | Teams pick a feature to implement |
-| 10:50 | 30 min | Use Claude to design the feature: architecture, edge cases, open questions |
-| 11:20 | 30 min | Work breakdown: split into per-person tasks for the afternoon |
-| 11:50 | 25 min | Teams present their plan to the room (3–4 min each) |
-| 12:15 | 60 min | Lunch |
-| 13:15 | 150 min | Hands-on labs — implement the feature (champion + evangelist embedded) |
-| 15:45 | 15 min | Break |
-| 16:00 | 60 min | Team presentations: results + Day 2 work breakdown per person |
-| 17:00 | — | End of Day 1 — sign-up opens for Day 2 optional lightning talks |
+| 09:30 | 50 min | Lightning talks 1–5 (10 min each) |
+| 10:20 | 15 min | Break |
+| 10:35 | 50 min | Lightning talks 6–10 (10 min each) |
+| 11:25 | 60 min | LLM workshop — part 1 *(co-located)* |
+| 12:25 | 60 min | Lunch |
+| 13:25 | 30 min | Teams form + pick a feature + design kickoff with Claude |
+| 13:55 | 170 min | AI feature refinement + planning |
+| 16:45 | 15 min | Day-1 wrap — progress + name Day-2 tasks per person |
+| 17:00 | — | End of Day 1 → Dinner |
 
 ---
 
-## Day 2 — Half Day (Wednesday, June 17, 2026)
+### Day 2 — Wednesday, June 17, 2026
 
 | Time | Duration | Block |
 |------|----------|-------|
-| 09:00 | 48 min | Optional lightning talks: sign-up based, anyone can present (5 min + 3 min Q&A each, up to 6 slots) |
-| 09:48 | 12 min | Break |
-| 10:00 | 90 min | Execute Day 2 plans (champion + evangelist stay embedded) |
-| 11:30 | 15 min | Break |
-| 11:45 | 45 min | Final share-out: what shipped + takeaways + CLAUDE.md templates to take home |
-| 12:30 | — | End |
+| 09:00 | 60 min | LLM workshop — part 2 *(co-located)* |
+| 10:00 | 15 min | Break |
+| 10:15 | 105 min | AI feature refinement + planning (continue) |
+| 12:00 | 30 min | Final share-out — what shipped + takeaways + CLAUDE.md templates to take home |
+| 12:30 | 60 min | Lunch |
+| 13:30 | 60 min | Product / UX updates *(official part)* |
+| 14:30 | 30 min | Reflect on Q2 — EMs *(official part)* |
+| 15:00 | 30 min | Present Q3 plans — EMs *(official part)* |
+| 15:30 | — | End |
 
 ---
 
 ## Lightning Talks
 
-> **We'll accommodate every lightning talk speaker** — if you want to present, you'll get a slot (across Day 1 and Day 2).
+**10 slots, all on Tuesday morning — 10 minutes each** (talk + Q&A). Sign-up based; anyone can present.
 
-> 🕒 **No fixed schedule yet.** There's no set running order — the lineup is finalised just before the conference by our AI champions. If you need a **fixed time slot** (e.g. to plan travel or a remote join), message **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack and we'll lock one in for you.
+> **Claimed topics get the slots first** — once they're taken, AI champions fill any remaining slots from the ideas below. If more than 10 people want to present, message **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** and we'll find a way to fit you in.
 
-Topics are grouped by goal below. AI champions pick 6 for the Day 1 block and place the rest across Day 1 overflow and Day 2.
+> 🕒 **No fixed running order yet.** The lineup is finalised just before the offsite by our AI champions. If you need a **fixed time slot** (e.g. to plan travel or a remote join), message **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack and we'll lock one in for you.
+
+Topics are grouped by goal below. AI champions pick the 10 that run on Tuesday from the claimed topics and the ideas below.
 
 **Want a slot?** Just put your name in a topic's **Owner** cell to reserve it — or edit this page directly to add a topic idea of your own. No need to ask anyone first.
 
@@ -127,24 +131,18 @@ Topics are grouped by goal below. AI champions pick 6 for the Day 1 block and pl
 | D2 | TBD | How We Use AI — usage patterns and insights Claude surfaces about our own engineering behaviour |
 | D3 | TBD | Lessons from the Field — what failed, what we fixed, what we'd do differently |
 
-### Optional Lightning Talk Suggestions (Day 2)
-
-Good topics that naturally emerge from Day 1 experience:
-- "Here's what our team actually built yesterday"
-- "I hit this problem and solved it this way"
-- "Here's a prompt pattern that surprised me"
-- "What I'm doing differently today based on yesterday"
-
 ---
 
-## End of Day 1 — Team Presentations (16:00–17:00)
+## Day-1 Wrap (16:45–17:00)
 
-Each team presents:
-1. What we built this afternoon (show actual output)
+A quick round-the-room before dinner — each team, in a sentence or two:
+1. What they're building (show something if it's ready)
 2. One thing that worked, one thing that broke
-3. Day 2 plan — who on the team is doing what, specific tasks named per person
+3. Day-2 plan — who's doing what, specific tasks named per person
 
-At the close, sign-up opens for Day 2 optional lightning talks. Champions and evangelists seed with one slot each.
+## Final Share-out (Wednesday, 12:00–12:30)
+
+Each team shows what shipped, one thing that worked and one that broke, and where Claude helped vs. where you had to lead — plus any CLAUDE.md templates worth taking home.
 
 ---
 
@@ -155,12 +153,12 @@ Please note that we may need to accommodate changes in this plan depending on ex
 
 | Phase | When | What you do | Techniques to lean on |
 |-------|------|-------------|------------------------|
-| **1. Pick** | 10:30 | Choose a feature that's valuable, researchable, parallelizable, technique-rich, and safely scoped (off the critical path). | — |
-| **2. Research & design** | 10:50 | Use Claude to map the architecture, read the existing code, and surface edge cases & open questions. Mine Slack/JIRA/Confluence for context and prior decisions. | Mining Slack/JIRA/Confluence; generating architecture docs; prompt patterns for large codebases |
-| **3. Break down & parallelize** | 11:20 | Turn the design into a short spec, then split it into ~5–7 independent tasks with clear seams. Decide where to fan out agents or use worktrees. | Spec-driven development; multi-agent workflows; worktrees; daily-use workflows |
-| **4. Present the plan** | 11:50 | 3–4 min read-out to the room; get a sanity check before lunch. | — |
-| **5. Build** | 13:15 (Day 1) + Day 2 | Each person drives Claude on their task. Set up CLAUDE.md/hooks and sandbox + permissions so Claude can move fast safely; review its output as you go and wire up gates. | CLAUDE.md & hooks; sandbox mode & permissions; AI-assisted code review; Claude in CI/CD |
-| **6. Share-out** | 16:00 Day 1 / 11:45 Day 2 | Show what you built, one thing that worked and one that broke, and where Claude helped vs. where you had to lead. | Reflecting on where humans still lead; lessons from the field |
+| **1. Pick** | Tue 13:25 | Choose a feature that's valuable, researchable, parallelizable, technique-rich, and safely scoped (off the critical path). | — |
+| **2. Research & design** | Tue 13:30 | Use Claude to map the architecture, read the existing code, and surface edge cases & open questions. Mine Slack/JIRA/Confluence for context and prior decisions. | Mining Slack/JIRA/Confluence; generating architecture docs; prompt patterns for large codebases |
+| **3. Break down & parallelize** | Tue 14:00 | Turn the design into a short spec, then split it into ~5–7 independent tasks with clear seams. Decide where to fan out agents or use worktrees. | Spec-driven development; multi-agent workflows; worktrees; daily-use workflows |
+| **4. Build** | Tue 14:00 + Wed 10:15 | Each person drives Claude on their task. Set up CLAUDE.md/hooks and sandbox + permissions so Claude can move fast safely; review its output as you go and wire up gates. | CLAUDE.md & hooks; sandbox mode & permissions; AI-assisted code review; Claude in CI/CD |
+| **5. Day-1 checkpoint** | Tue 16:45 | Quick progress share; name each person's Day-2 task before dinner. | — |
+| **6. Share-out** | Wed 12:00 | Show what you built, one thing that worked and one that broke, and where Claude helped vs. where you had to lead. | Reflecting on where humans still lead; lessons from the field |
 
 ---
 
@@ -168,8 +166,7 @@ Please note that we may need to accommodate changes in this plan depending on ex
 
 | Role | Responsibility |
 |------|---------------|
-| AI Champion (×6) | Acting AI Engineering Champion for the team working on the feature. Accountable for the team's execution plan (may delegate the execution itself); embeds in a team, unblocks during labs, seeds Day 2 sign-up |
-| AI Evangelist (×6) | Embeds in team, brings external perspective; not required to give a lightning talk, but highly encouraged |
+| AI Champion (×6) | Acting AI Engineering Champion for the team working on the feature. Accountable for the team's execution plan (may delegate the execution itself); embeds in a team, unblocks during the build, and helps set the lightning-talk running order |
 
 ---
 
@@ -189,17 +186,12 @@ We're looking for people to fill these roles. **Engineers from any team are welc
 Open the event with a vision-setting talk on AI in engineering at TomTom. If you have a perspective worth sharing with the whole room, reach out.
 
 ### Lightning Talk Presenter
-Got an interesting topic to share, or want to claim one of the available topics from the list above? Take a 5-minute slot (+ 3 min Q&A), in person or remotely. **Everyone who wants to present will be accommodated** — our AI champions set the running order across Day 1 and Day 2.
+Got an interesting topic to share, or want to claim one of the available topics from the list above? Take a 10-minute slot (talk + Q&A), in person or remotely. **10 slots, all on Tuesday morning** — claimed topics come first, and our AI champions set the running order.
 
 ### AI Champion
-Acting AI Engineering Champion for the team working on the feature, under the [AI Engineering Championship program](ai_championship_program.md) — an engineer (excited about AI Engineering) whose job is to learn fast, coach colleagues, and drive hands-on adoption. At the event: you're accountable for your team's execution plan (you can delegate the execution itself to teammates), embed in a team for the day, help others get productive with Claude, and unblock people during the labs.
+Acting AI Engineering Champion for the team working on the feature, under the [AI Engineering Championship program](ai_championship_program.md) — an engineer (excited about AI Engineering) whose job is to learn fast, coach colleagues, and drive hands-on adoption. At the event: you're accountable for your team's execution plan (you can delegate the execution itself to teammates), embed in a team for the day, help others get productive with Claude, and unblock people during the build.
 
 **Open to everyone** — you don't have to be part of PU Directions. We welcome AI champions from both inside and outside Directions.
-
-### AI Evangelist
-Someone genuinely enthusiastic about AI with some practical experience in AI-assisted engineering. You'll embed with a team, bring an outside perspective, and share what you've learned — no deep expertise required, just real curiosity and a few miles on the clock. You don't have to give a lightning talk, but you're highly encouraged to — your external perspective is exactly what makes them valuable.
-
-**Want in?** Just put your name in the AI Evangelists sign-up table below to reserve a spot — or edit this page directly to add yourself and what you're into. No need to ask anyone first.
 
 **Interested in any of these?** Let us know which role and we'll follow up on availability and budget. 👉 DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** on Slack.
 
@@ -207,20 +199,9 @@ Someone genuinely enthusiastic about AI with some practical experience in AI-ass
 
 ## Sign-ups
 
-Add your name and a one-line pitch of what you're into. **6 spots each — but the more the better, so don't hold back if the table looks full.**
+Add your name and a one-line pitch of what you're into. **6 spots — but the more the better, so don't hold back if the table looks full.**
 
 ### AI Champions
-
-| # | Name | What I'm interested in |
-|---|------|------------------------|
-| 1 |  |  |
-| 2 |  |  |
-| 3 |  |  |
-| 4 |  |  |
-| 5 |  |  |
-| 6 |  |  |
-
-### AI Evangelists
 
 | # | Name | What I'm interested in |
 |---|------|------------------------|
@@ -252,7 +233,6 @@ Propose a feature your team could build at the event. Add a row with an owner, a
 
 ## Proposed Team Structure
 
-**6 teams × ~7 people each:**
+**6 teams × ~6 people each:**
 - ~5 TomTom engineers
 - 1 AI champion (TomTom engineer, experienced with Claude — embeds in the team all day)
-- 1 AI evangelist (external engineer — embeds with a team, brings an outside perspective)

@@ -18,24 +18,23 @@ and **[PARENT PAGE]** (the page it should live under, or "top level of the space
 > **Top banner (use an info/success panel so it stands out):**
 > 🚀 Interested? Join us! → link the text **#directions-ai-session-june-16-ams** to
 > https://tomtomslack.slack.com/archives/C0B8EPN0YB0
-> Subtitle: "Keynote speakers · lightning talk presenters · AI champions · AI evangelists — all teams welcome!"
+> Subtitle: "Keynote speakers · lightning talk presenters · AI champions — all teams welcome!"
 >
-> **Intro line:** TomTom · Amsterdam · June 16–17, 2026 · 1.5 days · ~30 engineers + 6 AI champions + 6 AI evangelists.
+> **Intro line:** TomTom · Amsterdam · June 16–17, 2026 · 1.5 days · ~30 engineers + 6 AI champions.
 >
-> **Section "Team Structure":** 6 teams × ~7 people each — ~5 TomTom engineers, 1 AI champion (TomTom
-> engineer experienced with Claude, embeds in the team all day), 1 AI evangelist (external engineer,
-> brings an outside perspective, embeds all day).
+> **Section "Team Structure":** 6 teams × ~6 people each — ~5 TomTom engineers, 1 AI champion (TomTom
+> engineer experienced with Claude, embeds in the team all day).
 >
 > **Section "Day 1 — Tuesday, June 16, 2026":** render as a table with columns Time / Duration / Block:
 > - 09:00 / 30 min / Keynote
-> - 09:30 / 48 min / Lightning talks: 3 AI champions + 3 AI evangelists alternating (5 min + 3 min Q&A each)
-> - 10:18 / 12 min / Break — teams form with their champion + evangelist
+> - 09:30 / 48 min / Lightning talks: engineers, sign-up based (5 min + 3 min Q&A each)
+> - 10:18 / 12 min / Break — teams form with their champion
 > - 10:30 / 20 min / Teams pick a feature to implement
 > - 10:50 / 30 min / Use Claude to design the feature: architecture, edge cases, open questions
 > - 11:20 / 30 min / Work breakdown: split into per-person tasks for the afternoon
 > - 11:50 / 25 min / Teams present their plan to the room (3–4 min each)
 > - 12:15 / 60 min / Lunch
-> - 13:15 / 150 min / Hands-on labs — implement the feature (champion + evangelist embedded)
+> - 13:15 / 150 min / Hands-on labs — implement the feature (champion embedded)
 > - 15:45 / 15 min / Break
 > - 16:00 / 60 min / Team presentations: results + Day 2 work breakdown per person
 > - 17:00 / — / End of Day 1 — sign-up opens for Day 2 optional lightning talks
@@ -76,7 +75,7 @@ and **[PARENT PAGE]** (the page it should live under, or "top level of the space
 > **Section "Day 2 — Wednesday, June 17, 2026":** table with Time / Duration / Block:
 > - 09:00 / 48 min / Optional lightning talks: sign-up based, anyone can present (5 min + 3 min Q&A, up to 6 slots)
 > - 09:48 / 12 min / Break
-> - 10:00 / 90 min / Execute Day 2 plans (champion + evangelist stay embedded)
+> - 10:00 / 90 min / Execute Day 2 plans (champion stays embedded)
 > - 11:30 / 15 min / Break
 > - 11:45 / 45 min / Final share-out: what shipped + takeaways + CLAUDE.md templates to take home
 > - 12:30 / — / End
@@ -87,8 +86,7 @@ and **[PARENT PAGE]** (the page it should live under, or "top level of the space
 >
 > **Section "Roles":** table Role / Responsibility — Facilitator (runs keynote, timekeeping, plenary
 > sessions); AI Champion ×6 (presents a lightning talk, embeds in a team, unblocks during labs, seeds Day 2
-> sign-up); AI Evangelist ×6 (presents a lightning talk, embeds in a team, brings external perspective);
-> Timekeeper (enforces the 3 min Q&A limit with a visible countdown).
+> sign-up); Timekeeper (enforces the 3 min Q&A limit with a visible countdown).
 >
 > **Section "Attending & Presenting Remotely" (use an info panel):** Lightning sessions are streamed live
 > online — you don't have to be in Amsterdam to attend. You can present remotely over video. All sessions
@@ -104,9 +102,6 @@ and **[PARENT PAGE]** (the page it should live under, or "top level of the space
 >   Championship program; learns fast, coaches colleagues, and drives hands-on adoption. At the event:
 >   embed in a team for the day, help others get productive with Claude, unblock during labs, present a
 >   lightning talk.
-> - **AI Evangelist** — someone genuinely enthusiastic about AI with some practical experience in
->   AI-assisted engineering; brings an outside perspective and shares what they've learned. No deep
->   expertise required — just real curiosity and a few miles on the clock.
 >
 > Close with a call to action: "Interested in any of these? Let us know which role and we'll follow up on
 > availability and budget." Keep the tone energetic and welcoming.
@@ -116,7 +111,6 @@ and **[PARENT PAGE]** (the page it should live under, or "top level of the space
 > editable table with columns **#**, **Name**, **What I'm interested in**, pre-filled with 6 numbered, empty
 > rows so people can fill them in directly on the page:
 > - **AI Champions**
-> - **AI Evangelists**
 
 ---
 

@@ -32,7 +32,7 @@ Nothing graded, nothing shipped to prod. The only real risk is sitting it out. *
 
 ## Schedule
 
-This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda below shows our sessions alongside the co-located sessions run by others (the LLN workshop and the Q3-planning "official part"), so you can see the full two days. **All times are proposed.**
+This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda below shows our sessions alongside the co-located sessions run by others (the LLN workshop and the Q3-planning "official part"), so you can see the full two days. **All times are proposed.** For the overall offsite agenda, see the [AMS meeting agenda slides](https://tomtominternational-my.sharepoint.com/:p:/g/personal/dmytro_vorobiov_tomtom_com/IQBHaYgh_uVLS6jWxzoWXrKgAU4PNqSqW1uLdugEuznsjLI?email=Michal.Slonina%40tomtom.com&e=I4qYrP).
 
 **From Tuesday afternoon, several activities run in parallel — pick whichever fits:** the LLN workshop, the AI feature-refinement track, or pair programming on whatever you're already working on.
 
@@ -41,7 +41,7 @@ This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda 
 | Time | Duration | Block |
 |------|----------|-------|
 | 09:30 | 30 min | Coffee |
-| 10:00 | 30 min | Keynote — Rob van der Most (topic TBD; 20 min talk + 10 min Q&A) |
+| 10:00 | 30 min | Keynote — Rob van der Most (AI and the Software Engineer; 20 min talk + 10 min Q&A) |
 | 10:30 | 90 min | Lightning talks |
 | 12:00 | 60 min | Lunch |
 | 13:00 | — | **Parallel tracks** — pick one (runs to dinner): |

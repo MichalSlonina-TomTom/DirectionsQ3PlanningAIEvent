@@ -14,8 +14,6 @@ TomTom · Amsterdam · June 16–17, 2026 · 1.5 days · more than 30 engineers 
 
 > 🗳️ **Tell us what you think of this idea.** Leave **anonymous feedback and an anonymous rating** of the event idea via [this Microsoft Form](https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=JoBPN1R7Okq4fTKPom7BDU5HcAKvxARHjvCxxEE2ejRUQkJPWEdWWDdLVlpXN0pYSzVCQ0hEWk9WMy4u). Prefer to put your name to it? Share non-anonymous feedback on the event Slack channel [#directions-ai-session-june-16-ams](https://tomtomslack.slack.com/archives/C0B8EPN0YB0).
 
-> 📝 **Proposal — not yet confirmed.** This event is still in the proposal phase. The decision will be taken by the organizers of **Q3 Directions planning**. If it isn't included in Q3 Directions planning, we'll make sure to organize it in a different format, time, or place.
-
 ---
 
 ## Why join

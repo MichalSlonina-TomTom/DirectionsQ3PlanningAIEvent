@@ -84,20 +84,20 @@ The talks below already have a speaker; the order is **provisional** — our AI 
 
 | # | Start | Speaker | Talk | Topics covered | Links | Expected talk time (default 5 mins) |
 |---|-------|---------|------|----------------|-------|-------------------------------------|
-| 1 | 10:30 | Andrii Kasilov | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session |  |  | 5 min |
-| 2 | 10:38 | Luka Milošević | Claude Code Hooks — Deterministic control over an AI coding workflow |  |  | 5 min |
-| 3 | 10:46 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle |  |  | 5 min |
-| 4 | 10:54 | Yasemin Çalışkan | Using AI to build an AI skill — what broke, and what I'd do differently |  |  | 5 min |
-| 5 | 11:02 | Borys Zhdanov | Building your own skills — sad DIY or a "different set of tools"? |  |  | 5 min |
-| 6 | 11:10 | Milica Markov | Using Claude to Write a Solution Design |  |  | 5 min |
-| 7 | 11:18 | Andrii Kasilov | Spec-Driven Development — from a written spec to working code with Claude |  |  | 5 min |
-| 8 | 11:26 | Borys Zhdanov *(tentative)* | How to Build and Evaluate Skills — authoring, testing, and measuring quality |  |  | 5 min |
+| 1 | 10:30 | Luka Milošević | Claude Code Hooks — Deterministic control over an AI coding workflow |  |  | 5 min |
+| 2 | 10:38 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle |  |  | 5 min |
+| 3 | 10:46 | Yasemin Çalışkan | Using AI to build an AI skill — what broke, and what I'd do differently |  |  | 5 min |
+| 4 | 10:54 | Borys Zhdanov | Building your own skills — sad DIY or a "different set of tools"? |  |  | 5 min |
+| 5 | 11:02 | Milica Markov | Using Claude to Write a Solution Design |  |  | 5 min |
+| 6 | 11:10 | Andrii Kasilov | Spec-Driven Development + CLAUDE.md — from a written spec to working code with Claude |  |  | 5 min |
+| 7 | 11:18 | Borys Zhdanov *(tentative)* | How to Build and Evaluate Skills — authoring, testing, and measuring quality |  |  | 5 min |
+| 8 | 11:26 |  |  |  |  |  |
 | 9 | 11:34 |  |  |  |  |  |
 | 10 | 11:42 |  |  |  |  |  |
 | 11 | 11:50 |  |  |  |  |  |
 | 12 | 11:58 |  |  |  |  |  |
 
-*Suggested arc: set up your repo (1) → make the workflow deterministic (2) → unify design and build (3) → reusable skills, applied then DIY (4–5) → plan with Claude, design then spec (6–7) → evaluating skills (8, tentative). Order is provisional; Andrii (1, 7) and Borys (5, 8) are spaced so no one runs back-to-back. New sign-ups slot in wherever they fit best.*
+*Suggested arc: hooks & workflow control (1) → unify design and build (2) → reusable skills, applied then DIY (3–4) → plan then spec, with CLAUDE.md setup folded into Andrii's talk (5–6) → evaluating skills (7, tentative). Order is provisional — per the speakers' latest plan, Luka covers hooks (1) and Andrii folds CLAUDE.md into his Spec-Driven Development talk (6); Borys's two talks (4, 7) are spaced so no one runs back-to-back. New sign-ups slot in wherever they fit best.*
 
 ---
 
@@ -184,7 +184,7 @@ Propose a feature your team could build at the event. Add a row with an owner, a
 
 ## Ideas for talks
 
-Unclaimed topic ideas, grouped by goal. There are **12 lightning-talk slots** on Tuesday and **7 are filled** (plus one tentative), so there's still room for more. **Want to present?** Steal an idea from below — put your name on it and DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** — or come up with your own (it doesn't have to be about AI). No need to ask anyone first.
+Unclaimed topic ideas, grouped by goal. There are **12 lightning-talk slots** on Tuesday and **6 are filled** (plus one tentative), so there's still room for more. **Want to present?** Steal an idea from below — put your name on it and DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** — or come up with your own (it doesn't have to be about AI). No need to ask anyone first.
 
 #### Goal A — Lower the entry barrier (get productive fast)
 - TomTom Marketplaces and Skills — what's available and how to use them

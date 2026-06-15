@@ -34,20 +34,21 @@ Nothing graded, nothing shipped to prod. The only real risk is sitting it out. *
 
 This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda below shows our sessions alongside the co-located sessions run by others (the LLN workshop and the Q3-planning "official part"), so you can see the full two days. **All times are proposed.**
 
+**From Tuesday afternoon, several activities run in parallel — pick whichever fits:** the LLN workshop, the AI feature-refinement track, or pair programming on whatever you're already working on.
+
 ### Day 1 — Tuesday, June 16, 2026
 
 | Time | Duration | Block |
 |------|----------|-------|
-| 09:00 | 30 min | Keynote — Rob van der Most (20 min talk + 10 min Q&A) |
-| 09:30 | 50 min | Lightning talks — block 1 (slots 1–6) |
-| 10:20 | 15 min | Break |
-| 10:35 | 50 min | Lightning talks — block 2 (slots 7–12) |
-| 11:25 | 60 min | LLN workshop — part 1 *(co-located)* |
-| 12:25 | 60 min | Lunch |
-| 13:25 | 30 min | Teams form + pick a feature + design kickoff with Claude |
-| 13:55 | 170 min | AI feature refinement + planning |
-| 16:45 | 15 min | Day-1 wrap — progress + name Day-2 tasks per person |
-| 17:00 | — | End of Day 1 → Dinner |
+| 09:30 | 30 min | Coffee |
+| 10:00 | 30 min | Keynote — Rob van der Most (topic TBD; 20 min talk + 10 min Q&A) |
+| 10:30 | 90 min | Lightning talks |
+| 12:00 | 60 min | Lunch |
+| 13:00 | — | **Parallel tracks** — pick one (runs to dinner): |
+|  |  | • **LLN Workshop** — Serj & Danna |
+|  |  | • **AI feature refinement** — Michał (rhythm below) |
+|  |  | • **Pair programming** — on whatever you're working on |
+| 17:30 | — | Dinner |
 
 ---
 
@@ -55,19 +56,19 @@ This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda 
 
 | Time | Duration | Block |
 |------|----------|-------|
-| 09:00 | 60 min | LLN workshop — part 2 *(co-located)* |
-| 10:00 | 15 min | Break |
-| 10:15 | 105 min | AI feature refinement + planning (continue) |
-| 12:00 | 30 min | Final share-out — what shipped + takeaways + CLAUDE.md templates to take home |
-| 12:30 | 60 min | Lunch |
-| 13:30 | 60 min | Product / UX updates *(official part)* |
+| 09:30 | 30 min | Coffee |
+| 10:00 | — | **Parallel tracks** — pick one (to lunch): |
+|  |  | • **AI feature refinement** — Michał |
+|  |  | • **Pair programming** — on whatever you're working on |
+| 12:00 | — | Lunch |
+| 14:00 | 30 min | Product / UX updates *(official part)* |
 | 14:30 | 30 min | Reflect on Q2 — EMs *(official part)* |
 | 15:00 | 30 min | Present Q3 plans — EMs *(official part)* |
 | 15:30 | — | End |
 
 ### LLN Workshop (co-located)
 
-Run by **Danna & Serj**, across both days (Tuesday part 1 + Wednesday part 2). Two parts:
+Run by **Danna & Serj** in **Tuesday afternoon's parallel block**. Two parts:
 1. **Presentation (Danna)** — a tour of our current **LLN (Lane Level Navigation)** offering, benchmarked against competitors, to set a **north-star goal for LLN**.
 2. **Brainstorm (with the team)** — where we should focus to close the gap to that goal.
 
@@ -75,7 +76,7 @@ Run by **Danna & Serj**, across both days (Tuesday part 1 + Wednesday part 2). T
 
 ## Lightning Talks
 
-Lightning talks run **Tuesday morning — about 100 minutes total**, split across two blocks with a break between (see the agenda above). Each talk **defaults to 5 minutes** — set your own in the *Expected talk time* column if you need more or less. **Leave at least 3 minutes after every talk for Q&A and mic handover**, so a default talk takes roughly an 8-minute slot. The **Start** column below times the slots at ~8 minutes each (slots 1–6 before the 10:20 break, 7–12 after); the agenda blocks keep some slack on top.
+Lightning talks run **Tuesday morning, 10:30–12:00 (~90 minutes)**. Each talk **defaults to 5 minutes** — set your own in the *Expected talk time* column if you need more or less. **Leave at least 3 minutes after every talk for Q&A and mic handover**, so a default talk takes roughly an 8-minute slot. The **Start** column below times the slots at ~8 minutes each; with all 12 filled it runs tight to the 12:00 lunch.
 
 The talks below already have a speaker; the order is **provisional** — our AI champions finalise it just before the offsite. Need a **fixed time slot** (e.g. to plan travel or a remote join)? Message **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** and we'll lock one in.
 
@@ -83,50 +84,49 @@ The talks below already have a speaker; the order is **provisional** — our AI 
 
 | # | Start | Speaker | Talk | Topics covered | Links | Expected talk time (default 5 mins) |
 |---|-------|---------|------|----------------|-------|-------------------------------------|
-| 1 | 09:30 | Andrii Kasilov | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session |  |  | 5 min |
-| 2 | 09:38 | Luka Milošević | Claude Code Hooks — Deterministic control over an AI coding workflow |  |  | 5 min |
-| 3 | 09:46 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle |  |  | 5 min |
-| 4 | 09:54 | Yasemin Çalışkan | Pass static analysis skill for GOSDK Android repo |  |  | 5 min |
-| 5 | 10:02 | Borys Zhdanov | Building your own skills — sad DIY or a "different set of tools"? |  |  | 5 min |
-| 6 | 10:10 | Milica Markov | Using Claude to Write a Solution Design |  |  | 5 min |
-|  | 10:20 | *— Break (15 min) —* |  |  |  |  |
-| 7 | 10:35 | Andrii Kasilov | Spec-Driven Development — from a written spec to working code with Claude |  |  | 5 min |
-| 8 | 10:43 | Borys Zhdanov *(tentative)* | How to Build and Evaluate Skills — authoring, testing, and measuring quality |  |  | 5 min |
-| 9 | 10:51 |  |  |  |  |  |
-| 10 | 10:59 |  |  |  |  |  |
-| 11 | 11:07 |  |  |  |  |  |
-| 12 | 11:15 |  |  |  |  |  |
+| 1 | 10:30 | Andrii Kasilov | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session |  |  | 5 min |
+| 2 | 10:38 | Luka Milošević | Claude Code Hooks — Deterministic control over an AI coding workflow |  |  | 5 min |
+| 3 | 10:46 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle |  |  | 5 min |
+| 4 | 10:54 | Yasemin Çalışkan | Pass static analysis skill for GOSDK Android repo |  |  | 5 min |
+| 5 | 11:02 | Borys Zhdanov | Building your own skills — sad DIY or a "different set of tools"? |  |  | 5 min |
+| 6 | 11:10 | Milica Markov | Using Claude to Write a Solution Design |  |  | 5 min |
+| 7 | 11:18 | Andrii Kasilov | Spec-Driven Development — from a written spec to working code with Claude |  |  | 5 min |
+| 8 | 11:26 | Borys Zhdanov *(tentative)* | How to Build and Evaluate Skills — authoring, testing, and measuring quality |  |  | 5 min |
+| 9 | 11:34 |  |  |  |  |  |
+| 10 | 11:42 |  |  |  |  |  |
+| 11 | 11:50 |  |  |  |  |  |
+| 12 | 11:58 |  |  |  |  |  |
 
 *Suggested arc: set up your repo (1) → make the workflow deterministic (2) → unify design and build (3) → reusable skills, applied then DIY (4–5) → plan with Claude, design then spec (6–7) → evaluating skills (8, tentative). Order is provisional; Andrii (1, 7) and Borys (5, 8) are spaced so no one runs back-to-back. New sign-ups slot in wherever they fit best.*
 
 ---
 
-## Day-1 Wrap (16:45–17:00)
+## Day-1 Wrap — AI feature refinement track (≈17:00, before dinner)
 
-A quick round-the-room before dinner — each team, in a sentence or two:
+For teams on the AI feature refinement track, a quick round-the-room before dinner — each team, in a sentence or two:
 1. What they're building (show something if it's ready)
 2. One thing that worked, one thing that broke
 3. Day-2 plan — who's doing what, specific tasks named per person
 
-## Final Share-out (Wednesday, 12:00–12:30)
+## Final Share-out — AI feature refinement track (Wednesday, ≈11:30, before lunch)
 
-Each team shows what shipped, one thing that worked and one that broke, and where Claude helped vs. where you had to lead — plus any CLAUDE.md templates worth taking home.
+Teams on the AI feature refinement track show what shipped, one thing that worked and one that broke, and where Claude helped vs. where you had to lead — plus any CLAUDE.md templates worth taking home.
 
 ---
 
 ## Suggested Execution Plan (per feature)
 
-This is the **suggested** way to take a feature from pick to share-out. It lines up with the agenda above and gives each team a default rhythm — adapt it to your feature, it's a starting point, not a rule. The *Techniques to lean on* column points to the kinds of techniques covered in the lightning talks that fit each phase.
+This applies to the **AI feature refinement track** — one of the parallel options from Tuesday afternoon. It's the **suggested** way to take a feature from pick to share-out — a default rhythm; adapt it to your feature, it's a starting point, not a rule. The *Techniques to lean on* column points to the kinds of techniques covered in the lightning talks that fit each phase.
 Please note that we may need to accommodate changes in this plan depending on external topics coming from the management and new lightning talks that will be submitted.
 
 | Phase | When | What you do | Techniques to lean on |
 |-------|------|-------------|------------------------|
-| **1. Pick** | Tue 13:25 | Choose a feature that's valuable, researchable, parallelizable, technique-rich, and safely scoped (off the critical path). | — |
-| **2. Research & design** | Tue 13:30 | Use Claude to map the architecture, read the existing code, and surface edge cases & open questions. Mine Slack/JIRA/Confluence for context and prior decisions. | Mining Slack/JIRA/Confluence; generating architecture docs; prompt patterns for large codebases |
-| **3. Break down & parallelize** | Tue 14:00 | Turn the design into a short spec, then split it into ~5–7 independent tasks with clear seams. Decide where to fan out agents or use worktrees. | Spec-driven development; multi-agent workflows; worktrees; daily-use workflows |
-| **4. Build** | Tue 14:00 + Wed 10:15 | Each person drives Claude on their task. Set up CLAUDE.md/hooks and sandbox + permissions so Claude can move fast safely; review its output as you go and wire up gates. | CLAUDE.md & hooks; sandbox mode & permissions; AI-assisted code review; Claude in CI/CD |
-| **5. Day-1 checkpoint** | Tue 16:45 | Quick progress share; name each person's Day-2 task before dinner. | — |
-| **6. Share-out** | Wed 12:00 | Show what you built, one thing that worked and one that broke, and where Claude helped vs. where you had to lead. | Reflecting on where humans still lead; lessons from the field |
+| **1. Pick** | Tue 13:00 | Choose a feature that's valuable, researchable, parallelizable, technique-rich, and safely scoped (off the critical path). | — |
+| **2. Research & design** | Tue 13:15 | Use Claude to map the architecture, read the existing code, and surface edge cases & open questions. Mine Slack/JIRA/Confluence for context and prior decisions. | Mining Slack/JIRA/Confluence; generating architecture docs; prompt patterns for large codebases |
+| **3. Break down & parallelize** | Tue 13:45 | Turn the design into a short spec, then split it into ~5–7 independent tasks with clear seams. Decide where to fan out agents or use worktrees. | Spec-driven development; multi-agent workflows; worktrees; daily-use workflows |
+| **4. Build** | Tue 14:00 + Wed 10:00 | Each person drives Claude on their task. Set up CLAUDE.md/hooks and sandbox + permissions so Claude can move fast safely; review its output as you go and wire up gates. | CLAUDE.md & hooks; sandbox mode & permissions; AI-assisted code review; Claude in CI/CD |
+| **5. Day-1 checkpoint** | Tue 17:00 | Quick progress share; name each person's Day-2 task before dinner. | — |
+| **6. Share-out** | Wed 11:30 | Show what you built, one thing that worked and one that broke, and where Claude helped vs. where you had to lead. | Reflecting on where humans still lead; lessons from the field |
 
 ---
 

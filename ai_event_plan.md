@@ -84,13 +84,15 @@ Topics are grouped by goal below. AI champions pick 6 for the Day 1 block and pl
 
 | # | Owner | Topic |
 |---|-------|-------|
-| A1 | TBD | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session |
+| A1 | Andrii Kasilov | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session |
 | A2 | TBD | TomTom Marketplaces and Skills — what's available and how to use them |
 | A3 | TBD | Building Workflows for Daily Use — practical automation you can ship this week |
 | A4 | TBD | Prompt Patterns for Large Codebases — what works at TomTom's scale |
 | A5 | TBD | Sandbox Mode & Permissions — run Claude safely without constant approval prompts; how to configure allow/deny rules |
 | A6 | TBD | Steering AI Output Style — make AI-produced docs and summaries readable instead of a wall of text |
 | A7 | TBD | Managing Context & Session Size — ask for handovers, save memory, and make sure you can resume |
+| A8 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle |
+| A9 | Luka Milošević | Claude Code Hooks — Deterministic control over an AI coding workflow |
 
 #### Goal B — Make our work more efficient (hands-on, real tasks)
 
@@ -98,11 +100,12 @@ Topics are grouped by goal below. AI champions pick 6 for the Day 1 block and pl
 |---|-------|-------|
 | B1 | TBD | Mining Slack, JIRA & Confluence with Claude — turn scattered data into answers |
 | B2 | TBD | Data Mining in Practice — generating architecture docs and PR verification |
-| B3 | TBD | Spec-Driven Development — from a written spec to working code with Claude |
+| B3 | Andrii Kasilov | Spec-Driven Development — from a written spec to working code with Claude |
 | B4 | TBD | AI-Assisted Code Review — integrating Claude into your PR workflow |
 | B5 | TBD | Claude in CI/CD — automated test generation, linting, and review gates |
 | B6 | TBD | Optimizing AI Cost — right-size models, prompt caching, and tight context to cut token spend |
 | B7 | TBD | Script It vs. Re-Running Workflows — when a quick script beats running a workflow over and over |
+| B8 | Milica Markov | Using Claude to Write a Solution Design |
 
 #### Goal C — Level up your tooling (keep pace with the tools)
 
@@ -114,6 +117,7 @@ Topics are grouped by goal below. AI champions pick 6 for the Day 1 block and pl
 | C4 | TBD | Using Worktrees Efficiently — and where worktrees + sandboxing break down |
 | C5 | TBD | Using the Anthropic API to Build Internal Tools — from script to product |
 | C6 | TBD | Superskills in Practice — power patterns like "grill me with the docs" |
+| C7 | Yasemin Çalışkan | Pass static analysis skill for GOSDK Android repo |
 
 #### Goal D — Where humans still lead (perspective & experience)
 

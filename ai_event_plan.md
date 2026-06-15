@@ -39,9 +39,9 @@ This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda 
 | Time | Duration | Block |
 |------|----------|-------|
 | 09:00 | 30 min | Keynote — Rob van der Most (20 min talk + 10 min Q&A) |
-| 09:30 | 50 min | Lightning talks — block 1 |
+| 09:30 | 50 min | Lightning talks — block 1 (slots 1–6) |
 | 10:20 | 15 min | Break |
-| 10:35 | 50 min | Lightning talks — block 2 |
+| 10:35 | 50 min | Lightning talks — block 2 (slots 7–10) |
 | 11:25 | 60 min | LLN workshop — part 1 *(co-located)* |
 | 12:25 | 60 min | Lunch |
 | 13:25 | 30 min | Teams form + pick a feature + design kickoff with Claude |
@@ -75,24 +75,25 @@ Run by **Danna & Serj**, across both days (Tuesday part 1 + Wednesday part 2). T
 
 ## Lightning Talks
 
-Lightning talks run **Tuesday morning — about 100 minutes total**, split across two blocks with a break between (see the agenda above). Each talk **defaults to 5 minutes** — set your own in the *Expected talk time* column if you need more or less. **Leave at least 3 minutes after every talk for Q&A and mic handover**, so a default talk takes roughly an 8-minute slot.
+Lightning talks run **Tuesday morning — about 100 minutes total**, split across two blocks with a break between (see the agenda above). Each talk **defaults to 5 minutes** — set your own in the *Expected talk time* column if you need more or less. **Leave at least 3 minutes after every talk for Q&A and mic handover**, so a default talk takes roughly an 8-minute slot. The **Start** column below times the slots at ~8 minutes each (slots 1–6 before the 10:20 break, 7–10 after); the agenda blocks keep some slack on top.
 
 The talks below already have a speaker; the order is **provisional** — our AI champions finalise it just before the offsite. Need a **fixed time slot** (e.g. to plan travel or a remote join)? Message **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** and we'll lock one in.
 
 **There's room for more** — add yourself to an empty row below, or grab a topic from **[Ideas for talks](#ideas-for-talks)** at the bottom of the page and bring your own.
 
-| # | Speaker | Talk | Expected talk time (default 5 mins) |
-|---|---------|------|-------------------------------------|
-| 1 | Andrii Kasilov | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session | 5 min |
-| 2 | Luka Milošević | Claude Code Hooks — Deterministic control over an AI coding workflow | 5 min |
-| 3 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle | 5 min |
-| 4 | Yasemin Çalışkan | Pass static analysis skill for GOSDK Android repo | 5 min |
-| 5 | Borys Zhdanov | Building your own skills — sad DIY or a "different set of tools"? | 5 min |
-| 6 | Milica Markov | Using Claude to Write a Solution Design | 5 min |
-| 7 | Andrii Kasilov | Spec-Driven Development — from a written spec to working code with Claude | 5 min |
-| 8 | Borys Zhdanov *(tentative)* | How to Build and Evaluate Skills — authoring, testing, and measuring quality | 5 min |
-| 9 |  |  |  |
-| 10 |  |  |  |
+| # | Start | Speaker | Talk | Expected talk time (default 5 mins) |
+|---|-------|---------|------|-------------------------------------|
+| 1 | 09:30 | Andrii Kasilov | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session | 5 min |
+| 2 | 09:38 | Luka Milošević | Claude Code Hooks — Deterministic control over an AI coding workflow | 5 min |
+| 3 | 09:46 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle | 5 min |
+| 4 | 09:54 | Yasemin Çalışkan | Pass static analysis skill for GOSDK Android repo | 5 min |
+| 5 | 10:02 | Borys Zhdanov | Building your own skills — sad DIY or a "different set of tools"? | 5 min |
+| 6 | 10:10 | Milica Markov | Using Claude to Write a Solution Design | 5 min |
+|  | 10:20 | *— Break (15 min) —* |  |  |
+| 7 | 10:35 | Andrii Kasilov | Spec-Driven Development — from a written spec to working code with Claude | 5 min |
+| 8 | 10:43 | Borys Zhdanov *(tentative)* | How to Build and Evaluate Skills — authoring, testing, and measuring quality | 5 min |
+| 9 | 10:51 |  |  |  |
+| 10 | 10:59 |  |  |  |
 
 *Suggested arc: set up your repo (1) → make the workflow deterministic (2) → unify design and build (3) → reusable skills, applied then DIY (4–5) → plan with Claude, design then spec (6–7) → evaluating skills (8, tentative). Order is provisional; Andrii (1, 7) and Borys (5, 8) are spaced so no one runs back-to-back. New sign-ups slot in wherever they fit best.*
 

@@ -87,7 +87,7 @@ The talks below already have a speaker; the order is **provisional** — our AI 
 | 1 | 10:30 | Andrii Kasilov | CLAUDE.md and Hooks in a Real Repo — setup that pays off across every session |  |  | 5 min |
 | 2 | 10:38 | Luka Milošević | Claude Code Hooks — Deterministic control over an AI coding workflow |  |  | 5 min |
 | 3 | 10:46 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle |  |  | 5 min |
-| 4 | 10:54 | Yasemin Çalışkan | Pass static analysis skill for GOSDK Android repo |  |  | 5 min |
+| 4 | 10:54 | Yasemin Çalışkan | Using AI to build an AI skill — what broke, and what I'd do differently |  |  | 5 min |
 | 5 | 11:02 | Borys Zhdanov | Building your own skills — sad DIY or a "different set of tools"? |  |  | 5 min |
 | 6 | 11:10 | Milica Markov | Using Claude to Write a Solution Design |  |  | 5 min |
 | 7 | 11:18 | Andrii Kasilov | Spec-Driven Development — from a written spec to working code with Claude |  |  | 5 min |

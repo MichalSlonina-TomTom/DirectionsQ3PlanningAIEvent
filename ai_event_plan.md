@@ -184,7 +184,7 @@ Propose a feature your team could build at the event. Add a row with an owner, a
 
 ## Ideas for talks
 
-Unclaimed topic ideas, grouped by goal. There are **12 lightning-talk slots** on Tuesday and **7 are filled** (plus one tentative), so there's still room for more. **Want to present?** Steal an idea from below — put your name on it and DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** — or come up with your own. No need to ask anyone first.
+Unclaimed topic ideas, grouped by goal. There are **12 lightning-talk slots** on Tuesday and **7 are filled** (plus one tentative), so there's still room for more. **Want to present?** Steal an idea from below — put your name on it and DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** — or come up with your own (it doesn't have to be about AI). No need to ask anyone first.
 
 #### Goal A — Lower the entry barrier (get productive fast)
 - TomTom Marketplaces and Skills — what's available and how to use them

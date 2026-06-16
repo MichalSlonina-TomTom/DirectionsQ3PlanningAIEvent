@@ -42,7 +42,8 @@ This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda 
 |------|----------|-------|
 | 09:30 | 30 min | Coffee |
 | 10:00 | 30 min | Keynote — Rob van der Most (AI and the Software Engineer; 20 min talk + 10 min Q&A) |
-| 10:30 | 90 min | Lightning talks |
+| 10:30 | 15 min | POC for Dual Discrete Map — Sai |
+| 10:45 | 75 min | Lightning talks |
 | 12:00 | 60 min | Lunch |
 | 13:00 | — | **Parallel tracks** — pick one (runs to dinner): |
 |  |  | • **LLN Workshop** — Serj & Danna |
@@ -76,26 +77,21 @@ Run by **Danna & Serj** in **Tuesday afternoon's parallel block**. Two parts:
 
 ## Lightning Talks
 
-Lightning talks run **Tuesday morning, 10:30–12:00 (~90 minutes)**. Each talk **defaults to 5 minutes** — set your own in the *Expected talk time* column if you need more or less. **Leave at least 3 minutes after every talk for Q&A and mic handover**, so a default talk takes roughly an 8-minute slot. The **Start** column below times the slots at ~8 minutes each; with all 12 filled it runs tight to the 12:00 lunch.
+Lightning talks run **Tuesday morning, 10:45–12:00 (~75 minutes)** — right after Sai's *POC for Dual Discrete Map* (10:30–10:45). Each talk **defaults to 5 minutes** — set your own in the *Expected talk time* column if you need more or less. **Leave at least 3 minutes after every talk for Q&A and mic handover**, so a default talk takes roughly an 8-minute slot. The **Start** column below accounts for each talk's length plus ~3 minutes for Q&A; with the current lineup the talks run to ~11:56, so timing is tight.
 
 The talks below already have a speaker; the order is **provisional** — our AI champions finalise it just before the offsite. Need a **fixed time slot** (e.g. to plan travel or a remote join)? Message **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** and we'll lock one in.
 
-**There's room for more** — add yourself to an empty row below, or grab a topic from **[Ideas for talks](#ideas-for-talks)** at the bottom of the page and bring your own. **Topics don't have to be about AI** — anything worth sharing with the room is welcome.
+**Still want in?** The morning is tight, but grab a topic from **[Ideas for talks](#ideas-for-talks)** and message us — we'll fit you in by trimming a slot, bumping the tentative talk, or finding another moment. **Topics don't have to be about AI** — anything worth sharing with the room is welcome.
 
 | # | Start | Speaker | Talk | Topics covered | Links | Expected talk time (default 5 mins) |
 |---|-------|---------|------|----------------|-------|-------------------------------------|
-| 1 | 10:30 | Luka Milošević | Claude Code Hooks — Deterministic control over an AI coding workflow |  |  | 5 min |
-| 2 | 10:38 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle |  |  | 5 min |
-| 3 | 10:46 | Yasemin Çalışkan | Using AI to build an AI skill — what broke, and what I'd do differently |  |  | 5 min |
-| 4 | 10:54 | Borys Zhdanov | Building your own skills — sad DIY or a "different set of tools"? |  |  | 5 min |
-| 5 | 11:02 | Milica Markov | Using Claude to Write a Solution Design |  |  | 5 min |
-| 6 | 11:10 | Andrii Kasilov | Spec-Driven Development + CLAUDE.md — from a written spec to working code with Claude |  |  | 5 min |
-| 7 | 11:18 | Borys Zhdanov *(tentative)* | How to Build and Evaluate Skills — authoring, testing, and measuring quality |  |  | 5 min |
-| 8 | 11:26 |  |  |  |  |  |
-| 9 | 11:34 |  |  |  |  |  |
-| 10 | 11:42 |  |  |  |  |  |
-| 11 | 11:50 |  |  |  |  |  |
-| 12 | 11:58 |  |  |  |  |  |
+| 1 | 10:45 | Luka Milošević | Claude Code Hooks — Deterministic control over an AI coding workflow |  |  | 5 min |
+| 2 | 10:53 | Alexey Opokin | Merging UX prototyping and Coding in one process — accelerated and unified development/design cycle |  |  | 10 min |
+| 3 | 11:06 | Yasemin Çalışkan | Using AI to build an AI skill — what broke, and what I'd do differently |  |  | 15 min |
+| 4 | 11:24 | Borys Zhdanov | Building your own skills — sad DIY or a "different set of tools"? |  |  | 5 min |
+| 5 | 11:32 | Milica Markov | Using Claude to Write a Solution Design |  |  | 5 min |
+| 6 | 11:40 | Andrii Kasilov | Spec-Driven Development + CLAUDE.md — from a written spec to working code with Claude |  |  | 5 min |
+| 7 | 11:48 | Borys Zhdanov *(tentative)* | How to Build and Evaluate Skills — authoring, testing, and measuring quality |  |  | 5 min |
 
 *Suggested arc: hooks & workflow control (1) → unify design and build (2) → reusable skills, applied then DIY (3–4) → plan then spec, with CLAUDE.md setup folded into Andrii's talk (5–6) → evaluating skills (7, tentative). Order is provisional — per the speakers' latest plan, Luka covers hooks (1) and Andrii folds CLAUDE.md into his Spec-Driven Development talk (6); Borys's two talks (4, 7) are spaced so no one runs back-to-back. New sign-ups slot in wherever they fit best.*
 
@@ -184,7 +180,7 @@ Propose a feature your team could build at the event. Add a row with an owner, a
 
 ## Ideas for talks
 
-Unclaimed topic ideas, grouped by goal. There are **12 lightning-talk slots** on Tuesday and **6 are filled** (plus one tentative), so there's still room for more. **Want to present?** Steal an idea from below — put your name on it and DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** — or come up with your own (it doesn't have to be about AI). No need to ask anyone first.
+Unclaimed topic ideas, grouped by goal. Tuesday morning's lightning block is tight, but we'll make room for a good talk (see [Lightning Talks](#lightning-talks)). **Want to present?** Steal an idea from below — put your name on it and DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** — or come up with your own (it doesn't have to be about AI). No need to ask anyone first.
 
 #### Goal A — Lower the entry barrier (get productive fast)
 - TomTom Marketplaces and Skills — what's available and how to use them

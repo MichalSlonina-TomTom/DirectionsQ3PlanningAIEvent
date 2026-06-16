@@ -43,12 +43,13 @@ This is the **AI portion** of the Directions Q2/Q3 planning offsite. The agenda 
 | 09:30 | 30 min | Coffee |
 | 10:00 | 30 min | Keynote — Rob van der Most (AI and the Software Engineer; 20 min talk + 10 min Q&A) |
 | 10:30 | 15 min | POC for Dual Discrete Map — Sai |
-| 10:45 | 75 min | Lightning talks |
+| 10:45 | 75 min | Lightning talks (part 1) — 7 talks (see below) |
 | 12:00 | 60 min | Lunch |
-| 13:00 | — | **Parallel tracks** — pick one (runs to dinner): |
+| 13:00 | — | **Parallel tracks** — pick one (run to dinner): |
+|  |  | • **Lightning talks (part 2)** — 4 talks, ~13:00–13:35 (see below) |
 |  |  | • **LLN Workshop** — Serj & Danna |
-|  |  | • **AI feature refinement** — Michał (rhythm below) |
 |  |  | • **Pair programming** — on whatever you're working on |
+| 13:35 | — | **AI feature refinement** — Michał — starts after the part-2 lightning talks; runs to dinner (rhythm below) |
 | 17:30 | — | Dinner |
 
 ---
@@ -77,11 +78,13 @@ Run by **Danna & Serj** in **Tuesday afternoon's parallel block**. Two parts:
 
 ## Lightning Talks
 
-Lightning talks run **Tuesday morning, 10:45–12:00 (~75 minutes)** — right after Sai's *POC for Dual Discrete Map* (10:30–10:45). Each talk **defaults to 5 minutes** — set your own in the *Expected talk time* column if you need more or less. **Leave at least 3 minutes after every talk for Q&A and mic handover**, so a default talk takes roughly an 8-minute slot. The **Start** column below accounts for each talk's length plus ~3 minutes for Q&A; **the current lineup runs to ~12:28, past the 12:00 lunch** (see the note below the table) — the running order and what to trim are for the AI champions to settle.
+Lightning talks run in **two batches**: **part 1 before lunch (10:45–~11:56)**, right after Sai's *POC for Dual Discrete Map* (10:30–10:45); and **part 2 after lunch (13:00–~13:35)**, as one of the Tuesday-afternoon parallel tracks. Each talk **defaults to 5 minutes** — set your own in the *Expected talk time* column if you need more or less. **Leave at least 3 minutes after every talk for Q&A and mic handover**, so a default talk takes roughly an 8-minute slot. The **Start** column accounts for each talk's length plus ~3 minutes for Q&A.
 
 The talks below already have a speaker; the order is **provisional** — our AI champions finalise it just before the offsite. Need a **fixed time slot** (e.g. to plan travel or a remote join)? Message **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** and we'll lock one in.
 
-**Still want in?** The morning is now over-subscribed, but grab a topic from **[Ideas for talks](#ideas-for-talks)** and message us — we'll find you a moment (another slot, Day 2, or a fixed time). **Topics don't have to be about AI** — anything worth sharing with the room is welcome.
+**Still want in?** Grab a topic from **[Ideas for talks](#ideas-for-talks)** and message us — the post-lunch part-2 session has room. **Topics don't have to be about AI** — anything worth sharing with the room is welcome.
+
+**Part 1 — before lunch (10:45–~11:56)**
 
 | # | Start | Speaker | Talk | Topics covered | Links | Expected talk time (default 5 mins) |
 |---|-------|---------|------|----------------|-------|-------------------------------------|
@@ -92,14 +95,17 @@ The talks below already have a speaker; the order is **provisional** — our AI 
 | 5 | 11:32 | Milica Markov | Using Claude to Write a Solution Design |  |  | 5 min |
 | 6 | 11:40 | Andrii Kasilov | Spec-Driven Development + CLAUDE.md — from a written spec to working code with Claude |  |  | 5 min |
 | 7 | 11:48 | Borys Zhdanov *(tentative)* | How to Build and Evaluate Skills — authoring, testing, and measuring quality |  |  | 5 min |
-| 8 | 11:56 | Petru-Nicu Dumitrache | Generate beautiful visual aids with Claude |  |  |  |
-| 9 | 12:04 | Petru-Nicu Dumitrache | Organizing your todos with Claude |  |  |  |
-| 10 | 12:12 | Oleksandr Kuzubov | TomTom Marketplaces and Skills — what's available and how to use them (based on nds-map-packaging skill experience) |  |  |  |
-| 11 | 12:20 | Oleksandr Kuzubov | Script It vs. Re-Running Workflows (based on nds-map-packaging skill experience) |  |  |  |
 
-> ⚠️ **The lineup currently overruns the 12:00 lunch** — with Sai's POC, the longer talks (Alexey 10 min, Yasemin 15 min), and 11 lightning talks, the morning runs to ~12:28. Something needs trimming: shorten talks, drop the tentative one, move a couple to Day 2, or start earlier. AI champions to resolve before the offsite.
+**Part 2 — after lunch (13:00–~13:32), one of the afternoon parallel tracks**
 
-*Suggested arc: hooks & workflow control (1) → unify design and build (2) → reusable skills, applied then DIY (3–4) → plan then spec, with CLAUDE.md setup folded into Andrii's talk (5–6) → evaluating skills (7, tentative). Order is provisional — per the speakers' latest plan, Luka covers hooks (1) and Andrii folds CLAUDE.md into his Spec-Driven Development talk (6); Borys's two talks (4, 7) are spaced so no one runs back-to-back. New sign-ups slot in wherever they fit best.*
+| # | Start | Speaker | Talk | Topics covered | Links | Expected talk time (default 5 mins) |
+|---|-------|---------|------|----------------|-------|-------------------------------------|
+| 8 | 13:00 | Petru-Nicu Dumitrache | Generate beautiful visual aids with Claude |  |  |  |
+| 9 | 13:08 | Petru-Nicu Dumitrache | Organizing your todos with Claude |  |  |  |
+| 10 | 13:16 | Oleksandr Kuzubov | TomTom Marketplaces and Skills — what's available and how to use them (based on nds-map-packaging skill experience) |  |  |  |
+| 11 | 13:24 | Oleksandr Kuzubov | Script It vs. Re-Running Workflows (based on nds-map-packaging skill experience) |  |  |  |
+
+*Suggested arc for part 1: hooks & workflow control (1) → unify design and build (2) → reusable skills, applied then DIY (3–4) → plan then spec, with CLAUDE.md setup folded into Andrii's talk (5–6) → evaluating skills (7, tentative). Order is provisional — per the speakers' latest plan, Luka covers hooks (1) and Andrii folds CLAUDE.md into his Spec-Driven Development talk (6); Borys's two talks (4, 7) are spaced so no one runs back-to-back. The four most recent sign-ups (8–11) run in the post-lunch part-2 session.*
 
 ---
 
@@ -118,15 +124,15 @@ Teams on the AI feature refinement track show what shipped, one thing that worke
 
 ## Suggested Execution Plan (per feature)
 
-This applies to the **AI feature refinement track** — one of the parallel options from Tuesday afternoon. It's the **suggested** way to take a feature from pick to share-out — a default rhythm; adapt it to your feature, it's a starting point, not a rule. The *Techniques to lean on* column points to the kinds of techniques covered in the lightning talks that fit each phase.
+This applies to the **AI feature refinement track** — one of the parallel options from Tuesday afternoon, starting ~13:35 after the part-2 lightning talks. It's the **suggested** way to take a feature from pick to share-out — a default rhythm; adapt it to your feature, it's a starting point, not a rule. The *Techniques to lean on* column points to the kinds of techniques covered in the lightning talks that fit each phase.
 Please note that we may need to accommodate changes in this plan depending on external topics coming from the management and new lightning talks that will be submitted.
 
 | Phase | When | What you do | Techniques to lean on |
 |-------|------|-------------|------------------------|
-| **1. Pick** | Tue 13:00 | Choose a feature that's valuable, researchable, parallelizable, technique-rich, and safely scoped (off the critical path). | — |
-| **2. Research & design** | Tue 13:15 | Use Claude to map the architecture, read the existing code, and surface edge cases & open questions. Mine Slack/JIRA/Confluence for context and prior decisions. | Mining Slack/JIRA/Confluence; generating architecture docs; prompt patterns for large codebases |
-| **3. Break down & parallelize** | Tue 13:45 | Turn the design into a short spec, then split it into ~5–7 independent tasks with clear seams. Decide where to fan out agents or use worktrees. | Spec-driven development; multi-agent workflows; worktrees; daily-use workflows |
-| **4. Build** | Tue 14:00 + Wed 10:00 | Each person drives Claude on their task. Set up CLAUDE.md/hooks and sandbox + permissions so Claude can move fast safely; review its output as you go and wire up gates. | CLAUDE.md & hooks; sandbox mode & permissions; AI-assisted code review; Claude in CI/CD |
+| **1. Pick** | Tue 13:35 | Choose a feature that's valuable, researchable, parallelizable, technique-rich, and safely scoped (off the critical path). | — |
+| **2. Research & design** | Tue 13:50 | Use Claude to map the architecture, read the existing code, and surface edge cases & open questions. Mine Slack/JIRA/Confluence for context and prior decisions. | Mining Slack/JIRA/Confluence; generating architecture docs; prompt patterns for large codebases |
+| **3. Break down & parallelize** | Tue 14:20 | Turn the design into a short spec, then split it into ~5–7 independent tasks with clear seams. Decide where to fan out agents or use worktrees. | Spec-driven development; multi-agent workflows; worktrees; daily-use workflows |
+| **4. Build** | Tue 14:35 + Wed 10:00 | Each person drives Claude on their task. Set up CLAUDE.md/hooks and sandbox + permissions so Claude can move fast safely; review its output as you go and wire up gates. | CLAUDE.md & hooks; sandbox mode & permissions; AI-assisted code review; Claude in CI/CD |
 | **5. Day-1 checkpoint** | Tue 17:00 | Quick progress share; name each person's Day-2 task before dinner. | — |
 | **6. Share-out** | Wed 11:30 | Show what you built, one thing that worked and one that broke, and where Claude helped vs. where you had to lead. | Reflecting on where humans still lead; lessons from the field |
 
@@ -186,7 +192,7 @@ Propose a feature your team could build at the event. Add a row with an owner, a
 
 ## Ideas for talks
 
-Unclaimed topic ideas, grouped by goal. Tuesday morning's lightning block is over-subscribed (see [Lightning Talks](#lightning-talks)), but if a topic below is worth it we'll find a moment. **Want to present?** Steal an idea from below — put your name on it and DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** — or come up with your own (it doesn't have to be about AI). No need to ask anyone first.
+Unclaimed topic ideas, grouped by goal. There's room in the **post-lunch part-2 lightning session** (see [Lightning Talks](#lightning-talks)). **Want to present?** Steal an idea from below — put your name on it and DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** — or come up with your own (it doesn't have to be about AI). No need to ask anyone first.
 
 #### Goal A — Lower the entry barrier (get productive fast)
 - TomTom Marketplaces and Skills — what's available and how to use them

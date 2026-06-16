@@ -1,0 +1,1272 @@
+{
+  "inventories": [
+    {
+      "repo": "tomtom-internal/ai-coding-agent-marketplace",
+      "items": [
+        {
+          "type": "command",
+          "name": "design-doc:write",
+          "path": "catalog/design-doc/commands/write.md",
+          "description": "Generate a TomTom RFC / tech design via a multi-agent pipeline (research, review, draft, audit). Publishes to Confluence (ADF or markdown). Caches presets; degrades gracefully when MCP tools are absent.",
+          "relevanceScore": 5,
+          "relevanceToRefinement": "Directly powers the Research+Plan stages: turns a picked feature into a researched, template-conformant TomTom RFC/tech-design and publishes it to Confluence — exactly the kind of plan artifact the loop produces."
+        },
+        {
+          "type": "plugin",
+          "name": "design-doc",
+          "path": "catalog/design-doc/.claude-plugin/plugin.json",
+          "description": "Slash command running a multi-agent RFC/tech design pipeline — researches sources, scores relevance, drafts via TomTom RFC template, audits, publishes to Confluence.",
+          "relevanceScore": 5,
+          "relevanceToRefinement": "The plugin wrapper for the design-doc command; install it to get the Research/Plan/Share design pipeline for any feature."
+        },
+        {
+          "type": "skill",
+          "name": "jira-ticket-writer",
+          "path": "catalog/jira-ticket-writer/skills/jira-ticket-writer/SKILL.md",
+          "description": "Turns a rough draft, bug, or idea into a structured engineering ticket (Why/How/To-Do/Definition of Done) and can create it in Jira, discovering field schemas at runtime; supports Epics with child tasks.",
+          "relevanceScore": 5,
+          "relevanceToRefinement": "Core to the Pick/Plan stage: takes the chosen backlog idea and structures it into a well-formed ticket with a Definition of Done, product-agnostic."
+        },
+        {
+          "type": "plugin",
+          "name": "jira-ticket-writer",
+          "path": "catalog/jira-ticket-writer/.claude-plugin/plugin.json",
+          "description": "Turns a rough draft, bug, or idea into a structured engineering ticket (Why/How/To-Do/Definition of Done). Requires the claude.ai Atlassian MCP connection.",
+          "relevanceScore": 5,
+          "relevanceToRefinement": "Plugin wrapper for jira-ticket-writer; standard tool to formalize the feature before building."
+        },
+        {
+          "type": "skill",
+          "name": "multi-agent-code-review",
+          "path": "catalog/multi-agent-code-review/skills/multi-agent-code-review/SKILL.md",
+          "description": "Perform a deep, structured code review on any file, directory, or staged diff. Spawns parallel specialist agents (correctness, design, security, performance) and synthesises a prioritised report. Defaults to Java; also Kotlin/Python.",
+          "relevanceScore": 5,
+          "relevanceToRefinement": "Directly serves the Verify stage: review the diff produced when building the feature, regardless of domain."
+        },
+        {
+          "type": "plugin",
+          "name": "multi-agent-code-review",
+          "path": "catalog/multi-agent-code-review/.claude-plugin/plugin.json",
+          "description": "Deep, structured code review via parallel specialist agents that synthesise a single prioritised report. Defaults to Java; supports Kotlin, Python, others.",
+          "relevanceScore": 5,
+          "relevanceToRefinement": "Plugin wrapper for the code-review skill; a generic Verify-stage tool for any built feature."
+        },
+        {
+          "type": "skill",
+          "name": "best-practices-claude",
+          "path": "catalog/best-practices-claude/skills/best-practices-claude/SKILL.md",
+          "description": "Audits Claude Code config files (hooks, SKILL.md, CLAUDE.md, agents, settings.json) against best practices with severity-tagged reports.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Helps teams set up a clean, effective Claude Code config before/while running the loop, improving how well the agent assists across all stages."
+        },
+        {
+          "type": "plugin",
+          "name": "best-practices-claude",
+          "path": "catalog/best-practices-claude/.claude-plugin/plugin.json",
+          "description": "Audits Claude Code config files against best practices — validates hooks, SKILL.md, CLAUDE.md, agents, settings.json with ERROR/WARNING/SUGGESTION reports.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Plugin wrapper; useful meta-tooling to tune the agent setup teams use during the event."
+        },
+        {
+          "type": "skill",
+          "name": "export-doc",
+          "path": "catalog/docreview/skills/export-doc/SKILL.md",
+          "description": "Render a Markdown document (spec/PRD/plan) into a branded, comment-ready Microsoft Word (.docx) for stakeholder review.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Supports the Share/Plan-review stage: turn the plan or spec into a Word doc to gather stakeholder feedback."
+        },
+        {
+          "type": "skill",
+          "name": "pull-comments",
+          "path": "catalog/docreview/skills/pull-comments/SKILL.md",
+          "description": "Extract Word review comments from a reviewed .docx back into the repo as a comments.json sidecar anchored to the source Markdown; can merge reviewer edits and push as a branch+PR.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Closes the review round-trip on a plan/spec — captures stakeholder feedback back into the repo during refinement."
+        },
+        {
+          "type": "plugin",
+          "name": "docreview",
+          "path": "catalog/docreview/.claude-plugin/plugin.json",
+          "description": "Markdown <-> Word review round-trip: export-doc renders markdown to branded Word; pull-comments extracts comments and merges edits back, optionally as a PR.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Plugin bundling the two docreview skills; a generic Share/feedback loop for the feature's planning docs."
+        },
+        {
+          "type": "skill",
+          "name": "miro",
+          "path": "catalog/miro/skills/miro/SKILL.md",
+          "description": "Official Miro MCP server: read board context (frames, docs, prototypes, tables, diagrams), create diagrams from a DSL (flowchart, UML, ERD), manage docs/tables, and bridge boards with code.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Useful for Research/Plan: diagram the feature design (flowchart/UML/ERD) or pull requirements from a Miro board into code."
+        },
+        {
+          "type": "plugin",
+          "name": "miro",
+          "path": "catalog/miro/.claude-plugin/plugin.json",
+          "description": "Official Miro MCP server — read board context, create diagrams from DSL, manage docs and tables, bridge Miro boards with code.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Plugin wrapper; visual planning/diagramming aid for the feature, domain-agnostic."
+        },
+        {
+          "type": "skill",
+          "name": "create-plugin",
+          "path": "catalog/plugin-creator/skills/create-plugin/SKILL.md",
+          "description": "Scaffold a new plugin in the ai-coding-agent-marketplace repo — creates the skill folder, SKILL.md, and plugin definition YAML per repo conventions.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Strong fit for the Share stage: if a team's refinement produces reusable agent tooling, this packages it into a shareable plugin."
+        },
+        {
+          "type": "plugin",
+          "name": "plugin-creator",
+          "path": "catalog/plugin-creator/.claude-plugin/plugin.json",
+          "description": "Plugin scaffolding — create new plugins, skills, and definitions for publishing to the tomtom-plugins marketplace.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Plugin wrapper for create-plugin; lets teams publish what they built so others can reuse it."
+        },
+        {
+          "type": "skill",
+          "name": "code-signing-setup",
+          "path": "catalog/code-signing-setup/skills/code-signing-setup/SKILL.md",
+          "description": "Configure, verify, and troubleshoot Git commit signing for TomTom's 2026 enforcement — developer SSH setup, ssh-agent for non-interactive tools (Claude Code, Copilot CLI), repo-owner rollout, CI/bot signing.",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Build/Share enabler: commits/PRs from the feature work must be signed under TomTom's 2026 enforcement; this unblocks committing from Claude Code."
+        },
+        {
+          "type": "plugin",
+          "name": "code-signing-setup",
+          "path": "catalog/code-signing-setup/.claude-plugin/plugin.json",
+          "description": "Configure, verify, and troubleshoot Git commit signing for TomTom's 2026 enforcement program; ssh-agent setup for non-interactive tools.",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Plugin wrapper; practical prerequisite so feature commits made during the event are verified."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-platform-jira-ticket",
+          "path": "catalog/orbis-platform-jira-ticket/skills/orbis-platform-jira-ticket/SKILL.md",
+          "description": "End-to-end dev workflow from a Jira ticket — create, plan, implement, test, ship — with resumable per-repo state. Scoped to Orbis platform teams (Hubble, Pollux, Vertex).",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Mirrors the whole Pick->Build->Verify loop from a ticket; high value if the team is on an Orbis platform repo, but its conventions are platform-specific."
+        },
+        {
+          "type": "plugin",
+          "name": "orbis-platform-jira-ticket",
+          "path": "catalog/orbis-platform-jira-ticket/.claude-plugin/plugin.json",
+          "description": "End-to-end Jira ticket workflow for Orbis platform teams — create, plan, implement, test, ship with resumable state persistence.",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Plugin wrapper; an opinionated end-to-end loop, useful mainly for Orbis-platform feature work."
+        },
+        {
+          "type": "skill",
+          "name": "verify-app-via-gosdk-agents",
+          "path": "catalog/gosdk-dev/agents/bugfixer.md",
+          "description": "bugfixer agent: orchestrates the full GO SDK bug-fix cycle (reproduce, locate root cause, fix, verify) across Navigation Demo App, OneApp, ANA; maintains a progress file and steps-to-reproduce artifact.",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Embodies Build->Verify for a real feature/bug; directly useful only if the refinement feature lives in the GO SDK / Android nav apps."
+        },
+        {
+          "type": "plugin",
+          "name": "gosdk-dev",
+          "path": "catalog/gosdk-dev/.claude-plugin/plugin.json",
+          "description": "Toolkit for TomTom GO SDK Android development/debugging — ~17 skills (routing API, TTP traces, install APKs, logcat deobfuscation, LLN knowledge), app-user agents, the bugfixer agent, and mobile-mcp.",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "If the picked feature is in GO SDK/Android nav, this whole plugin supports Research/Build/Verify; otherwise domain-specific."
+        },
+        {
+          "type": "agent",
+          "name": "voice-coordinator",
+          "path": "catalog/voice-coordinator/agents/voice-coordinator.md",
+          "description": "Voice-based work coordinator using Kokoro TTS and tmux pane delegation; orchestrates parallel development work across Claude instances.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Could help parallelize Build work across agents during the event, but it is a workflow gimmick, not core to refining a feature."
+        },
+        {
+          "type": "plugin",
+          "name": "voice-coordinator",
+          "path": "catalog/voice-coordinator/.claude-plugin/plugin.json",
+          "description": "Voice-based work coordinator using Kokoro TTS and tmux pane delegation; orchestrates parallel development across Claude instances.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Plugin wrapper; orchestration novelty, marginal to feature refinement."
+        },
+        {
+          "type": "skill",
+          "name": "caveman",
+          "path": "catalog/caveman/skills/caveman/SKILL.md",
+          "description": "Ultra-compressed communication mode — cuts token usage ~75% by speaking tersely while keeping technical accuracy. Levels: lite, full, ultra.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Tangential efficiency tweak; could reduce token cost during long build sessions but does not advance any loop stage."
+        },
+        {
+          "type": "plugin",
+          "name": "caveman",
+          "path": "catalog/caveman/.claude-plugin/plugin.json",
+          "description": "Ultra-compressed communication mode that cuts token usage ~75%.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Plugin wrapper; cosmetic, not a refinement tool."
+        },
+        {
+          "type": "skill",
+          "name": "tomtom-tov",
+          "path": "catalog/tomtom-tov/skills/tomtom-tov/SKILL.md",
+          "description": "Helps employees write/review content in TomTom's official tone of voice (CopyTom) — emails, LinkedIn, product pages, press releases, whitepapers, social.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Marginal to a code feature; could polish a Share-stage announcement, but not engineering content."
+        },
+        {
+          "type": "plugin",
+          "name": "tomtom-tov",
+          "path": "catalog/tomtom-tov/.claude-plugin/plugin.json",
+          "description": "Helps TomTom employees write, review, and improve content in the official TomTom tone of voice.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Plugin wrapper; brand-copy helper, peripheral to feature refinement."
+        },
+        {
+          "type": "skill",
+          "name": "jvm-diagnostics",
+          "path": "catalog/jvm-diagnostics/skills/jvm-diagnostics/SKILL.md",
+          "description": "Analyze JVM diagnostic files (JFR, heap/thread dumps, VisualVM snapshots, GC logs, core dumps) and produce performance reports flagging leaks, GC pressure, CPU bottlenecks, deadlocks.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Verify-stage value only if the feature is a JVM service with a performance angle; otherwise out of scope."
+        },
+        {
+          "type": "plugin",
+          "name": "jvm-diagnostics",
+          "path": "catalog/jvm-diagnostics/.claude-plugin/plugin.json",
+          "description": "Analyze JVM diagnostic files and produce a performance report flagging memory leaks, thread leaks, GC pressure, CPU bottlenecks, and deadlocks.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Plugin wrapper; narrow JVM-performance diagnostics."
+        },
+        {
+          "type": "skill",
+          "name": "k8s-devtest-deploy",
+          "path": "catalog/k8s-devtest-deploy/skills/k8s-devtest-deploy/SKILL.md",
+          "description": "Build, push, and deploy Docker images to devtest Kubernetes via Kustomize and Artifactory; namespace teardown and Artifactory tag cleanup. Works for any Docker+Kustomize+Artifactory+AKS project.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Could deploy a built feature for Verify if it targets devtest K8s; relevant only for that deployment shape."
+        },
+        {
+          "type": "plugin",
+          "name": "k8s-devtest-deploy",
+          "path": "catalog/k8s-devtest-deploy/.claude-plugin/plugin.json",
+          "description": "Build, push, and deploy Docker images to devtest Kubernetes environments via Kustomize and Artifactory; teardown and tag cleanup.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Plugin wrapper; deployment plumbing for Docker/K8s features only."
+        },
+        {
+          "type": "skill",
+          "name": "fix-code-vulnerabilities",
+          "path": "catalog/fix-code-vulnerabilities/skills/fix-code-vulnerabilities/SKILL.md",
+          "description": "Fetch and fix code vulnerabilities reported by Security Center for the current repo — triages SCA/SAST findings by severity and applies remediations. Requires SECURITY_CENTER_API_KEY.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Verify-stage security check, but it triages pre-existing Security Center findings on a repo rather than reviewing the new feature diff."
+        },
+        {
+          "type": "plugin",
+          "name": "fix-code-vulnerabilities",
+          "path": "catalog/fix-code-vulnerabilities/.claude-plugin/plugin.json",
+          "description": "Fix code vulnerabilities reported in Security Center. Requires SECURITY_CENTER_API_KEY.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Plugin wrapper; security remediation tied to Security Center, not feature-diff review."
+        },
+        {
+          "type": "skill",
+          "name": "sentry",
+          "path": "catalog/sentry/skills/sentry/SKILL.md",
+          "description": "Official Sentry MCP server — search/triage issues, events, traces, replays, profiles, releases; run Seer root-cause analysis; manage projects/teams/DSNs; inspect preprod visual-regression snapshots.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Useful for Pick (mining a real bug from prod) or Verify (watch the feature in Sentry), but only if the team's feature is wired to Sentry."
+        },
+        {
+          "type": "plugin",
+          "name": "sentry",
+          "path": "catalog/sentry/.claude-plugin/plugin.json",
+          "description": "Official Sentry MCP server — search and triage production issues, run Seer root-cause analysis, manage projects/teams/DSNs, inspect preprod snapshots.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Plugin wrapper; production-observability tool, situational for the loop."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-platform-onboard-sonarqube",
+          "path": "catalog/orbis-platform-onboard-sonarqube/skills/orbis-platform-onboard-sonarqube/SKILL.md",
+          "description": "Onboard a repo to SonarQube end-to-end — guides manual setup, creates a Jira ticket, raises PRs with required config. GitHub Actions CI only.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "One-time repo-onboarding chore tangential to refining a single feature; only relevant if the team also needs SonarQube set up."
+        },
+        {
+          "type": "plugin",
+          "name": "orbis-platform-onboard-sonarqube",
+          "path": "catalog/orbis-platform-onboard-sonarqube/.claude-plugin/plugin.json",
+          "description": "Onboard an Orbis platform repository to SonarQube end-to-end; raises PRs with required configuration changes.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Plugin wrapper; CI-onboarding task, not feature work."
+        },
+        {
+          "type": "skill",
+          "name": "babysit-dependabot-prs",
+          "path": "catalog/babysit-dependabot-prs/skills/babysit-dependabot-prs/SKILL.md",
+          "description": "Review, triage, and approve Dependabot PRs across tomtom-internal repos — summary table with an approve-all flow and a saved per-user repo list.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "PR-handling experience overlaps with the Share stage, but its job is dependency-bump triage, not the feature PR itself."
+        },
+        {
+          "type": "plugin",
+          "name": "babysit-dependabot-prs",
+          "path": "catalog/babysit-dependabot-prs/.claude-plugin/plugin.json",
+          "description": "Review and triage Dependabot PRs across tomtom-internal repos with an approve-all flow and saved per-user repo list.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Plugin wrapper; dependency-PR triage, peripheral to feature refinement."
+        },
+        {
+          "type": "plugin",
+          "name": "apps-development-onboarding",
+          "path": "catalog/apps-development-onboarding/.claude-plugin/plugin.json",
+          "description": "Walks non-engineers (and engineers) through setting up a TomTom app dev environment on macOS (NavApp Automotive, OneApp Android/iOS, NavSDK Android). Safe to re-run.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Pre-loop environment bootstrap; only relevant if a participant lacks a working dev setup for one of those specific app repos."
+        },
+        {
+          "type": "skill",
+          "name": "apps-development-onboarding",
+          "path": "catalog/apps-development-onboarding/skills/apps-development-onboarding/SKILL.md",
+          "description": "Set up a TomTom application or SDK repo from scratch on macOS (NavApp Automotive, OneApp Android/iOS, NavSDK Android). Credentials pasted into files, never chat.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Environment setup precondition for building in those repos; not part of refining the feature itself."
+        },
+        {
+          "type": "command",
+          "name": "apps-development-onboarding:start",
+          "path": "catalog/apps-development-onboarding/commands/start.md",
+          "description": "Walk through setting up a TomTom app dev environment from scratch on macOS; safe to re-run; credentials pasted into config files, not chat.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Entry command for the onboarding skill; same env-setup-only relevance."
+        },
+        {
+          "type": "agent",
+          "name": "pwsh-script-security-check",
+          "path": "catalog/pwsh-script-security-check/agents/pwsh-script-security-check.md",
+          "description": "Audits all .ps1 and .psm1 PowerShell scripts in a directory for security issues via static analysis and suggests mitigations.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Verify-stage security check, but only applies if the built feature includes PowerShell scripts."
+        },
+        {
+          "type": "plugin",
+          "name": "pwsh-script-security-check",
+          "path": "catalog/pwsh-script-security-check/.claude-plugin/plugin.json",
+          "description": "Produces a security report for PowerShell scripts, identifying vulnerabilities and suggesting mitigations via static analysis.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Plugin wrapper; narrow PowerShell security audit."
+        },
+        {
+          "type": "plugin",
+          "name": "sensitive-file-guard",
+          "path": "catalog/sensitive-file-guard/.claude-plugin/plugin.json",
+          "description": "PreToolUse hook that blocks Claude from reading secrets/credentials — denies paths matching env files, keys, certs, SSH identities, cloud creds, local overrides.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "A safety guardrail to run alongside the agent during Build; protective rather than productive for the loop."
+        },
+        {
+          "type": "plugin",
+          "name": "orbis-platform-validate-git-operations",
+          "path": "catalog/orbis-platform-validate-git-operations/.claude-plugin/plugin.json",
+          "description": "PreToolUse hook validating branches/commits/PRs against orbis-fnr-vertex contribution conventions (branch format, commit subjects, signed commits, PR template).",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Enforces commit/PR hygiene in the Share stage, but only for the orbis-fnr-vertex convention set."
+        },
+        {
+          "type": "skill",
+          "name": "mixpanel-analytics",
+          "path": "catalog/mixpanel-analytics/skills/mixpanel-analytics/SKILL.md",
+          "description": "Query Mixpanel using TomTom PPDA's TTApp event schema — correct project IDs, canonical event names, superproperties, funnels, reports.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Could inform Pick (data-driven feature selection) for the TTApp product, but it's a narrow analytics query tool."
+        },
+        {
+          "type": "plugin",
+          "name": "mixpanel-analytics",
+          "path": "catalog/mixpanel-analytics/.claude-plugin/plugin.json",
+          "description": "TomTom PPDA analytics skill for Mixpanel — query the TTApp event schema with correct project IDs, event names, superproperties.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Plugin wrapper; product-analytics query, domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "osc-analyzer",
+          "path": "catalog/osc-analyzer/skills/osc-analyzer/SKILL.md",
+          "description": "Download OSM minute-diff (.osc.gz) replication files for a period and produce aggregate statistics — changeset counts, edit volume, create/modify/delete breakdown, distributions, top contributors.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "OSM change-rate analytics; no general role in refining an arbitrary backlog feature."
+        },
+        {
+          "type": "plugin",
+          "name": "osc-analyzer",
+          "path": "catalog/osc-analyzer/.claude-plugin/plugin.json",
+          "description": "Download OSM minute-diff files and produce aggregate statistics on changesets, edits, and contributors.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; specialized OSM data analytics."
+        },
+        {
+          "type": "skill",
+          "name": "coredb",
+          "path": "catalog/coredb-plugin/skills/coredb/SKILL.md",
+          "description": "Interact with the CoreDB main webservice — features, branches, transactions, journal deltas, metadata, geometry/OpenLR converters.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Domain data-query for CoreDB; only relevant if the feature itself targets CoreDB."
+        },
+        {
+          "type": "plugin",
+          "name": "coredb-plugin",
+          "path": "catalog/coredb-plugin/.claude-plugin/plugin.json",
+          "description": "Query the CoreDB main webservice — features, transactions, branches, journal deltas, metadata, and geometry/OpenLR converters.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; CoreDB data access, domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "dumbo-plugin",
+          "path": "catalog/dumbo-plugin/skills/dumbo-plugin/SKILL.md",
+          "description": "Interact with the Dumbo API for maps content operations — query runs, manage run lifecycle, fetch job reports, create pipelines, debug transactions, list files.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Maps-pipeline ops tool; no general feature-refinement role."
+        },
+        {
+          "type": "plugin",
+          "name": "dumbo-plugin",
+          "path": "catalog/dumbo-plugin/.claude-plugin/plugin.json",
+          "description": "Query and manage Dumbo runs, jobs, transactions, and reports for the maps content operations pipeline.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; maps-ops domain tool."
+        },
+        {
+          "type": "skill",
+          "name": "genesis-rms-plugin",
+          "path": "catalog/genesis-rms-plugin/skills/genesis-rms-plugin/SKILL.md",
+          "description": "Read-only access to the RMS (Rules Management System) webservice — countries, presets, rules, severity transformations, CPPSM solving-method lookups.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Map rules data lookup; out of scope unless the feature is RMS-related."
+        },
+        {
+          "type": "plugin",
+          "name": "genesis-rms-plugin",
+          "path": "catalog/genesis-rms-plugin/.claude-plugin/plugin.json",
+          "description": "Read-only access to the RMS webservice — countries, presets, rules, severity transformations, CPPSM solving-method lookups.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; RMS data domain tool."
+        },
+        {
+          "type": "skill",
+          "name": "genesis-specs-ttom-data-spec",
+          "path": "catalog/genesis-specs/skills/genesis-specs-ttom-data-spec/SKILL.md",
+          "description": "Look up TomTom Genesis (TTOM) Data Specification — features, attributes, themes, capturing rules, glossary.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Map-spec reference; relevant only to TTOM/Genesis-domain features."
+        },
+        {
+          "type": "plugin",
+          "name": "genesis-specs",
+          "path": "catalog/genesis-specs/.claude-plugin/plugin.json",
+          "description": "Look up TomTom Genesis (TTOM) Data Specification — features, attributes, themes, capturing rules, glossary.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; TTOM spec lookup."
+        },
+        {
+          "type": "skill",
+          "name": "iris-plugin",
+          "path": "catalog/iris-plugin/skills/iris-plugin/SKILL.md",
+          "description": "Read-only access to Iris (RMDS) — inspect tasks, projects, rulesets, merge projects, efficiency reports, download files.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Iris/RMDS data query; no general feature-refinement role."
+        },
+        {
+          "type": "plugin",
+          "name": "iris-plugin",
+          "path": "catalog/iris-plugin/.claude-plugin/plugin.json",
+          "description": "Read-only access to Iris (RMDS): inspect tasks, projects, rulesets, merge projects, efficiency reports, download files.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; Iris data domain tool."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-adp-consume",
+          "path": "catalog/orbis-adp/skills/orbis-adp-consume/SKILL.md",
+          "description": "Query the Analytical Data Plane (ADP) via Databricks SQL — read existing metrics.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "ADP data query; only relevant to ADP-domain features."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-adp-onboard",
+          "path": "catalog/orbis-adp/skills/orbis-adp-onboard/SKILL.md",
+          "description": "Guided onboarding of new metrics to the Analytical Data Plane (ADP).",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "ADP metric onboarding; domain-specific, not general refinement."
+        },
+        {
+          "type": "plugin",
+          "name": "orbis-adp",
+          "path": "catalog/orbis-adp/.claude-plugin/plugin.json",
+          "description": "Onboard and query the Analytical Data Plane (ADP) — produce or consume metrics via Databricks SQL.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; ADP data domain tool."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-cc-rules",
+          "path": "catalog/orbis-cc-rules/skills/orbis-cc-rules/SKILL.md",
+          "description": "Look up Orbis Cohesion Check (CC) rules by rule ID or domain.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Map-rule reference lookup; out of scope unless feature concerns CC rules."
+        },
+        {
+          "type": "agent",
+          "name": "orbis-cc-rules-rule-inspector",
+          "path": "catalog/orbis-cc-rules/agents/orbis-cc-rules-rule-inspector.md",
+          "description": "Validates Orbis Cohesion Check rules end-to-end by orchestrating cc-rules, orbis-specs, map-test-data, and orbis plugins to check metadata, spec alignment, test scenarios, and real data.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "A nice example of multi-plugin orchestration, but the task (validating a CC rule) is domain-specific."
+        },
+        {
+          "type": "plugin",
+          "name": "orbis-cc-rules",
+          "path": "catalog/orbis-cc-rules/.claude-plugin/plugin.json",
+          "description": "Look up Orbis Cohesion Check rules by ID or domain, and orchestrate end-to-end rule validation.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; CC-rules domain tooling."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-mcr",
+          "path": "catalog/orbis-mcr/skills/orbis-mcr/SKILL.md",
+          "description": "Query Map Central Repository (MCR) via Databricks SQL.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Map data query; domain-specific."
+        },
+        {
+          "type": "plugin",
+          "name": "orbis-mcr",
+          "path": "catalog/orbis-mcr/.claude-plugin/plugin.json",
+          "description": "Connect to the Map Central Repository (MCR) — query TomTom Orbis map data via Databricks SQL.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; MCR data domain tool."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-odp-changelet-download",
+          "path": "catalog/orbis-odp/skills/orbis-odp-changelet-download/SKILL.md",
+          "description": "Download changelets for a revision range.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "ODP map-data operation; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-odp-changelet-generator",
+          "path": "catalog/orbis-odp/skills/orbis-odp-changelet-generator/SKILL.md",
+          "description": "Generate changelets for Orbis Data Platform layers.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "ODP map-data operation; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-odp-changelet-lookup",
+          "path": "catalog/orbis-odp/skills/orbis-odp-changelet-lookup/SKILL.md",
+          "description": "Find a changelet by date or parent revision.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "ODP map-data lookup; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-odp-download-tile",
+          "path": "catalog/orbis-odp/skills/orbis-odp-download-tile/SKILL.md",
+          "description": "Download a map tile as MVT.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "ODP map-tile operation; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-odp-query",
+          "path": "catalog/orbis-odp/skills/orbis-odp-query/SKILL.md",
+          "description": "Query features by Orbis ID.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "ODP feature query; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-odp-revision",
+          "path": "catalog/orbis-odp/skills/orbis-odp-revision/SKILL.md",
+          "description": "Check current revision status for a layer.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "ODP revision check; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-odp-view",
+          "path": "catalog/orbis-odp/skills/orbis-odp-view/SKILL.md",
+          "description": "Open the interactive Orbis map viewer.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "ODP map viewer; domain-specific."
+        },
+        {
+          "type": "plugin",
+          "name": "orbis-odp",
+          "path": "catalog/orbis-odp/.claude-plugin/plugin.json",
+          "description": "Orbis Data Platform plugin — download map tiles, query/inspect layers, generate changelets.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper bundling the orbis-odp map-data skills; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-specs",
+          "path": "catalog/orbis-specs/skills/orbis-specs/SKILL.md",
+          "description": "Look up Orbis Maps feature specifications — features, feature groups, properties, geometry, model mappings, glossary.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Map-spec reference; relevant only to Orbis-map-domain features."
+        },
+        {
+          "type": "plugin",
+          "name": "orbis-specs",
+          "path": "catalog/orbis-specs/.claude-plugin/plugin.json",
+          "description": "Look up TomTom Orbis Maps feature specifications — features, properties, geometry, model mappings, glossary.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; Orbis spec lookup."
+        },
+        {
+          "type": "skill",
+          "name": "orbis-lane-model-basemap-question",
+          "path": "catalog/orbis-lane-model-basemap/skills/question/SKILL.md",
+          "description": "Slash-command shim dispatching a question to the Lane Model Basemap product-mind sub-agent, which returns one cited, synthesized read-only answer.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Q&A about one specific product; not a general loop tool."
+        },
+        {
+          "type": "agent",
+          "name": "orbis-lane-model-basemap",
+          "path": "catalog/orbis-lane-model-basemap/agents/orbis-lane-model-basemap.md",
+          "description": "Isolated-context orchestrator for the Lane Model Basemap product — answers questions on quality framework, commitments, competitive positioning, roadmap, features; routes to internal team roles. Read-only.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Product knowledge Q&A; relevant only if refining a Lane Model Basemap feature."
+        },
+        {
+          "type": "plugin",
+          "name": "orbis-lane-model-basemap",
+          "path": "catalog/orbis-lane-model-basemap/.claude-plugin/plugin.json",
+          "description": "Ask the Lane Model Basemap product mind any question and get one cited, synthesized read-only answer in your own repo.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; single-product Q&A."
+        },
+        {
+          "type": "skill",
+          "name": "map-test-data",
+          "path": "catalog/map-test-data/skills/map-test-data/SKILL.md",
+          "description": "Create and visualize SD or HD map test data for road network scenarios.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Map test-data authoring; domain-specific to map features."
+        },
+        {
+          "type": "skill",
+          "name": "map-test-data-export",
+          "path": "catalog/map-test-data/skills/map-test-data-export/SKILL.md",
+          "description": "Export map test data to Orbis MRM JSON or PBF format.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Map test-data export; domain-specific."
+        },
+        {
+          "type": "plugin",
+          "name": "map-test-data",
+          "path": "catalog/map-test-data/.claude-plugin/plugin.json",
+          "description": "Create, visualize, and export map test data for road network scenarios (SD and HD maps).",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; map test-data domain tooling."
+        },
+        {
+          "type": "skill",
+          "name": "nds-viewer",
+          "path": "catalog/nds-viewer/skills/nds-viewer/SKILL.md",
+          "description": "Look up info from NDS maps/products via the portal webviewer — render tiles, resolve links/POIs/intersections, full-text search, fetch attributes, produce shareable URLs.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "NDS map data viewer; domain-specific."
+        },
+        {
+          "type": "plugin",
+          "name": "nds-viewer",
+          "path": "catalog/nds-viewer/.claude-plugin/plugin.json",
+          "description": "MCP frontend for NDS portal webviewers — search maps/products, render tiles, look up features, full-text search.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; NDS viewer domain tool."
+        },
+        {
+          "type": "skill",
+          "name": "simple-ai-nds-database-inspector",
+          "path": "catalog/simple-ai-nds-database-inspector/skills/simple-ai-nds-database-inspector/SKILL.md",
+          "description": "Inspect a local NDS.Classic map by driving the NDS_dumper CLI — resolve dumper mode/attribute filters, respect map-size pre-flight, surface known blind spots.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "NDS.Classic map inspection; domain-specific."
+        },
+        {
+          "type": "plugin",
+          "name": "simple-ai-nds-database-inspector",
+          "path": "catalog/simple-ai-nds-database-inspector/.claude-plugin/plugin.json",
+          "description": "Inspect a local NDS.Classic map by driving the NDS_dumper command-line tool.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Plugin wrapper; NDS.Classic inspection tool."
+        },
+        {
+          "type": "plugin",
+          "name": "nds-knowledge",
+          "path": "catalog/nds-knowledge/.claude-plugin/plugin.json",
+          "description": "Query the NDS knowledge base (Confluence + PDF spec content + glossary) via OAuth; no skill, MCP-only.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "NDS spec Q&A; relevant only to NDS-domain features."
+        },
+        {
+          "type": "plugin",
+          "name": "nds-live-knowledge",
+          "path": "catalog/nds-live-knowledge/.claude-plugin/plugin.json",
+          "description": "Query NDS.Live documentation (modules, services, data layers, SD/HD content) via OAuth; MCP-only.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "NDS.Live spec Q&A; domain-specific."
+        },
+        {
+          "type": "plugin",
+          "name": "nds-planning",
+          "path": "catalog/nds-planning/.claude-plugin/plugin.json",
+          "description": "Natural-language queries about NDS production-planning JIRA data (projects, issues, sprints, release planning); MCP-only.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "NDS production-planning data query; not a general refinement tool."
+        },
+        {
+          "type": "plugin",
+          "name": "nds-portal",
+          "path": "catalog/nds-portal/.claude-plugin/plugin.json",
+          "description": "Natural-language queries against the NDS Portal database (map releases, compositions, configs, deployments); MCP-only.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "NDS portal data query; domain-specific."
+        },
+        {
+          "type": "plugin",
+          "name": "nds-stats",
+          "path": "catalog/nds-stats/.claude-plugin/plugin.json",
+          "description": "Natural-language queries over TomTom map statistics (feature counts, attribute coverage, release-over-release comparisons); MCP-only.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Map statistics query; domain-specific."
+        },
+        {
+          "type": "plugin",
+          "name": "product-agent",
+          "path": "catalog/product-agent/.claude-plugin/plugin.json",
+          "description": "TomTom Fabric product agent — query the certified Product Overview semantic model (Salesforce + PGT) for lifecycle, sales coverage, product mix, time-to-first-sale, breakdowns.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Business product-data query; not relevant to building a code feature."
+        },
+        {
+          "type": "skill",
+          "name": "product-agent",
+          "path": "catalog/product-agent/skills/product-agent/SKILL.md",
+          "description": "Answers questions about TomTom's product catalogue (lifecycle, sales frequency/coverage, product mix, time-to-first-sale) from the certified Product Overview semantic model.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Business analytics Q&A; out of scope for the engineering loop."
+        },
+        {
+          "type": "plugin",
+          "name": "sales-agent",
+          "path": "catalog/sales-agent/.claude-plugin/plugin.json",
+          "description": "TomTom Fabric sales data agent — query the certified Salesforce semantic model for revenue, order intake, pipeline coverage, at-risk deals, win rate, period-over-period diagnostics.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Sales analytics query; not relevant to feature refinement."
+        },
+        {
+          "type": "skill",
+          "name": "sales-agent",
+          "path": "catalog/sales-agent/skills/sales-agent/SKILL.md",
+          "description": "Answers questions about TomTom's Enterprise business performance grounded in Salesforce CRM via a certified semantic model.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Sales analytics Q&A; out of scope for the engineering loop."
+        },
+        {
+          "type": "agent",
+          "name": "ana-app-user",
+          "path": "catalog/gosdk-dev/agents/ana-app-user.md",
+          "description": "Interact autonomously with the ANA Reference App on an Android emulator — plan routes, start/cancel nav, replay TTP, observe state, collect logcat.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Device-automation agent for one app; useful only for GO SDK/ANA-domain Verify."
+        },
+        {
+          "type": "agent",
+          "name": "nav-demo-app-user",
+          "path": "catalog/gosdk-dev/agents/nav-demo-app-user.md",
+          "description": "Interact autonomously with the TomTom Navigation Demo App on an Android emulator.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Device-automation agent; domain-specific to nav demo app."
+        },
+        {
+          "type": "agent",
+          "name": "one-app-user",
+          "path": "catalog/gosdk-dev/agents/one-app-user.md",
+          "description": "Interact autonomously with OneApp on an Android emulator — plan routes, start/cancel nav, observe guidance state.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Device-automation agent; domain-specific to OneApp."
+        },
+        {
+          "type": "skill",
+          "name": "call-routing-api",
+          "path": "catalog/gosdk-dev/skills/call-routing-api/SKILL.md",
+          "description": "Call the TomTom routing API to build a route between two or more geo points.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "GO SDK helper; relevant only to routing/nav-domain features."
+        },
+        {
+          "type": "skill",
+          "name": "check-plugin-setup",
+          "path": "catalog/gosdk-dev/skills/check-plugin-setup/SKILL.md",
+          "description": "Verify the local environment is ready for the gosdk-dev plugin (tools, Android SDK, API keys, mobile-mcp, bundled agents).",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Environment check for gosdk-dev only."
+        },
+        {
+          "type": "skill",
+          "name": "convert-gpx-to-ttp",
+          "path": "catalog/gosdk-dev/skills/convert-gpx-to-ttp/SKILL.md",
+          "description": "Convert a .gpx file to a .ttp file.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "GO SDK trace conversion; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "count-lln-sessions",
+          "path": "catalog/gosdk-dev/skills/count-lln-sessions/SKILL.md",
+          "description": "Count LLN (Lane Level Navigation) sessions triggered for a given TomTom route JSON.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "GO SDK LLN helper; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "inspect-nds-map-conan",
+          "path": "catalog/gosdk-dev/skills/inspect-nds-map-conan/SKILL.md",
+          "description": "Inspect an NDS.Live Orbis navigation-tiles Conan package and render its covered region on an HTML map.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Tile-coverage inspection; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "install-ana-apk",
+          "path": "catalog/gosdk-dev/skills/install-ana-apk/SKILL.md",
+          "description": "Find, download, install, uninstall the ANA app APK (and companion VIL) from Artifactory onto a connected Android device, then launch them.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "APK install automation; domain-specific to GO SDK builds."
+        },
+        {
+          "type": "skill",
+          "name": "install-nav-demo-app-apk",
+          "path": "catalog/gosdk-dev/skills/install-nav-demo-app-apk/SKILL.md",
+          "description": "Find, download, install, uninstall the Navigation Demo App APK from Artifactory onto a connected Android device.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "APK install automation; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "install-oneapp-apk",
+          "path": "catalog/gosdk-dev/skills/install-oneapp-apk/SKILL.md",
+          "description": "Find, download, install, uninstall the OneApp APK from Artifactory onto a connected Android device.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "APK install automation; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "lln-knowledge",
+          "path": "catalog/gosdk-dev/skills/lln-knowledge/SKILL.md",
+          "description": "Domain reference for GO SDK Lane Level Navigation — carpet, lane states, gating layers, engine→visualization pipeline, failure modes.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "LLN domain knowledge; relevant only to LLN-feature work."
+        },
+        {
+          "type": "skill",
+          "name": "logcat",
+          "path": "catalog/gosdk-dev/skills/logcat/SKILL.md",
+          "description": "Read, filter, deobfuscate, or live-stream Android logcat; deobfuscates obfuscated class tags via a ProGuard/R8 mapping.txt.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Android log tooling; relevant only for Android-feature Verify/debug."
+        },
+        {
+          "type": "skill",
+          "name": "mapcat",
+          "path": "catalog/gosdk-dev/skills/mapcat/SKILL.md",
+          "description": "Instrument Android Kotlin code to emit mapcat log commands for live geospatial visualization via adb logcat | mapcat.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Android geospatial debug instrumentation; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "nav-demo-app-debug-plan-route",
+          "path": "catalog/gosdk-dev/skills/nav-demo-app-debug-plan-route/SKILL.md",
+          "description": "Plan a navigation route in the Navigation Demo App via adb from a CSV of waypoints or a TTP trace.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Demo-app debug action; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "nav-demo-app-debug-settings",
+          "path": "catalog/gosdk-dev/skills/nav-demo-app-debug-settings/SKILL.md",
+          "description": "Dump or load Navigation Demo App settings via adb.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Demo-app debug action; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "nav-demo-app-debug-style",
+          "path": "catalog/gosdk-dev/skills/nav-demo-app-debug-style/SKILL.md",
+          "description": "Load a custom map style, reset to default, or dump Daichi style files from the Navigation Demo App via adb.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Demo-app debug action; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "parse-ttp-file",
+          "path": "catalog/gosdk-dev/skills/parse-ttp-file/SKILL.md",
+          "description": "Parse a TTP file to understand its data.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "TTP trace parsing; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "route-to-ttp",
+          "path": "catalog/gosdk-dev/skills/route-to-ttp/SKILL.md",
+          "description": "Convert a JSON route to a TTP file.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "TTP trace conversion; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "ttp-play",
+          "path": "catalog/gosdk-dev/skills/ttp-play/SKILL.md",
+          "description": "Control TTP GPS simulation playback on a connected Android device via adb.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "TTP playback control; domain-specific."
+        },
+        {
+          "type": "skill",
+          "name": "marketplace-build-pipeline",
+          "path": ".claude/skills/marketplace-build-pipeline/SKILL.md",
+          "description": "Repo-local maintainer skill for authoring/debugging the plugin-definition → catalog build pipeline (build.py/validate.py/sync_mcp.py, plugin-assets, MCP registry, README/version stamps). Not shipped via any plugin.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Internal marketplace maintainer tooling; not a catalog offering for the loop."
+        },
+        {
+          "type": "skill",
+          "name": "marketplace-ci-governance",
+          "path": ".claude/skills/marketplace-ci-governance/SKILL.md",
+          "description": "Repo-local maintainer skill for this repo's CI/automation/signing/governance (GitHub Actions workflows, bot signing, CODEOWNERS, auto-approval, Semgrep gate). Not shipped via any plugin.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Internal CI/governance tooling; not a catalog offering for the loop."
+        },
+        {
+          "type": "skill",
+          "name": "semgrep-ai-ruleset",
+          "path": ".claude/skills/semgrep-ai-ruleset/SKILL.md",
+          "description": "Repo-local maintainer skill for extending/auditing the local Semgrep skill-security ruleset (rule authoring, fixtures, severity calibration, FP triage). Not shipped via any plugin.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Internal Semgrep ruleset maintenance; not a catalog offering for the loop."
+        }
+      ]
+    },
+    {
+      "repo": "tomtom-internal/guidance-ai-tools",
+      "items": [
+        {
+          "type": "plugin",
+          "name": "experimental-skills",
+          "path": "plugins/experimental-skills/.claude-plugin/plugin.json",
+          "description": "Personal plugin for experimental and cross-cutting Claude Code skills (AI-feedback capture, skill quality review, cross-repo skill sync).",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Share phase. Bundles the two AI-feedback skills (directly on-theme for an event about evaluating AI tooling) plus two skill-authoring meta-tools. Mixed value; grab it for the feedback skills."
+        },
+        {
+          "type": "plugin",
+          "name": "pr-tooling",
+          "path": "plugins/pr-tooling/.claude-plugin/plugin.json",
+          "description": "PR workflow skills for the directions-guidance team. Currently ships splitting-big-prs.",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Build/Share phase. A backlog feature built end-to-end can yield a large diff; this plugin's skill turns it into reviewable increments."
+        },
+        {
+          "type": "plugin",
+          "name": "map-data-tools",
+          "path": "plugins/map-data-tools/.claude-plugin/plugin.json",
+          "description": "NDS map query skills for the directions-guidance team.",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Research phase, domain-conditional. Useful if the picked feature touches NDS map / lane data; otherwise irrelevant."
+        },
+        {
+          "type": "plugin",
+          "name": "rca-tools",
+          "path": "plugins/rca-tools/.claude-plugin/plugin.json",
+          "description": "Root cause analysis skills for SLG (Simple Lane Guidance) navigation test results.",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Research/Verify phase, domain-conditional. Useful if the feature is in lane-guidance/navigation and the engineer wants to root-cause failing test cases; otherwise irrelevant."
+        },
+        {
+          "type": "plugin",
+          "name": "wip",
+          "path": "plugins/wip/.claude-plugin/plugin.json",
+          "description": "WIP session capture (skills + SessionStart hook) plus wip-hud statusline.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Spans the whole loop. Captures and resumes session context/plan across the multi-step Pick->Research->Plan->Build->Verify->Share workflow, which likely spans multiple sessions."
+        },
+        {
+          "type": "plugin",
+          "name": "simulation-tools",
+          "path": "plugins/simulation-tools/.claude-plugin/plugin.json",
+          "description": "Simulation trace authoring skills (KML / TTP) using the TomTom Orbis Routing API.",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Verify phase, domain-conditional. Useful if the feature is routing/navigation and the engineer needs route traces to exercise the change; otherwise irrelevant."
+        },
+        {
+          "type": "skill",
+          "name": "extract-ai-feedback",
+          "path": "plugins/experimental-skills/skills/extract-ai-feedback/SKILL.md",
+          "description": "Extract structured AI feedback from the current session: scans the conversation, auto-fills the feedback form, shows a security review gate, saves locally and optionally to Confluence.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Share phase, and doubly on-theme: the event itself is about evaluating AI tooling. After building a feature with Claude, this auto-captures how the AI performed straight from the session transcript."
+        },
+        {
+          "type": "skill",
+          "name": "report-ai-feedback",
+          "path": "plugins/experimental-skills/skills/report-ai-feedback/SKILL.md",
+          "description": "Report structured feedback on AI tool (Claude Code, Copilot, Junie) performance for Planning, Work Execution, Code Review, or Debugging/QA via a guided interview or auto-fill, with optional Confluence publishing.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Share phase. The manual counterpart to extract-ai-feedback; lets the engineer record how the AI did during refinement. Its four areas map cleanly onto the loop (Planning, Work Execution, Code Review, Debugging/QA)."
+        },
+        {
+          "type": "skill",
+          "name": "skill-quality-review",
+          "path": "plugins/experimental-skills/skills/skill-quality-review/SKILL.md",
+          "description": "Review a skill across structural, lifecycle, and behavioral dimensions and produce a merge verdict.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Skill-authoring meta-tool. Only relevant if the picked feature is itself a Claude skill; the track builds a product feature, not Claude skills."
+        },
+        {
+          "type": "skill",
+          "name": "sync-skills",
+          "path": "plugins/experimental-skills/skills/sync-skills/SKILL.md",
+          "description": "Port or sync a skill or shared contributor documentation between go-sdk-android, go-sdk-ios, and oneapp-ios.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Cross-repo skill/doc maintenance meta-tool. Not part of building a single backlog feature."
+        },
+        {
+          "type": "skill",
+          "name": "get-nds-ftx-lane-data",
+          "path": "plugins/map-data-tools/skills/get-nds-ftx-lane-data/SKILL.md",
+          "description": "Query FTX lane groups (lane connectivity and boundary elements) for any road in any NDS map product, given a lat/lon coordinate. Requires the nds-viewer MCP server (TomTom network/VPN).",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Research phase, domain-conditional. If the feature touches lanes/lane model, this pulls real NDS lane data to ground research; needs the nds-viewer MCP server."
+        },
+        {
+          "type": "skill",
+          "name": "splitting-big-prs",
+          "path": "plugins/pr-tooling/skills/splitting-big-prs/SKILL.md",
+          "description": "Convert one large PR/branch into a chain of smaller, self-contained, buildable, byte-identical PRs, each validated and user-approved before creation.",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Build/Share phase. A feature built in one loop can become a large diff; this decomposes it into reviewable increments with build+test invariants. Only triggers when explicitly asked to split."
+        },
+        {
+          "type": "skill",
+          "name": "analyze-slg-case",
+          "path": "plugins/rca-tools/skills/analyze-slg-case/SKILL.md",
+          "description": "Deep AI analysis of a single SLG (Simple Lane Guidance) test case, identifying the root cause of a failing lane-guidance case and writing an HTML report.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Research/Verify, narrowly domain-conditional. Only useful for an SLG lane-guidance feature with existing failing test-case dirs; otherwise irrelevant."
+        },
+        {
+          "type": "skill",
+          "name": "generate-slg-report",
+          "path": "plugins/rca-tools/skills/generate-slg-report/SKILL.md",
+          "description": "Aggregate per-case result.json files into aggregated_results.json and generate a Confluence-ready rca_report.html without re-running plan_route.sh.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Reporting step of the SLG RCA pipeline. Only relevant within that lane-guidance test-analysis workflow."
+        },
+        {
+          "type": "skill",
+          "name": "ingest-slg-test-results",
+          "path": "plugins/rca-tools/skills/ingest-slg-test-results/SKILL.md",
+          "description": "Ingest SLG test results from an XLSM file: validate environment, run plan_route.sh per failing case, and enrich each result.json with maneuver_segments from KML.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "Ingestion step of the SLG RCA pipeline. Domain-conditional and pipeline-internal; tied to lane-guidance test reports."
+        },
+        {
+          "type": "skill",
+          "name": "run-slg-rca",
+          "path": "plugins/rca-tools/skills/run-slg-rca/SKILL.md",
+          "description": "Run the full SLG root cause analysis pipeline on navigation test results from an XLSM file: identify problematic cases, reproduce routes, analyze, and report.",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Research/Verify phase, domain-conditional. If the picked feature is lane-guidance/navigation, this end-to-end pipeline can reproduce and root-cause failing test cases to inform refinement and verification."
+        },
+        {
+          "type": "skill",
+          "name": "create-kml",
+          "path": "plugins/simulation-tools/skills/create-kml/SKILL.md",
+          "description": "Generate a KML polyline for a route between origin/destination (with optional waypoints) using the TomTom Orbis Routing API.",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Verify phase, domain-conditional. If the feature is routing/navigation, produces a route trace to exercise the change. Needs a TomTom Orbis API key."
+        },
+        {
+          "type": "skill",
+          "name": "create-ttp",
+          "path": "plugins/simulation-tools/skills/create-ttp/SKILL.md",
+          "description": "Generate a TTP simulation trace for a route using the TomTom Orbis Routing API (thin wrapper over create-kml that converts KML to TTP for the positioning simulation app).",
+          "relevanceScore": 3,
+          "relevanceToRefinement": "Verify phase, domain-conditional. If the feature is routing/navigation, generates a simulation trace to drive the change in the simulator. Needs a TomTom Orbis API key and pykml."
+        },
+        {
+          "type": "skill",
+          "name": "wip-save",
+          "path": "plugins/wip/skills/wip-save/SKILL.md",
+          "description": "In-place checkpoint of the currently-loaded WIP: rewrites the active WIP .md with the latest session progress without creating a new folder.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Spans the loop. Lets the engineer checkpoint plan + progress mid-loop so the multi-step Research->Plan->Build->Verify work survives across sessions."
+        },
+        {
+          "type": "skill",
+          "name": "wip-setup",
+          "path": "plugins/wip/skills/wip-setup/SKILL.md",
+          "description": "One-time configuration for the WIP flow: sets CLAUDE_DEV_FOLDER in settings.json so the wip skill knows where to look for sessions.",
+          "relevanceScore": 2,
+          "relevanceToRefinement": "One-time setup, not part of the loop. Only needed once to enable the wip/wip-save skills."
+        },
+        {
+          "type": "skill",
+          "name": "wip",
+          "path": "plugins/wip/skills/wip/SKILL.md",
+          "description": "Capture the full context of a working session so it can be resumed later with zero ramp-up: load a saved WIP, start a new task, or change the dev folder.",
+          "relevanceScore": 4,
+          "relevanceToRefinement": "Spans the loop. The entry point for capturing/resuming session context across the multi-step feature-refinement workflow; preserves plan and state between Plan, Build, and Verify."
+        },
+        {
+          "type": "command",
+          "name": "wip-hud-setup",
+          "path": "plugins/wip/commands/wip-hud-setup.md",
+          "description": "Verify and wire up wip-hud (statusline, JIRA URL, gh auth) with three idempotent checks.",
+          "relevanceScore": 1,
+          "relevanceToRefinement": "Statusline/infra configuration. Cosmetic; not part of building or refining a feature."
+        }
+      ]
+    }
+  ],
+  "prResults": [
+    {
+      "repo": "tomtom-internal/ai-coding-agent-marketplace",
+      "number": 84,
+      "title": "Include adp usage policy reference",
+      "skillName": "orbis-adp-consume (in the orbis-adp plugin)",
+      "whatItAdds": "Not a new skill/capability — an incremental documentation update to the existing orbis-adp-consume skill (plugin version bumped 1.0.6 -> 1.0.7). It adds an \"ADP USAGE POLICY\" section to SKILL.md that teaches Claude the Analytical Data Plane (ADP) fair-use rules: max 2 parallel queries per user, 10-minute query timeout, no automated/keep-alive usage, no personal compute on the central ADP workspace, and whitelisted exemptions (MAA PowerBI dashboards, MyTomTom). It tells Claude to surface the policy proactively on the first query and on heavy/automated/large-scale queries, explains that breaching quotas auto-cancels queries (reason posted to #analytical-data-plane-notifications) and that repeated violations lead to access revocation, and steers big/heavy/automated workloads to BYOC (the user's own Databricks workspace), which is exempt from the central quotas. Also adds a pre-query assessment checklist, a troubleshooting-table row for unexpectedly cancelled queries, and a clarifying note that these quotas apply only to the central ADP SQL warehouse, not BYOC. Links to the full policy on Confluence (MANA space).",
+      "readyToUse": "Ready to use. It is a small, self-contained documentation refinement (~46 added lines, no deletions, no code/script changes) to a skill already published in catalog/ — clearly a mature, in-use skill. The change mirrors the same edits into both the source skills/ path and the catalog/ copy and bumps the version, so it is mergeable as-is. Reviewer caveat: editing catalog/ directly contradicts the PR template's \"no changes to catalog/ — the bot writes those\" guideline, which may need a maintainer to resolve, but the content itself is final, not experimental.",
+      "relevanceToRefinement": "Low. The work loop (Pick -> Research -> Plan -> Build -> Verify -> Share) is about refining and building an arbitrary backlog feature with Claude. The parent orbis-adp skill is only useful to a team whose chosen feature happens to require querying TomTom analytics/metrics data via Databricks SQL — a narrow data-access use case, not a general feature-building aid. This PR is narrower still: it only adds usage-policy guardrails to that already-existing skill, adding no new capability for refining or building features. It would matter only to a team building something that consumes ADP data, and even then mostly as cost/compliance hygiene rather than as a refinement tool.",
+      "relevanceScore": 2
+    },
+    {
+      "repo": "tomtom-internal/ai-coding-agent-marketplace",
+      "number": 77,
+      "title": "feat: removed dev references from lanemodel in mcr skill",
+      "skillName": "orbis-mcr",
+      "whatItAdds": "The PR updates an existing plugin/skill (orbis-mcr, version 1.0.4 -> 1.0.5), it does not add a new one. The underlying skill connects Claude Code and the GitHub Copilot CLI to TomTom's Map Central Repository (MCR) so a coding agent can run SQL queries against TomTom Orbis map data via Databricks SQL (a packaged query_mcr.py helper handles auth, region/catalog selection, BYOC via your own Unity Catalog workspace, polling, and cost guardrails). This specific PR refines how the Lane Model product is exposed: it renames the product olm -> lanemodel, removes the old \"early-access only / requires special permissions / auto-route to Dev environment\" coupling, recasts Dev as just a normal selectable region (--region dev, labelled non-production) instead of an early-access channel, replaces the old per-product table with an authoritative product x region availability matrix (nexventura, nexkorea, adhoc, bifrost, lanemodel), and adds a pre-query validation step that checks the product/region combination before building a query (e.g. refuse lanemodel for Korea). Also minor: query_mcr.py --region choices now derived from list(REGIONS) and help-text cleanup; README/plugin.json wording and version bump. Based directly on the diff.",
+      "readyToUse": "Ready to use and mature. The base skill is at v1.x with a working query_mcr.py script and is already published in the catalog. This PR is itself a de-experimentalizing change: it promotes lanemodel from \"early access only, requires special permissions, auto-routed to Dev\" to a normal selectable production product, which is a signal of increasing maturity rather than experimental status. PR is OPEN, not draft. The change is documentation/behavior-correctness only, low risk.",
+      "relevanceToRefinement": "Specialized data-access capability rather than a general feature-refinement aid. It is directly useful in the Research/Build phases only when the backlog feature actually touches TomTom Orbis map data (querying Road Model / Lane Model / Korea map tables from the agent). At a maps company that is a real but minority subset of feature teams, so it is niche-but-mature. The PR contents themselves are a small refinement; the score reflects the skill's usefulness, not the diff size.",
+      "relevanceScore": 3
+    },
+    {
+      "repo": "tomtom-internal/ai-coding-agent-marketplace",
+      "number": 76,
+      "title": "Add jira-tree skill (assigned-tickets hierarchy tree)",
+      "skillName": "jira-tree",
+      "whatItAdds": "A single-skill plugin (`jira-tree`, category project-management) that renders the current user's recent/assigned Jira tickets as a hierarchy tree — epics → stories → sub-tasks — with linked/dependent items (blocks, blocked-by, clones, bug-of, relates) marked inline via status and link icons, followed by a \"loose ends\" pass (Done tickets blocking still-open work; the user's open tickets blocking downstream work). Triggered by `/jira-tree`. It queries the Atlassian MCP with `searchJiraIssuesUsingJql` (`assignee = currentUser() ORDER BY updated DESC`), excludes the `description` field (token-limit overflow), paginates up to a 5-page (~500 issue) safety cap (announcing truncation rather than silently dropping), and parses each saved page with a bundled jq snippet. An optional argument is folded in as an extra JQL filter (e.g. `/jira-tree project = NAV`, `status != Done`, `updated >= -30d`). It is purely read/overview — it complements the existing authoring skill `jira-ticket-writer`.",
+      "readyToUse": "Ready-to-use in substance, but the PR is still a DRAFT (state OPEN, isDraft true). The skill is complete and self-contained: full YAML frontmatter with rich trigger phrases, detailed step-by-step instructions, the TomTom cloud ID (1cca41ed-…) hard-coded so it works for any TomTom user out of the box, pagination/truncation handling, and a working jq parser. The generated catalog files (plugin.json, README, marketplace.json entry, CODEOWNERS) are all present and consistent. There are no scripts/binaries to break — it relies only on the model + jq + the Atlassian MCP. The sole runtime dependency is an active Atlassian MCP connection. Author flagged one open question (individual vs team `author`/owner). So: functionally mergeable/usable, pending un-drafting and reviewer sign-off.",
+      "relevanceToRefinement": "Moderately relevant. It directly supports the \"Pick\" stage of the loop — surfacing a participant's assigned backlog tickets, showing the epic/story/sub-task hierarchy of a candidate feature, and exposing blockers/dependencies before committing to refine one. The loose-ends pass adds useful situational awareness about what a ticket blocks or is blocked by. However, it is read-only Jira reporting: it does not help Research, Plan, Build, or Verify the feature itself (no code, no spec generation, no ticket authoring — that is jira-tree's sibling jira-ticket-writer). So it is a helpful orientation/selection aid at the start of the track rather than a core driver of the refine-and-build work.",
+      "relevanceScore": 3
+    },
+    {
+      "repo": "tomtom-internal/ai-coding-agent-marketplace",
+      "number": 69,
+      "title": "Add reliable-deck-builder plugin",
+      "skillName": "reliable-deck-builder",
+      "whatItAdds": "A pure-skill plugin (category: general) that encodes a gated, five-phase workflow for building slide decks/presentations that \"survive scrutiny\" — board, financial, and leadership decks where every number must be defensible. Phases: (1) Plan — elicit and play back the audience, one-sentence narrative, presenter's perspective, and the ask BEFORE touching data; (2) Sources — anchor to trusted inputs, never invent numbers, never blend plan with actuals unlabeled; (3) Structure — narrative skeleton/outline approved before any slide is built; (4) Creation — build in passes (outline → per-slide content with source refs → render via python-pptx), mark assumptions visibly; (5) Verification — an INDEPENDENT, cross-model hostile reviewer tries to break the numbers/logic/narrative, then human sign-off. Ships SKILL.md, reviewer-prompt.md (the hostile-reviewer prompt), and challenge.sh — a working bash script that pipes the prompt + deck text + sources into GitHub Copilot CLI (copilot -p, headless, GPT-based) as a different-model-family challenger, with documented fallbacks (fresh Claude subagent or M365 Copilot) and clean exit codes (2 = Copilot CLI unavailable). Includes a risk gradient (Low/Medium/High) that dials rigor, a quick-reference, common-mistakes table, and red-flag STOP triggers.",
+      "readyToUse": "Ready-to-use. Not a draft; state OPEN, version 1.0.0. Complete and self-consistent: full SKILL.md (88 lines), a functional challenge.sh with binary resolution, sandboxing flags, and graceful fallbacks, and a reviewer-prompt.md. plugin.json, plugin-definitions yaml, README, marketplace.json entry, catalog/ tree, and CODEOWNERS are all present and validate.py reportedly passes locally. Caveat: the PR body claims \"catalog/ and marketplace.json are intentionally untouched — left for CI to generate,\" but the diff actually includes both the generated catalog/ tree and the marketplace.json edit, so the body is slightly inaccurate (harmless — content is correct). The Verification phase depends on GitHub Copilot CLI + a Copilot subscription to get true cross-model review; without it you fall back to a fresh Claude/M365 context.",
+      "relevanceToRefinement": "Domain mismatch but one transferable pattern. The conference track is about refining/building a real backlog SOFTWARE feature (Pick→Research→Plan→Build→Verify→Share); this skill builds presentation decks, which an engineer would not reach for while implementing a feature. It is not packaged to plan, build, or verify code. The genuinely relevant overlap is conceptual: its gated Plan→Build→Verify loop and especially its Verify step — an independent, fresh-context, cross-model hostile review that tries to BREAK the work before declaring it done — is exactly the discipline the track's Verify phase wants, and challenge.sh is a concrete, reusable mechanism for driving a cross-model adversarial reviewer (GitHub Copilot CLI) that engineers could adapt to review a feature/PR rather than a deck. There is also a tangential fit with the track's \"Share\" step if a team wants to produce a defensible results/demo deck. Net: useful as an inspiration/reference for the verification pattern, and directly grabbable only for the Share-the-results sub-task — not for the core feature-building loop.",
+      "relevanceScore": 2
+    },
+    {
+      "repo": "tomtom-internal/ai-coding-agent-marketplace",
+      "number": 48,
+      "title": "feat: add orbis ogp support to the orbis-mcr skill",
+      "skillName": "orbis-mcr",
+      "whatItAdds": "Refines the already-shipped orbis-mcr skill (a plugin that queries TomTom Orbis map data in the Map Central Repository via Databricks SQL) to support a second data model: Orbis OGP, the Overture-aligned product living in the sibling schema map_central_repository_orbis_ogp. The change is almost entirely instructional/documentation in SKILL.md (bumps plugin version 1.0.4 to 1.0.5): adds a DATA MODELS section comparing 3G (default, 4 generic tag-based tables per product) vs OGP (themed tables, typed columns, WKB geometry, bbox, no tags map, no h3_index); a routing rule (default to 3G, only switch to OGP on explicit signals like \"OGP\"/\"Overture\"/\"orbis_ogp\"); version-discovery SQL (OGP table names embed version e.g. transportation_segment_orbis_ogp_26190_000, don't hardcode); a link to the external Orbis OGP spec (llms.txt); and per-schema variants of the common explore operations. The bundled query_mcr.py change is purely top-of-file docstring/usage comments adding an OGP example; no executable logic changed.",
+      "readyToUse": "Yes, ready to use. It is a documentation refinement of an already-shipped, versioned skill, and OGP is described as a live global product (not early-access like olm). Caveat: actual usability depends on the user having a Databricks token and OGP schema access in their region; I could not verify the schema is populated without querying (needs tokens). Merge-process friction: the PR hand-edits files under catalog/ and .claude-plugin/, which the PR's own checklist says are bot-written and should not be changed manually; this may cause CI/sync friction but does not affect the capability.",
+      "relevanceScore": 2,
+      "relevanceToRefinement": "Narrow domain fit. It is a map-data access tool that helps mainly in the Research phase, and only for the subset of conference teams whose backlog feature actually needs to query Orbis/Overture map data via Databricks SQL. For the generic \"refine and build any backlog feature\" audience it is not broadly useful; the OGP addition is an incremental polish to that already-narrow skill rather than a new general-purpose capability. Score 3 only if you assume most attending teams are map-feature teams who would hit MCR during research."
+    },
+    {
+      "repo": "tomtom-internal/guidance-ai-tools",
+      "number": 24,
+      "title": "feat:(pr-green) make pr green skill",
+      "skillName": "make-pr-green (in the pr-tooling plugin)",
+      "whatItAdds": "Adds one new skill, plugins/pr-tooling/skills/make-pr-green/SKILL.md (1755 lines), and registers it in CLAUDE.md and README.md. It is a continuous, operator-in-the-loop process that drives an existing PR to fully green. Each loop iteration runs three things in parallel: a CI-status check, a set of code-review agents, and a read of existing PR comments; it then posts findings as GitHub PR comments, each carrying a machine-readable action: directive. The GitHub comment thread (not any local file) is the source of truth for what to do; the local markdown is a read-only summary. It classifies each finding (TRIVIAL MINOR / TRIVIAL MAJOR / DIFFICULT MAJOR), then applies fixes, posts replies, commits/pushes, and resolves threads according to action codes F/f/R/r/i/n/X/D/d, looping until all threads are resolved and CI is green or the operator says stop. Notable depth: dynamic per-change agent selection (skips irrelevant lenses, adds up to 3 ad-hoc lenses, always forces correctness on code changes, always adds a simplify lens), a review-base optimization that auto-skips re-review when nothing significant changed, an anti-slop self-critique gate on any prose it authors, a Phase E that verifies the PR title/description against commit history + diff + code, and a D/d contact protocol that uses git blame/log to suggest reviewers and optionally pings them on Slack. Flags: --no-review, --fast-review, --review-standard, --cautious, --auto, --force-auto, --open-browser, --dry-run. Dependencies (enforced at Setup): gh CLI authenticated and the multi-agent-code-review plugin installed (it extracts that plugin's agent roster and prompt template). The review specialists are Java-leaning: buildRosterThunk hardcodes the language to Java and loads a javaSpecPath; the CI/comment loop itself is language-agnostic.",
+      "readyToUse": "Complete-but-unmerged. The SKILL.md is functionally complete and detailed, and it already appears as an available skill in this environment. But the PR itself is an open DRAFT (isDraft: true) with an unfilled template body (no What/Why, Implements: NAV- left blank), so it is not formally merge-ready yet. Grab-and-use at a short event is gated by two real prerequisites in the diff: the multi-agent-code-review plugin must be installed (Setup stops if missing) plus gh must be authenticated, and the review specialists assume Java.",
+      "relevanceScore": 4,
+      "relevanceToRefinement": "Lands at the tail of the Pick -> Research -> Plan -> Build -> Verify -> Share loop. It is directly useful for Verify and Share: once a team has built a real backlog feature and opened a PR, this drives that PR to green (fixes CI, addresses review comments, keeps the PR description accurate) without quitting until it is mergeable. It does not help with the core refine/research/plan work itself, so it is adjacent to the track's center rather than at it, but a real feature implies a real PR that must go green, which makes it a strong supporting tool for finishing the conference exercise. Scored 4, not 5, because polish does not equal track-fit, and 4, not 3, because finishing a real PR is genuinely part of the loop."
+    },
+    {
+      "repo": "tomtom-internal/guidance-ai-tools",
+      "number": 21,
+      "title": "feat(experimental-skills): add sync-agents skill for multi-agent instruction sync",
+      "skillName": "sync-agents (in the experimental-skills plugin)",
+      "whatItAdds": "Adds a new `sync-agents` skill to the `experimental-skills` plugin. It converges a project's per-tool AI agent instruction files into a single canonical `AGENTS.md` as the source of truth, then wires the others as thin pointers: `CLAUDE.md` becomes a `# Project Instructions` + `@AGENTS.md` import; `.github/copilot-instructions.md` becomes a fallback pointer (Copilot reads AGENTS.md natively); JetBrains Junie reads root AGENTS.md natively so `.junie/guidelines.md` / `.junie/AGENTS.md` shadow files are migrated and removed. The 247-line SKILL.md defines an 8-step procedure: identify project root; survey existing files and classify the situation (Not initialized / Single legacy / Claude-only / AGENTS.md present / Mixed); migrate only GENERIC content (build/test commands, code style, architecture, security, git conventions) while leaving tool-specific content in place; show a MIGRATION PLAN confirmation gate (skippable via `auto`); update an optional `## Available Skills` discovery index built from project-local `.claude/.github/.junie/skills/*/SKILL.md` frontmatter; wire root and nested-package CLAUDE.md stubs; manage a marker-delimited nested-packages block in copilot-instructions.md; and emit a final report. Ships with 14 evals and ~25 fixture files covering green-field exit, single/mixed migration, junie-shadow, nested wiring, copilot sync/cleanup, auto mode, parallel writes, and trigger/skills-index extraction. Treats legacy-file content as untrusted (classify-only, do not follow embedded instructions).",
+      "readyToUse": "Early/experimental — usable but not merged. The PR is OPEN and non-draft, with a complete, detailed SKILL.md, a 14-case eval suite plus fixtures, a plugin version bump (0.2.0 -> 0.3.0), README/CLAUDE.md index updates, and follow-up review feedback already incorporated. However it lives in the `experimental-skills` plugin, the Jira reference is an unfilled stub (\"Implements: NAV-\"), and its green-field exit path tells users to use an `init-agents` skill that does not exist on the repo's default branch and is not added by this PR (verified via gh api tree search). Core non-green-field flows are self-contained and would work once installed.",
+      "relevanceScore": 2,
+      "relevanceToRefinement": "Low / indirect. The conference track is about refining and building a real backlog feature with Claude through Pick -> Research -> Plan -> Build -> Verify -> Share. `sync-agents` is project-configuration plumbing for multi-agent instruction hygiene; it does not help research, plan, build, or verify a feature. Its only indirect value: (a) the `## Available Skills` index it generates could make OTHER genuinely useful skills more discoverable to agents working in a repo, and (b) it ensures consistent agent guidance across tools. But it pays off only for teams that mix Claude + Copilot + Junie on the same repo (a narrow slice of participants) and is a one-time setup chore, not part of the feature-building loop. That meta-discoverability angle is why it rates a 2 rather than a 1."
+    },
+    {
+      "repo": "tomtom-internal/guidance-ai-tools",
+      "number": 19,
+      "title": "feat(team-setup): add team-onboarding skill with setup files and evals",
+      "skillName": "team-onboarding (in new team-setup plugin)",
+      "whatItAdds": "Adds a single new skill, team-onboarding, in a new team-setup plugin. It is a 7-step interactive environment-setup wizard for the directions-guidance team: (1) detect entry point + self-assessed level (New/Regular/Advanced/Expert); (2) walk through 6 CLAUDE.md rule blocks and append approved ones to the repo CLAUDE.md; (3) offer 4 hooks merged into .claude/settings.json; (4) verify MCP/tooling (Atlassian via atlassianUserInfo, GitHub CLI via gh auth status, optional Filesystem/Fetch MCP); (5) a skills tour table; (6) a level-filtered learning path with training sessions and curated resources; (7) a completion summary. Ships supporting setup/*.md content files and a 10-scenario behavioral evals.json testing step sequencing, write-confirmation gates, auth-failure handling, level filtering, and settings-merge safety. The SKILL.md is well-structured with explicit confirm-before-write gates. Note the bundled CLAUDE.md rules are tuned to this team's localization workflow (.po files, sample .txt regeneration, NavSDK vs HCP3, locale scope) rather than generic feature work, which limits transfer.",
+      "readyToUse": "Early/experimental. plugin.json is version 0.1.0, and the new team-onboarding skill itself is internally coherent (clear steps, supporting files present, 10 evals). However the wider package it presents is not consistent with the repo: marketplace.json only registers the new team-setup plugin, yet the bundled skills-tour.md instructs users to run /plugin install pr-tooling@guidance-ai-tools and marks splitting-big-prs as LIVE, and the README/CLAUDE.md table edits add a pr-tooling row — a plugin this PR neither creates nor registers in the marketplace. The skills-tour also lists 6 further skills (translate-fix, pr-fix, investigate-ticket, run-tests, ci-fixer, review) explicitly as PLANNED, i.e. not delivered here. So the team-onboarding skill is runnable, but it points users at an install path and catalogue that this repo does not yet provide.",
+      "relevanceToRefinement": "Indirect / pre-loop. The skill does not serve any phase of the Pick -> Research -> Plan -> Build -> Verify -> Share loop on a backlog feature; it is an environment enabler that gets an engineer's CLAUDE.md, hooks, and MCP set up before that loop. Good setup helps downstream, so it is not irrelevant, but it is one step removed from refining/building a feature, and its concrete CLAUDE.md rules are localization-specific rather than generic, further limiting use at a general feature-refinement track.",
+      "relevanceScore": 2
+    },
+    {
+      "repo": "tomtom-internal/guidance-ai-tools",
+      "number": 18,
+      "title": "feat(jira-tooling): add jira-handover and jira-resume skills",
+      "skillName": "jira-tooling (jira-handover, jira-resume)",
+      "whatItAdds": "A new `jira-tooling` plugin with two Claude Code skills plus a shared reference file (shared/common.md). jira-handover wraps up an AI work session into a JIRA ticket: collects context from the conversation (accomplished / in progress / blockers / next steps / key decisions / file:line entry points / git state), pushes unpushed branches, optionally opens draft PRs, writes a dated handover markdown file (YYYYMMDD_AI_handover_<slug>.md), uploads it as a JIRA attachment via curl, links open PRs as remote issue links, and posts a summary comment. jira-resume does the reverse: fetches the ticket, finds the newest *AI_handover*.md attachment, downloads and displays it, offers to restore the recorded git branch, and surfaces Next Steps as a checklist. Every JIRA/git write is gated behind explicit user confirmation; documented fallbacks (embed content in comment, paste manually) handle missing creds or upload failures.",
+      "readyToUse": "Ready-to-use but early. State OPEN, not a draft, authored by the conference organizer (Michal Slonina). Structurally complete: plugin.json, full SKILL.md bodies for both skills, shared/common.md, registered in marketplace.json + CLAUDE.md + README, and includes behavioral evals (6 cases for handover, 4 for resume) and trigger evals (8 each). Caveats: version 0.1.0, still unmerged/unreviewed, and the attachment-upload and remote-link paths rely on raw curl with ATLASSIAN_EMAIL/ATLASSIAN_API_TOKEN env vars (because MCP tools do not support multipart/arbitrary POST) — so it needs those creds set to use the full flow, though it degrades gracefully if they are missing. Evals exist but there is no evidence in the diff that they have been run/passed.",
+      "relevanceToRefinement": "Conference features come from JIRA backlog tickets and the loop ends in an explicit Share stage, so a handover/resume pair maps directly onto persisting work back to the ticket and picking it up later. Strong fit for the Share step and for cross-session continuity during a time-boxed event (push, draft PR, attach context, comment — then resume). It is a session-continuity / wrap-up tool rather than something that drives the core Research / Plan / Build work itself, so it is highly useful at the bookends but not central to the build loop. Caveat: requires Atlassian API creds for the full attachment flow.",
+      "relevanceScore": 4
+    },
+    {
+      "repo": "tomtom-internal/guidance-ai-tools",
+      "number": 17,
+      "title": "feat(mine-pr-case-studies): add multi-lens PR case study skill",
+      "skillName": "mine-pr-case-studies",
+      "whatItAdds": "Adds a new skill `mine-pr-case-studies` to the `experimental-skills` plugin (bumps it 0.2.0 -> 0.3.0). It is a retrospective analysis tool: it mines historical merged PRs for a *repeated* engineering operation and builds evidence-based case studies + a synthesis report from git/GitHub signals (correction commits, reviewer-triggered fixes, CI failures, time-to-merge, AI-assisted flag, cohort year), never from recollection/inference. It supports five selectable lenses via a `LENS` parameter sharing one discovery+extraction pipeline: friction (default; pain points + guide-gap analysis), best-practices (exemplar PRs), evolution (per-year cohort trends), ai-vs-human (AI vs human PR comparison), compliance (rule-adherence scorecard via grep RULE_PATTERNS over diffs). It runs a 3-phase loop (Discovery -> per-PR case study -> Synthesis), validates required params per lens before any command runs, and explicitly stops at writing synthesis.md (does not edit guides or open PRs). Notably, every validated config and all evals are go-sdk-ios module-creation specific (KEYWORD='Init TomTomSDK', podspec/xcworkspace/domain_to_module_mapping.yml), so it is tuned to a particular repeated SDK operation rather than generic feature work.",
+      "readyToUse": "Well-developed and well-tested but NOT ready to grab: PR is still OPEN (unmerged), and it lands in a plugin explicitly named/described as personal + experimental (\"Personal plugin for experimental and cross-cutting Claude Code skills\", author Borys Zhdanov). The skill itself is mature — 511-line SKILL.md, README, 13 evals covering all 5 lenses, missing-parameter guards, plus a deterministic end-to-end mock-execution harness (stub gh/git scripts + canned PR JSON). So: experimental/early in availability, but the content quality is high.",
+      "relevanceToRefinement": "Low relevance to the conference Pick -> Research -> Plan -> Build -> Verify -> Share loop. This is a retrospective process-analysis tool, not a feature-building aid. Hard disqualifier for the Build use case: the skill requires a corpus of 5+ historical PRs of the *same repeated operation* and is explicitly \"not applicable\" below that — a team refining/building one fresh backlog feature has no such corpus. The only thread is a squint-fit to the Research phase (understanding how an existing process performs / where friction lives), and even that is about improving a process, not researching a specific feature. It does not help Plan, Build, Verify, or Share a single feature. iOS-SDK-specific tuning further narrows applicability.",
+      "relevanceScore": 2
+    },
+    {
+      "repo": "tomtom-internal/guidance-ai-tools",
+      "number": 13,
+      "title": "refactor(splitting-big-prs): extract phases to references/ for progressive disclosure",
+      "skillName": "splitting-big-prs",
+      "whatItAdds": "This PR does NOT add a new skill/capability — it refactors the EXISTING `splitting-big-prs` skill (in the `pr-tooling` plugin). The skill already exists and works; it converts one large PR/branch into a chain of small, stacked, individually-buildable PRs, enforcing an \"Iron Law\" that the final increment's diff is byte-identical to the original big branch.\n\nThe actual delta in this PR (per the diff, SKILL.md: +17/-294):\n1. Progressive-disclosure restructuring — the four phase procedures (Phase 0 Pre-flight, 1 Plan, 2 Per-Increment Loop, 3 Final Validation) are moved verbatim out of SKILL.md into four new reference files under `references/phases/phase-{0-3}-*.md`. SKILL.md drops from ~5,451 to ~2,150 words; it keeps a Phases table pointing to each file via `${CLAUDE_PLUGIN_ROOT}`, and keeps the pressure-bearing content inline (Iron Law, Core Invariants, flow diagram, sizing heuristics, rationalizations table, red flags).\n2. A hard forcing function added to the Phases section: \"Before executing a phase, read its reference file in full. If you have not read the phase reference file, STOP — do not improvise from this overview.\"\n3. Five minor content fixes folded in: a new \"What This Doesn't Cover\" section (uncommitted work, already-merged commits, non-stacked parallel PRs, multi-repo, rewriting the big branch); a worked E2E-test-placement example in Phase 1; a rebase-cost tradeoff clause for the top-down DI+fakes strategy; `BASE_OF_INCREMENT` turned into a copy-paste-runnable assignment in Phase 2; and clarifying comments on the Phase 3 backfill loop.\n\nBehavior is preserved: phase numbering and cross-references are unchanged, and the 11 behavioral evals in evals/evals.json are untouched.",
+      "readyToUse": "Mature/production, and this PR is a non-functional refactor. The skill is not a draft (isDraft: false, state OPEN) and is usable today. This PR is behavior-preserving polish — content moved verbatim into reference files, evals unchanged at 11, cross-references grep-verified per the PR body. So \"ready to use\" applies to the skill itself; the PR is a maintenance/quality change, not a new feature.",
+      "relevanceScore": 2,
+      "relevanceToRefinement": "Low-to-niche for the conference's Pick -> Research -> Plan -> Build -> Verify -> Share loop. This is a Share-stage tool with a deliberately narrow trigger (\"Use when the user explicitly asks to split/break up/decompose a big PR\"). Whether it helps depends on whether a time-boxed conference team produces a branch large enough to need stacked decomposition — usually they won't in a single event. And this specific PR's delta (a progressive-disclosure refactor) adds nothing an attendee using the skill would notice; the underlying skill, not this PR, is what would matter. Useful as a reference example of a well-structured discipline-enforcing skill (good model for teams writing their own skills), but not a capability most refinement teams will reach for during the event."
+    },
+    {
+      "repo": "tomtom-internal/guidance-ai-tools",
+      "number": 6,
+      "title": "feat: add direnv-tools plugin with external-env skill",
+      "skillName": "external-env",
+      "whatItAdds": "Adds a new `direnv-tools` plugin to the marketplace containing one skill, `external-env`. The skill centralizes a repo's environment variables in a file outside the project tree at `~/.config/direnv/<org>/<project>/.env`, keyed by the Git `origin` remote slug, so secrets/local-only vars never live inside the repo. A deterministic `setup.sh` (covering steps C1-C4): checks direnv is installed, idempotently installs a global `direnvrc` hook (`_load_external_repo_env`) that auto-loads the `.env` on `cd` into any clone of the repo (no project `.envrc` needed), derives+validates the slug from the remote URL, and creates the `.env` if missing. The SKILL.md then detects project type and offers four integration paths so the same central `.env` is consumed by: (A) a project direnv `.envrc`, (B) Gradle/spring-dotenv via `springdotenv.directory`, (C) Python/python-dotenv via `load_dotenv(...)`, and (D) CMake via either a `null`-valued `CMakePresets.json` environment block or a `LoadCentralEnv.cmake` module that reads KEY=VALUE pairs at configure time. Security-conscious throughout: never reads/prints existing `.env` contents, validates the slug against path traversal, and never embeds secret values in committed project files.",
+      "readyToUse": "Early/experimental but functionally complete. Plugin version is 0.1.0, the PR is OPEN and NOT a draft, and the entire test plan is unchecked (no boxes ticked) — so nothing has been verified yet, including `/plugin validate .`, install, slug derivation, and hook idempotency. The shell script uses `set -euo pipefail`, an idempotent hook install, slug regex validation and traversal guard, so the core is reasonably robust, but it is unmerged and untested. Caveats noted in the diff: requires direnv 2.21+ for absolute-path `dotenv`; the hook's sed pattern and the C3 slug derivation are duplicated and must be kept in sync manually; double-loading is possible (but harmless) if both the global hook and an `.envrc` are used.",
+      "relevanceToRefinement": "Moderately relevant as supporting tooling rather than a core part of the Pick->Research->Plan->Build->Verify->Share loop. At the Build/Verify stage, a real backlog feature often needs API keys, DB URLs, or service tokens to run and test locally; this skill gives a clean, secret-safe, one-command way to wire those into the shell, Gradle, Python, or CMake builds without committing them or hand-rolling an `.envrc`. That removes a common friction point when actually running the feature during the conference. It does not help with the AI-driven refinement/research/planning itself, and it only matters once a team reaches the run-it-locally step — and only for repos that need env vars. So it is a genuine convenience for hands-on building but tangential to the refinement workflow the track is centered on.",
+      "relevanceScore": 3
+    }
+  ]
+}

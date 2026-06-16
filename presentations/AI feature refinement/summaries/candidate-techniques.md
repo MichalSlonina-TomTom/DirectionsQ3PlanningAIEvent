@@ -1,0 +1,84 @@
+> **Research-grounded version of [`candidate-techniques.md`](candidate-techniques.md).** Each technique now carries inline source links and a bold verdict tag from the grounding pass; wording has been tightened to the most defensible claim, and contradicted sub-points are flagged so they aren't asserted on stage.
+
+# Candidate techniques for the talk
+
+A first-pass take on which techniques to feature — the speaker's two proposed ideas plus a few
+others that map onto the **Pick → Research → Plan → Build → Verify → Share** loop. This is opinion
+/ framing, now checked against the cited web research; see [`key-findings.md`](key-findings.md) for evidence and
+[`../research/refining-features-with-claude.md`](../research/refining-features-with-claude.md) for sources.
+
+Both proposed techniques are well-suited to a *refinement* talk specifically — they're front-loaded,
+context-building activities, which is exactly what refinement is.
+
+## 1. Prompt engineering using AI (meta-prompting)
+
+**Suitable — strong fit.** Don't hand-craft prompts; have Claude write and critique them for you. Concretely for refinement:
+
+- **Prompt-to-spec:** ask Claude to turn a vague ticket into a structured prompt/spec — interviewing you to surface decisions, then writing a self-contained artifact covering the goal, what's out of scope, open questions, and an end-to-end verification step — that you then refine. The prompt/spec becomes the reviewable artifact Claude executes against. **[supported]** The official [best-practices doc](https://code.claude.com/docs/en/best-practices) gives the interview-to-spec flow verbatim (*"Interview me in detail… then write a complete spec to SPEC.md"*), and Anthropic ships first-party tooling for the refine-the-prompt loop ([Metaprompt cookbook](https://platform.claude.com/cookbook/misc-metaprompt), [Console prompt improver](https://claude.com/blog/prompt-improver), ~30% lift on one classification task). *Caveat:* the four-field schema (goal, constraints, acceptance criteria, unknowns) is the speaker's synthesis mapped across two distinct first-party mechanisms, not one named Anthropic template — present it as illustrative example fields, not a fixed required structure.
+- **Self-critique loop:** before executing, ask Claude to flag what is ambiguous, underspecified, or missing — *"what would a colleague be confused by here?"*, *"interview me about the gaps"*, *"critique this prompt for ambiguity and missing cases."* **[supported]** Grounded in Anthropic's [Claude 4 best-practices](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices) (the "golden rule" colleague test plus the generate→review→refine self-correction chain) and practitioner write-ups ([the AI question method](https://www.mindstudio.ai/blog/ai-question-method-prompt-claude-senior-partner), [high-impact prompt patterns](https://www.blockchain-council.org/claude-ai/prompt-engineering-for-claude-mythos-15-high-impact-prompt-patterns-business-teams/)). *Caveat — soften the original "Claude is good at finding holes in its own instructions":* first-party sources document Claude critiquing a **draft** prompt or interviewing **you**, not reliably auditing its own live instructions; and a reviewer told to find gaps will over-report, so keep a human gate.
+- **Reusable templates:** encode team conventions and persistent context in a version-controlled [`CLAUDE.md`](https://code.claude.com/docs/en/memory), and capture good prompts and repeated workflows as reusable skills, slash commands, and subagents so the team refines more consistently. **[supported]** Checking the project `CLAUDE.md` into git is the documented team-consistency mechanism ([memory docs](https://code.claude.com/docs/en/memory)), reinforced by the cross-tool [AGENTS.md](https://agents.md/) baseline. *Two honest corrections to the original:* (1) `CLAUDE.md` is for persistent conventions Claude *can't infer*, not a prompt store — keep it pruned (*"bloated CLAUDE.md files cause Claude to ignore your actual instructions"*, per [best-practices](https://code.claude.com/docs/en/best-practices)); the prompt-library half lives in skills/commands/subagents. (2) It is delivered as a user message, so it *shapes* but does not *enforce* behavior — must-happen rules belong in hooks — and at team scale watch for [skill sprawl](https://www.digitalapplied.com/blog/claude-code-anti-patterns-team-adoption-failure-modes-2026) (*"curation is the work; collection is the trap"*).
+
+**Caveat to show honestly:** auto-generated / meta-prompts are starting points, not finished artifacts — they can carry over-elaborate or now-counterproductive structure (deprecated assistant prefill, over-emphatic *"CRITICAL: You MUST"* phrasing that over-triggers newer models). Review before reuse; the win is *iteration speed*, not first-shot perfection. **[supported]** The [Metaprompt cookbook](https://platform.claude.com/cookbook/misc-metaprompt) calls itself *"a starting point for iteration, not an optimum"*; the [prompt improver](https://claude.com/blog/prompt-improver) adds structure by design; and [current model guidance](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices) confirms prefill on the last turn is unsupported on Claude 4.6+ and that emphatic phrasing should be dialed back. *Note:* the exact word "verbose" isn't sourced — "structured/elaborate by design" is the defensible framing.
+
+## 2. Data mining Confluence / JIRA / source code / Slack (incl. architecture & ADR extraction)
+
+**Suitable — arguably the highest-value technique for refinement,** because the bottleneck in refinement is *gathering scattered context*. Honest framing:
+
+- **Source code is the strongest, most reliable source** — Claude reads the live codebase as fresh ground truth (agentic search, not a stale index), avoiding outdated or deleted references ([large-codebase best practices](https://claude.com/blog/how-claude-code-works-in-large-codebases-best-practices-and-where-to-start), [why no indexing](https://vadim.blog/claude-code-no-indexing/)). JIRA is valuable for *structured, queryable retrieval* (JQL, linked issues, `get_issue`), but ticket **content** is frequently vague, implementation-focused, or undescribed, so cross-check it against code rather than trust it as written. **[partially supported]** ⚠️ **Flag:** the original *"tickets are structured, therefore reliable"* is contradicted — the grooming use case exists *because* ticket content is unreliable (one PO found *"90% of items were implementation-focused"* and *"many tickets lacked descriptions"*, [Jira-MCP onboarding](https://daniel-inka.medium.com/how-claude-ai-and-jira-mcp-helped-me-onboard-faster-as-a-new-produdct-owner-b82d13592573); recommended flow grounds scope against the repo, [Claude Code with Jira](https://www.builder.io/blog/claude-code-with-jira)). Pairing JIRA *co-top with code* overstates the evidence; lead with code as ground truth, treat JIRA as reliable *retrieval* over unreliable *content*.
+- **Architecture/ADR extraction:** *"read these modules and reconstruct the implicit architecture / decisions"* works well for **structure** (dependencies, modules, diagrams), but treat the output as a *draft to verify*, not ground truth. **[supported]** The model gets structure right while it *cannot* recover the team's intent or the *why* behind decisions (*"Generated diagrams need human review. Always."* — [architecture overviews from code](https://dev.to/anoop_kumar_paul/how-to-create-architecture-overviews-from-existing-code-3enm)), so any rationale it attaches to a generated ADR is *inferred* and may read as a confident statement of a decision that was never actually made — gate on human review ([/adr pattern](https://7tonshark.com/posts/claude-adr-pattern/) bakes in a confirmation gate). *Caveat:* the "confidently invents decisions" wording is a well-grounded caution about the limits of code-only extraction, not a measured finding — no source documents a concrete fabricated ADR decision.
+- **Confluence/Slack** are higher-noise than code/tests — but in different ways: wikis carry stale, duplicate, and contradictory persisted pages (Anthropic's [context-engineering guidance](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) names poisoning / distraction / confusion / **clash**), while chat is scattered and ephemeral (*"retrieval infrastructure, not knowledge-capture"* — [what Slack AI misses](https://www.questionbase.com/resources/blog/slack-ai-features-explained-what-they-actually-do-and-what-they-miss)). Both are excellent for recovering the *"why"* (mine [page comments and edit history](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents); synthesize [scattered Slack decisions](https://samuellawrentz.com/blog/claude-code-slack-linear-mcp/)), but neither is the source of truth for *"what's true now"* — verify recovered facts against the live codebase before acting ([markdown-first review](https://ivandachev.com/blog/claude-code-mcp-atlassian-integration), [context rot](https://01.me/en/2025/12/context-engineering-from-claude/)). **[supported]** *Refinement of the original:* "higher-noise" is comparative against the live-code baseline (the talk's synthesis); "stale docs" maps mainly to Confluence and "reversed decisions" to both (Anthropic's documented term is *clash*, not "reversed"). Worth flagging on the slide.
+- **The practical enabler is MCP** — connecting Claude to JIRA/Confluence/GitHub/Slack via MCP servers ([MCP standard](https://www.anthropic.com/news/model-context-protocol), [Atlassian remote MCP](https://www.atlassian.com/blog/announcements/remote-mcp-server), [GitHub MCP](https://github.com/github/github-mcp-server/blob/main/docs/installation-guides/install-claude.md), [Slack MCP](https://docs.slack.dev/ai/slack-mcp-server/connect-to-claude/)) lets Claude walk a ticket, its linked docs, related issues, and code in one pass instead of copy-paste. **[supported]** *Caveat:* it's *a* practical enabler, not the only one, and is most reliable for **read/search** — cross-tool *writes* still hit auth and rate-limit friction, and native integrations sometimes outperform MCP ([ultimate MCP workflow](https://www.jaydengames.com/posts/claude-code-mcp-ultimate-workflow/)). Probably worth one slide on its own.
+
+## Other techniques worth featuring
+
+Mapped onto the loop:
+
+| Technique | Phase | Why it earns a slot |
+|---|---|---|
+| Plan mode / plan-then-execute | Plan | For non-trivial changes, Claude drafts a plan in a read-only mode you review and edit (Ctrl+G) before any code — keeping you the decision-maker. **[strongly supported]** ([best-practices](https://code.claude.com/docs/en/best-practices), [how AI transforms work at Anthropic](https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic)). *Nuance:* read-only is soft-enforced via prompt, not a hard lock ([plan-mode analysis](https://lucumr.pocoo.org/2025/12/17/what-is-plan-mode/)), and the plan ceremony is skippable for trivial diffs. |
+| Subagents / parallel exploration | Research | Fan out subagents on independent questions (each returning a distilled summary) for fast blast-radius / impact mapping. **[supported]** Parallel multi-agent beat single-agent by 90.2% on a research eval ([multi-agent research system](https://www.anthropic.com/engineering/built-multi-agent-research-system); cf. [CLUE](https://claude.com/blog/how-anthropic-uses-claude-cybersecurity)). *Caveat:* this is a **research-phase** technique — Anthropic warns it fits research, not most coding, and burns ~15× the tokens. |
+| Spec-driven development | Plan→Build | The spec/plan file is shared context the build phase codes against, reducing drift — review gates between spec→plan→code catch scope creep and pattern drift. **[supported]** ([spec-driven development](https://www.datacamp.com/tutorial/spec-driven-development-with-claude-code), [best-practices](https://code.claude.com/docs/en/best-practices)). *Caveat:* drift reduction is argued mechanistically (gates + out-of-scope statements + clean-context execution), not with before/after metrics; skeptics dispute its cost-benefit vs. plain plan mode. |
+| Verification-first / TDD | Verify | Give Claude a runnable check (tests, build, screenshot diff) so *it* runs the check, reads the failures, and iterates until it passes — turning "looks done" into "verified done." **[supported]** Repeatedly the strongest pattern ([best-practices](https://code.claude.com/docs/en/best-practices), [agent loop](https://code.claude.com/docs/en/agent-sdk/agent-loop)). *Correction:* in the loop **Claude** reads each failure and self-corrects; *you* review the resulting evidence. For real separation, have one Claude write tests and another write code; note Claude defaults to implementation-before-tests, so test-first must be asked for. |
+| Hooks & guardrails | Build | Auto-format/lint on **every edit** (PostToolUse), plus a **Stop-hook gate** that blocks completion until tests/build pass — so checks run automatically instead of relying on Claude to remember. **[partially supported]** ([hooks guide](https://code.claude.com/docs/en/hooks-guide)). ⚠️ **Flag/correct the original "test on every change":** tests are documented as a Stop-gate (once per turn), not after every edit; per-edit hooks are format/lint only (and fire *after* the edit, so they validate, not prevent). The "short leash" spirit is right. |
+| "Unknowns & risks" prompting | Research | Prompt Claude to surface unknowns, assumptions, and risks (edge cases, what could break, what it had to assume) rather than settling for a hollow, confident *"looks good"* recap — surfacing the decisions you hadn't considered. **[partially supported]** ([best-practices](https://code.claude.com/docs/en/best-practices), [common workflows](https://code.claude.com/docs/en/common-workflows)). ⚠️ **Flag/reframe the original "rather than summaries":** Anthropic *endorses* distilled summaries (subagents return ~1–2k-token summaries, [context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)); the real, supported contrast is risks/unknowns vs. an unverified recap — don't assert "summaries are bad." |
+
+## Decisions taken
+
+- **Depth:** wait for the web research before finalizing how deep each technique slide goes.
+- **MCP:** mention in passing within the data-mining slide rather than a standalone slide.
+
+## Sources
+
+- https://code.claude.com/docs/en/best-practices
+- https://platform.claude.com/cookbook/misc-metaprompt
+- https://claude.com/blog/prompt-improver
+- https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices
+- https://www.mindstudio.ai/blog/ai-question-method-prompt-claude-senior-partner
+- https://www.blockchain-council.org/claude-ai/prompt-engineering-for-claude-mythos-15-high-impact-prompt-patterns-business-teams/
+- https://code.claude.com/docs/en/memory
+- https://agents.md/
+- https://www.digitalapplied.com/blog/claude-code-anti-patterns-team-adoption-failure-modes-2026
+- https://claude.com/blog/how-claude-code-works-in-large-codebases-best-practices-and-where-to-start
+- https://vadim.blog/claude-code-no-indexing/
+- https://daniel-inka.medium.com/how-claude-ai-and-jira-mcp-helped-me-onboard-faster-as-a-new-produdct-owner-b82d13592573
+- https://www.builder.io/blog/claude-code-with-jira
+- https://dev.to/anoop_kumar_paul/how-to-create-architecture-overviews-from-existing-code-3enm
+- https://7tonshark.com/posts/claude-adr-pattern/
+- https://01.me/en/2025/12/context-engineering-from-claude/
+- https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+- https://samuellawrentz.com/blog/claude-code-slack-linear-mcp/
+- https://www.questionbase.com/resources/blog/slack-ai-features-explained-what-they-actually-do-and-what-they-miss
+- https://ivandachev.com/blog/claude-code-mcp-atlassian-integration
+- https://www.anthropic.com/news/model-context-protocol
+- https://www.atlassian.com/blog/announcements/remote-mcp-server
+- https://github.com/github/github-mcp-server/blob/main/docs/installation-guides/install-claude.md
+- https://docs.slack.dev/ai/slack-mcp-server/connect-to-claude/
+- https://www.jaydengames.com/posts/claude-code-mcp-ultimate-workflow/
+- https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic
+- https://lucumr.pocoo.org/2025/12/17/what-is-plan-mode/
+- https://www.anthropic.com/engineering/built-multi-agent-research-system
+- https://claude.com/blog/how-anthropic-uses-claude-cybersecurity
+- https://www.datacamp.com/tutorial/spec-driven-development-with-claude-code
+- https://code.claude.com/docs/en/agent-sdk/agent-loop
+- https://code.claude.com/docs/en/hooks-guide
+- https://code.claude.com/docs/en/common-workflows

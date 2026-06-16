@@ -1,0 +1,481 @@
+[
+  {
+    "angle": "How to split one software feature into ~5-7 independent, parallelizable tasks: practical decomposition heuristics for Claude Code / multi-agent work, foregrounding the concrete planning backbone (file-ownership table -> dependency check -> freeze contracts) and resolving the key tension between vertical feature-slices (good) and lifecycle-phase splits (telephone game, bad).",
+    "points": [
+      {
+        "point": "Run a 3-step planning backbone BEFORE launching any agent — it is what actually lets you carve a feature into parallel tasks: (1) Build a file-ownership table mapping each candidate task to the files it touches; (2) Do a dependency check — any task that needs another's output cannot run in parallel; (3) Freeze the interfaces/contracts (the data shapes each component exposes) up front in a shared brief. MindStudio reports this takes 10-15 minutes and 'saves hours of conflict resolution.' Concrete file-ownership example: Auth -> src/auth/*, API routes -> src/routes/*, DB migrations -> migrations/*.",
+        "sources": [
+          "https://www.mindstudio.ai/blog/parallel-agentic-development-git-worktrees"
+        ]
+      },
+      {
+        "point": "The decisive heuristic for what to parallelize: split by VERTICAL feature-slices / context boundaries with clean interfaces, NOT by lifecycle phase. Splitting one feature into plan -> code -> test -> review handed between agents is the 'telephone game' antipattern — each handoff loses fidelity and forces expensive re-explanation. Anthropic's rule is explicit: 'Decompose by context boundaries, not problem type.' Reserve parallel agents for separate components with well-defined interfaces and avoid it for tightly-coupled shared-state work or sequential phases of the same task.",
+        "sources": [
+          "https://claude.com/blog/building-multi-agent-systems-when-and-how-to-use-them"
+        ],
+        "caveat": "Several community guides (e.g. the Stripe example: backend / frontend / qa / docs agents in parallel) advocate splitting by specialist role. That is fine ONLY when each role owns disjoint files and works against a frozen contract; if 'qa' or 'docs' needs the implementation first, it is a lifecycle-phase split (telephone game) and should be sequenced, not parallelized."
+      },
+      {
+        "point": "Reaching ~5-7 truly independent tasks usually requires contract-first stubbing, because most features yield only 2-4 genuinely independent pieces. MindStudio's own worked example shows Frontend Forms (Agent 4) DEPENDS on the Auth System (Agent 1) and therefore must sequence. The bridge: freeze the API contract ('the shape of data the auth system will expose') first, then dependent tasks code against the stub instead of waiting — turning a serial chain into parallel work. Rule of thumb from the same source: 'Freeze API contracts during parallel runs' and never let two agents edit a shared file (e.g. src/types/index.ts) concurrently.",
+        "sources": [
+          "https://www.mindstudio.ai/blog/parallel-agentic-development-git-worktrees"
+        ]
+      },
+      {
+        "point": "Give each task a fully-specified spec, and scale the number of tasks to the feature's complexity rather than always aiming for the max. Anthropic found vague instructions cause subagents to 'duplicate work, leave gaps, or fail to find necessary information'; every task needs a clear objective, output format, tool/source guidance, and explicit boundaries. Their effort-scaling ladder: simple work = 1 agent; direct comparisons = 2-4 agents; complex work = 10+ with clearly divided responsibilities. For a single feature this maps to: don't fan out to 7 agents if the work honestly only splits 3 ways.",
+        "sources": [
+          "https://www.anthropic.com/engineering/multi-agent-research-system"
+        ]
+      },
+      {
+        "point": "Use git worktrees + one-PR-per-task for clean integration, and sequence anything that shares a file. Worktrees give each agent its own directory (no filesystem collisions) but do NOT prevent git merge conflicts if two branches edit the same file — so the file-ownership table is what actually prevents conflicts. Integration protocol: each branch must pass lint/tests before merge; PR-per-agent for 2-5 tasks (review + ordered merge); orchestrated ordered merge for 5+; run DB migrations sequentially only; do not let agents touch shared lock files unless explicitly assigned.",
+        "sources": [
+          "https://www.mindstudio.ai/blog/parallel-agentic-development-git-worktrees"
+        ]
+      },
+      {
+        "point": "Plan an explicit verification/reduction step and budget for the coordination tax. The final synthesis (merging branches, cross-checking outputs for consistency, resolving conflicts) is reported as the hardest part of parallel work, and verifier agents tend toward 'early victory bias' — declaring success without full testing, so instruct them to 'Run the COMPLETE test suite before marking passed.' Parallelizing also costs more tokens than a single sequential agent, so the speed-up is only worth it when tasks are genuinely independent.",
+        "sources": [
+          "https://www.anthropic.com/engineering/multi-agent-research-system",
+          "https://claude.com/blog/building-multi-agent-systems-when-and-how-to-use-them"
+        ],
+        "caveat": "Reported token multipliers disagree and come from non-software-feature contexts: ~15x vs single chats in Anthropic's research-system piece, 3-10x vs single-agent in the 'when not to' piece. Both were measured on research/agentic workloads, not feature builds, so treat as order-of-magnitude guidance, not a precise cost figure for code decomposition."
+      }
+    ]
+  },
+  {
+    "angle": "Designing clean seams between parallel tasks: agree the contract first, stub/mock the seam so each task builds against a stable interface instead of waiting, and reconcile at merge — with contract-reality drift as the central failure mode to guard against.",
+    "points": [
+      {
+        "point": "Make the contract the deliverable BEFORE any task starts. Write the seam as an explicit, version-controlled spec (e.g. an OpenAPI/schema definition or a typed interface) and get all sides to agree on it. Once the contract exists, frontend/mobile/integration tasks and the backend task all build against it simultaneously instead of sequentially — 'neither team waits for the other.' For Claude Code specifically, the equivalent artifact is the AGENTS.md/CLAUDE.md file: the single biggest factor in parallel-agent success is that contract document, because each agent independently interprets the rules and a vague contract makes them invent incompatible interfaces.",
+        "sources": [
+          "https://medium.com/codetodeploy/api-first-development-why-your-next-project-should-start-with-the-contract-not-the-code-5a5a25828b4b",
+          "https://www.contextstudios.ai/blog/claude-code-agent-teams-a-builders-guide-to-parallel-ai-coding"
+        ],
+        "caveat": "Contract-first assumes the design phase captures needs before implementation. It doesn't help when the design fundamentally fails at real integration or consumer feedback reveals a flaw in the original contract — then you pay the cost of re-agreeing across all parallel tasks at once."
+      },
+      {
+        "point": "Stub/mock the seam so each side codes against a running fake, not a promise. Generate the stub from the contract rather than hand-writing it: tools like Prism, Stoplight, or WireMock spin up a mock server directly from an OpenAPI spec, and Spring Cloud Contract emits a stub JAR of contract-generated response mappings that WireMock loads to simulate the not-yet-built service. The task on the far side of the seam develops and tests fully against the mock; the real implementation drops in later with no code change on the consumer.",
+        "sources": [
+          "https://medium.com/codetodeploy/api-first-development-why-your-next-project-should-start-with-the-contract-not-the-code-5a5a25828b4b",
+          "https://ibagroupit.com/insights/modernize-websphere-applications/"
+        ],
+        "caveat": "Mocks generated from a contract only prove conformance to the contract, not to reality. Integration issues surface only when you swap the mock for the real service, and a hand-stubbed seam can quietly drift from what the other team actually builds."
+      },
+      {
+        "point": "Give every parallel task non-overlapping file/directory ownership as part of the seam definition. Map directories to owners explicitly (e.g. /src/api/ -> API task, /src/db/ -> DB task, /src/components/ -> frontend task) and add a coordination rule: before touching a shared file, message the owner. This is what actually prevents merge conflicts — clean seams are as much about who-owns-which-files as about the data contract. If two tasks both have write permission to the same shared utility, you get a conflict regardless of any isolation mechanism.",
+        "sources": [
+          "https://www.contextstudios.ai/blog/claude-code-agent-teams-a-builders-guide-to-parallel-ai-coding",
+          "https://www.mindstudio.ai/blog/parallel-agentic-development-claude-code-worktrees"
+        ],
+        "caveat": "Ownership boundaries fail at genuinely shared code: two tasks independently implementing the same helper still require manual reconciliation at merge. Keep shared utilities out of parallel scope or assign them to exactly one task."
+      },
+      {
+        "point": "Isolate runtime state, not just code, so each task is independently testable. Use git worktrees so file writes stay contained per branch, and crucially separate stateful resources behind the seam: per-branch database (SQLite file per worktree, or a schema/branch per feature), distinct ports (3001/3002/3003), Redis key prefixes or DB numbers, and separate credentials. A shared dev database produces interleaved state that makes neither feature testable alone and causes confusing bugs when migrations collide.",
+        "sources": [
+          "https://www.mindstudio.ai/blog/parallel-agentic-development-claude-code-worktrees"
+        ],
+        "caveat": "Skipping data isolation is a common, silent failure. Also, don't over-parallelize: beyond ~5-6 concurrent tasks the review and reconciliation overhead outweighs the parallelism gains."
+      },
+      {
+        "point": "Reconcile at merge in dependency order, and run a contract-as-test to catch drift. Merge sequentially from foundational tasks to dependent ones, running the test suite after each merge so a failure points to the task that just landed. Make the contract executable on both sides — a consumer-driven contract test verifies the real implementation still satisfies the same spec the mock was generated from (e.g. validate live mappings against the contract) — so the seam is checked in CI, not discovered broken at runtime. Have a 'test' task write integration tests against the seam while the other tasks build, so assumptions are validated in real time rather than after everything is assembled.",
+        "sources": [
+          "https://www.mindstudio.ai/blog/parallel-agentic-development-claude-code-worktrees",
+          "https://ibagroupit.com/insights/modernize-websphere-applications/",
+          "https://www.contextstudios.ai/blog/claude-code-agent-teams-a-builders-guide-to-parallel-ai-coding"
+        ],
+        "caveat": "Contract-reality drift is the central failure mode of the whole approach: keeping contracts synchronized across tasks demands ongoing discipline, and integration problems can still surface late when mocks are replaced by real services. Treat the contract as a durable shared artifact, not a throwaway scaffold."
+      }
+    ]
+  },
+  {
+    "angle": "Vertical slicing vs horizontal layering: which parallelizes better depends entirely on which kind of \"parallel\" you mean. For human delivery across sprints, vertical thin end-to-end slices win (incremental value, early feedback). But for SIMULTANEOUS-code parallelism — multiple Claude agents in isolated git worktrees that cannot coordinate mid-flight — the binding constraint is file-level overlap plus a pre-agreed seam, which inverts the answer. Vertical slices of one feature all touch the same DB/API/UI files and collide; horizontal layers have disjoint file sets and parallelize cleanly IF the interface contract is frozen first. The actionable bridge for Claude: the clean seam is a written contract (API schema, type stubs, spec) locked before you fan out, regardless of slice direction.",
+    "points": [
+      {
+        "point": "Distinguish two meanings of 'parallelize' before choosing a decomposition — they give opposite answers. Delivery parallelism (splitting a feature into thin end-to-end stories that cross-functional teams ship incrementally over sprints) favors VERTICAL slices: value is delivered incrementally, model/feature validation happens early, and rework risk drops because bad cross-layer assumptions surface fast. Horizontal layering defers all value until the whole stack is deployed and risks late, project-wide refactoring.",
+        "sources": [
+          "https://www.datascience-pm.com/vertical-vs-horizontal-slicing-data-science-deliverables/"
+        ]
+      },
+      {
+        "point": "For SIMULTANEOUS-code parallelism (the worktree/agent case in this task), the answer flips: vertical slices are HARD to parallelize because different vertical slices of the same feature touch similar areas across multiple layers (same DB tables, same modules), producing merge conflicts and coordination overhead — to the point one practitioner argues it is smoother to deliver vertical slices sequentially. Horizontal layers have non-overlapping file sets, so they CAN be parallelized — but only 'if the interactions between the layers are very clear and well-understood.'",
+        "sources": [
+          "https://gregpark.io/blog/building-new-features-horizontal-or-vertical-slices"
+        ],
+        "caveat": "This 'vertical rarely parallelizes' position is one practitioner's blog opinion, not a measured result. It holds specifically for concurrent code on shared files; it is not a claim about delivery sequencing."
+      },
+      {
+        "point": "The clean seam that makes ANY split parallelizable for Claude agents is a written contract locked BEFORE fan-out. Anthropic's best-practices guide recommends an explore-then-plan-then-implement loop and writing a self-contained spec that 'name[s] the files and interfaces involved, state[s] what is out of scope, and end[s] with an end-to-end verification step.' Practically: have Claude interview you (AskUserQuestion) into a SPEC.md, freeze the API schema / type stubs there, then start fresh sessions per task. With the interface frozen, a horizontal split works — one agent builds the backend to the schema, another builds the frontend to the same schema — without them ever talking.",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ]
+      },
+      {
+        "point": "Run the parallel sessions in isolated git worktrees so edits cannot collide, and give each its own named, clean context. Anthropic lists worktrees, the desktop app, web sessions, and agent teams as the parallel options; for unattended fan-out across many files use headless mode (claude -p) in a loop with --allowedTools to scope permissions. Each parallel task must carry its own verification (tests/build/screenshot) because 'looks done' is the only stop signal an agent has, and a fresh-context subagent should review each diff against the spec before merge.",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ]
+      },
+      {
+        "point": "Write task descriptions that prevent overlap — vague boundaries are the dominant failure mode for parallel agents. Anthropic's multi-agent system found that short instructions like 'research the semiconductor shortage' caused subagents to duplicate each other's work and divide labor ineffectively; the fix is detailed objectives, explicit output formats/schemas, named tools, and 'clear task boundaries.' Consistent output schemas across branches also make the merge step far easier.",
+        "sources": [
+          "https://www.anthropic.com/engineering/multi-agent-research-system"
+        ],
+        "caveat": "Same source warns the pattern suits breadth-first, low-dependency work and that 'most coding work' has too many shared dependencies between agents to parallelize cleanly — an honest ceiling. Decompose only the parts of a feature that are genuinely independent; keep tightly-coupled work in one session."
+      },
+      {
+        "point": "Do NOT confuse competitive redundancy with decomposition. A popular 'parallel Claude' pattern spins up N worktrees that each implement the SAME full spec, then you pick the best result and discard the rest. That exploits LLM non-determinism for design diversity — it is not breaking a feature into independent tasks, and it does nothing to address clean seams or merge integration. Useful as a contrast in the talk, not as a decomposition technique.",
+        "sources": [
+          "https://docs.agentinterviews.com/blog/parallel-ai-coding-with-gitworktrees/"
+        ],
+        "caveat": "The source itself does not address merge conflicts, external API/DB-migration dependencies, or how to integrate multiple slices — because integration isn't its goal."
+      }
+    ]
+  },
+  {
+    "angle": "Parallelization markers and task graphs: how to decompose ONE feature into independently buildable tasks using GitHub Spec Kit's [P] markers and phase-based dependency ordering, then execute them concurrently with Claude Code subagents/worktrees — including what must stay sequential and where the model fools you.",
+    "points": [
+      {
+        "point": "The single load-bearing rule for marking a task parallelizable is narrow and file-based. Spec Kit's tasks template says to attach the [P] marker 'ONLY if task is parallelizable (different files, no dependencies on incomplete tasks).' Two conditions, both required: (1) the task touches different files than other concurrent tasks, and (2) it has no dependency on any task that isn't done yet. This is the concrete seam test you can apply by hand to any feature breakdown — if two tasks would edit the same file, they are NOT parallel even if they feel logically independent. (Rule corroborated identically across the raw template and DeepWiki's writeup.)",
+        "sources": [
+          "https://raw.githubusercontent.com/github/spec-kit/main/templates/commands/tasks.md",
+          "https://github.com/github/spec-kit/blob/main/templates/commands/tasks.md",
+          "https://deepwiki.com/github/spec-kit/5.3-tasks-command"
+        ]
+      },
+      {
+        "point": "The marker shows up literally on each task line, which is the most concrete thing to demo in a talk. Real generated lines look like: '- [ ] T005 [P] Implement authentication middleware in src/middleware/auth.py', '- [ ] T012 [P] [US1] Create User model in src/models/user.py', and (no marker, because it depends on the model) '- [ ] T014 [US1] Implement UserService in src/services/user_service.py'. Each task is numbered (T001...), optionally tagged [P] for parallel and [US1] for which user story it belongs to, and — critically — names the exact file path so the file-conflict check is mechanical.",
+        "sources": [
+          "https://raw.githubusercontent.com/github/spec-kit/main/templates/commands/tasks.md"
+        ]
+      },
+      {
+        "point": "The 'task graph' is really phase-based ordering, not a free-form dependency DAG. Spec Kit sequences work as: Phase 1 Setup (project init) -> Phase 2 Foundational (blocking prerequisites that MUST finish before any user story) -> Phase 3+ one phase per user story in priority order -> final Polish/cross-cutting phase. The point of this structure is that user stories are designed to be largely independent of each other, so whole stories can be handed to separate agents once the foundational phase is complete. Decompose your feature the same way: pull shared/blocking infra out first, then carve the rest into story-sized vertical slices.",
+        "sources": [
+          "https://raw.githubusercontent.com/github/spec-kit/main/templates/commands/tasks.md",
+          "https://deepwiki.com/github/spec-kit/5.3-tasks-command"
+        ]
+      },
+      {
+        "point": "Within a single story/phase there is a fixed sequential spine you cannot parallelize away: Tests (if requested) -> Models -> Services -> Endpoints -> Integration. Models come before the services that use them, services before the endpoints that call them. So parallelism is mostly horizontal (many independent models across files at once, e.g. several T0xx [P] tasks) while the vertical build order inside a slice stays sequential. This is the practical answer to 'what must be sequential': cross-layer dependencies and anything sharing a file.",
+        "sources": [
+          "https://raw.githubusercontent.com/github/spec-kit/main/templates/commands/tasks.md"
+        ]
+      },
+      {
+        "point": "On the execution side, Claude Code offers four distinct parallelization surfaces and you pick by who coordinates and whether workers edit the same files: subagents (Claude delegates side-tasks inside one session, each in isolated context, returns a summary), agent view (you hand off independent background sessions and check back), agent teams (a lead splits/assigns work with a shared task list — experimental, disabled by default), and dynamic workflows / the /batch skill (a script fans out 5-30 worktree-isolated subagents, each opening its own PR — for big migrations/audits). The docs are explicit: 'Do the tasks touch the same files? Isolate the work with worktrees.'",
+        "sources": [
+          "https://code.claude.com/docs/en/agents"
+        ]
+      },
+      {
+        "point": "Clean seams at runtime come from two separate mechanisms — context isolation and file isolation — and you need both. Context isolation: a subagent does its work in its own context window and returns only a summary, so logs/search output don't flood the main conversation (this is the 'clean seam' for reasoning). File isolation: git worktrees give each session/subagent a separate checkout so 'edits in one session never touch files in another.' Enable per-subagent with 'isolation: worktree' in the subagent frontmatter, or ask Claude to 'use worktrees for your agents'; subagent worktrees are created and torn down automatically.",
+        "sources": [
+          "https://code.claude.com/docs/en/worktrees",
+          "https://code.claude.com/docs/en/agents"
+        ]
+      },
+      {
+        "point": "FAILURE MODE #1 (the big honest caveat): worktrees prevent file-level collisions but NOT logical conflicts. Two agents on separate worktrees can each succeed in isolation yet make incompatible assumptions (e.g. mismatched function signatures, shared schema, conflicting interfaces) so the merged result fails. File isolation buys you safe concurrent edits; it does not buy you correct integration. Mitigation: lock the seams (interfaces, schemas, shared types) BEFORE fanning out — make those a foundational task that completes first, and give each agent explicit ownership of a file set. Spec Kit's foundational-phase-first ordering exists precisely to reduce this.",
+        "sources": [
+          "https://code.claude.com/docs/en/worktrees"
+        ],
+        "caveat": "The 'worktrees don't prevent logical conflicts' framing is reinforced by secondary write-ups; the worktrees doc itself states worktrees 'isolate file edits' while subagents/teams 'coordinate the work itself,' implying coordination is a separate, unsolved-by-worktrees concern."
+      },
+      {
+        "point": "FAILURE MODE #2: there is no formal dependency-graph solver — it's heuristics. DeepWiki notes Spec Kit 'doesn't explicitly define a formal dependency graph algorithm'; parallelizability is decided by the phase ordering plus the single file-conflict rule. So [P] markers are only as correct as the file-path annotations and the human/LLM judgment that produced them. If a task's true dependency isn't reflected as a same-file or incomplete-predecessor relationship (e.g. a runtime/config dependency), the marker can wrongly say 'parallel.' Treat generated [P] markers as a draft to review, not ground truth, and remember running many agents at once multiplies token cost.",
+        "sources": [
+          "https://deepwiki.com/github/spec-kit/5.3-tasks-command",
+          "https://code.claude.com/docs/en/agents"
+        ],
+        "caveat": "DeepWiki is third-party generated documentation, but its core claims (the [P] rule text, phase ordering) match the primary spec-kit template I also fetched, so the 'no formal algorithm' observation is credible by corroboration of everything around it."
+      }
+    ]
+  },
+  {
+    "angle": "Avoiding merge conflicts via file ownership and module boundaries when several Claude agents/people work one feature in parallel. The core move: decompose by directory/module boundary (not by intent over shared files), write down a file-ownership map before any agent starts, sequence anything that shares files, and treat merge/integration as a deliberate gated step — not something that happens automatically.",
+    "points": [
+      {
+        "point": "Decompose by domain/module boundary, never by intent over shared files. The reliable parallel split is along feature or directory seams (e.g. one agent owns src/auth/*, another owns src/routes/*), so the conflict surface is empty. The named anti-pattern is two agents both editing utils.ts or the same service file 'from different directions' — even on separate branches that produces merge conflicts AND contradictory design decisions. For a talk: show a clean split (auth module vs payments module vs dashboard UI) versus a bad split (two agents both touching the authentication layer).",
+        "sources": [
+          "https://www.mindstudio.ai/blog/git-worktrees-parallel-ai-coding-agents",
+          "https://dev.to/battyterm/how-i-run-a-team-of-ai-coding-agents-in-parallel-p7c"
+        ],
+        "caveat": "This caps your parallelism: any feature whose pieces genuinely share a file (a central types/index, a route registry, a DI container) cannot be fully parallelized. The boundary decomposition only works as far as the codebase already has clean module seams; legacy code with a god-file forces sequencing."
+      },
+      {
+        "point": "Write a file-ownership map BEFORE spawning any agent. The concrete artifact is a task table listing 'Primary Files' per agent/task. The rule is explicit: 'Which files does each task touch? If two tasks have overlapping file lists, they need to be sequential, not parallel' and 'Always map file ownership before creating worktrees.' This is the single highest-leverage step for the talk — the planning phase is where conflicts are prevented, not at merge time.",
+        "sources": [
+          "https://www.mindstudio.ai/blog/parallel-agentic-development-git-worktrees",
+          "https://www.mindstudio.ai/blog/git-worktrees-parallel-ai-coding-agents"
+        ],
+        "caveat": "The map is only as good as your prediction of which files an agent will touch — agents expand scope and edit files you didn't anticipate (a shared barrel export, a config). Fence each agent's task description to its directory and review diffs for out-of-bounds edits."
+      },
+      {
+        "point": "The canonical shared-file conflict is the central types/barrel file. The named example: 'Two agents modifying src/types/index.ts simultaneously will create a conflict that's tedious to resolve and may require rerunning one of them.' Practical mitigation for the talk: make shared interface/type files a sequenced 'phase 0' task (one agent defines the contract first), then parallelize the implementations that consume it — instead of letting every agent append to the shared file.",
+        "sources": [
+          "https://www.mindstudio.ai/blog/parallel-agentic-development-git-worktrees"
+        ],
+        "caveat": "Rerunning an agent is the realistic cost of a shared-file collision — cheaper than hand-resolving an AI-generated conflict, but it means parallel speedup is not free when seams are imperfect."
+      },
+      {
+        "point": "Conflicts surface at MERGE time, not in real time — so make integration a deliberate, gated step. Git worktrees give each agent its own directory + branch + node_modules, so agents never collide while working; the conflict surface only appears when branches merge, exactly like multi-developer workflows. Recommended strategies: small teams (2-3 agents) → one PR per agent's worktree; many agents → an integration/staging branch where you merge all features, run tests, fix conflicts, then merge the clean result to main. Merge sequentially and rebase remaining branches on updated main so each later merge has full context. The repeated warning: 'don't merge agent output blindly' / review the diff for changes that contradict other branches.",
+        "sources": [
+          "https://www.mindstudio.ai/blog/git-worktrees-parallel-ai-coding-agents",
+          "https://dev.to/battyterm/how-i-run-a-team-of-ai-coding-agents-in-parallel-p7c"
+        ],
+        "caveat": "Isolation hides the conflict, it doesn't remove it — and if agents independently run installs over a shared symlinked node_modules, concurrent installs can corrupt it, so keep dependencies isolated per worktree. Gate merges on tests + an independent reviewer (a separate review agent or human); a failing task goes back rather than merging."
+      },
+      {
+        "point": "Sequence dependent work; only parallelize truly independent tasks. Order by dependency — if Agent A's work depends on Agent B's output, merge B first; a 'manager' role can hold Agent B until Agent A's changes are integrated and validated. For Claude specifically, the orchestrator-worker pattern fits: a lead agent spins up worker subagents in isolated contexts, and 'tasks that don't depend on each other's outputs are the best candidates for parallelization.'",
+        "sources": [
+          "https://dev.to/battyterm/how-i-run-a-team-of-ai-coding-agents-in-parallel-p7c",
+          "https://www.anthropic.com/engineering/multi-agent-research-system"
+        ],
+        "caveat": "The Claude subagent/orchestrator source is the multi-agent *research* system, not a code-merge tool — the dependency-ordering and 'independent tasks parallelize best' principle transfers by analogy, but Anthropic isn't prescribing git file ownership here."
+      },
+      {
+        "point": "Give each agent an objective, output format, tools, and EXPLICIT task boundaries — vague task descriptions cause duplicated/overlapping work. Anthropic's lesson from their multi-agent system: a vague brief ('research the semiconductor shortage') led 'one subagent [to explore] the 2021 automotive chip crisis while 2 others duplicated work,' with no effective division of labor. The fix is providing 'frameworks for collaboration that define the division of labor.' Mapped to code: a sharp task spec ('own src/auth/, implement these 3 functions against this interface, do not edit shared types') is what keeps two agents from independently rewriting the same seam.",
+        "sources": [
+          "https://www.anthropic.com/engineering/multi-agent-research-system"
+        ],
+        "caveat": "This is a duplicated-work failure mode (two agents doing the same investigation), not literally a git merge conflict — it's the upstream cause that, in a coding context, manifests as overlapping file edits. Treat it as why clear boundaries matter, not as direct merge-conflict guidance."
+      }
+    ]
+  },
+  {
+    "angle": "Task sizing / granularity for AI agents: how big a task should be for Claude to do well, and the failure modes of over- vs under-decomposition. Bottom line from the sources: there is no magic line/token count — sizing is a judgment call anchored by a few concrete heuristics (one feature per session, sub-2-day tickets, \"fits comfortably in one context window,\" output as a 1-2k-token distilled summary). The orchestrator's real job is defining clean seams (interfaces, file ownership) BEFORE splitting, not slicing thin.",
+    "points": [
+      {
+        "point": "Size the unit of work as ONE feature per agent session, not the whole feature/app. Anthropic's long-running-agent harness has the coding agent target 'only one feature at a time' to counter the model's tendency to 'one-shot the app,' which produced incomplete implementations and wasted context. For a talk: the demo feature should be decomposed into feature-sized slices (e.g. one endpoint, one component, one test suite), and each agent run does exactly one.",
+        "sources": [
+          "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents"
+        ]
+      },
+      {
+        "point": "Under-decomposition (the monolithic prompt) is a documented failure mode. Anthropic contrasts the failing prompt 'build a clone of claude.ai' with success that came from an initializer agent first writing a requirements file of 200+ discrete, concrete features such as 'a user can open a new chat, type in a query, press enter, and see an AI response.' The lesson: tasks that stay too abstract/large make the agent declare 'done' prematurely or leave the app broken — so the granularity bar is a feature you could write an end-to-end test for.",
+        "sources": [
+          "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents"
+        ]
+      },
+      {
+        "point": "Use the context window as the sizing constraint, and prefer subagents when a task involves heavy exploration. Anthropic frames context as 'a finite resource with diminishing marginal returns'; a specialized subagent 'can handle focused tasks with clean context windows' and returns 'only a condensed, distilled summary of its work (often 1,000-2,000 tokens).' Practical sizing heuristic: a task is well-sized if the agent can do it AND report it back in ~1-2k tokens — if it needs far more to summarize, it was too big.",
+        "sources": [
+          "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"
+        ]
+      },
+      {
+        "point": "Over-decomposition has a real cost: coordination overhead and a brittle 'reduce' step. The orchestrator's challenge is explicitly that 'if the subtasks are too large, parallelism is wasted; if they're too small, the overhead of coordination outweighs the benefit.' Tasks in practice are component-level ('Set up database schema', 'Build authentication endpoints', 'Write unit tests', 'Create frontend login component') — NOT line-by-line. Notably, this source gives no line/token count for sizing: it's a judgment call, not a formula.",
+        "sources": [
+          "https://www.mindstudio.ai/blog/claude-code-agent-teams-parallel-shared-task-list"
+        ]
+      },
+      {
+        "point": "Clean seams must be defined BEFORE splitting, or parallel agents produce incompatible code. Concretely define contracts first: API signatures between services, component prop interfaces, DB schema assumptions, and acceptance criteria as explicit boundaries. 'Without these seams, agents risk incompatible implementations requiring rework.' For the talk this is the core 'how to parallelize cleanly' move: write the interface, then hand each side to a separate agent.",
+        "sources": [
+          "https://zachwills.net/how-to-use-claude-code-subagents-to-parallelize-development/"
+        ]
+      },
+      {
+        "point": "Give each parallel agent ownership of distinct files/directories to avoid merge conflicts. What parallelizes well: independent streams with clear boundaries (backend / frontend / tests / docs), distinct code modules, separate output files (e.g. /api/route.ts vs /components/Form.tsx). What parallelizes poorly and should stay sequential: tightly coupled components needing real-time coordination, and chains where one agent's output is the next agent's critical input (use sequential handoffs instead).",
+        "sources": [
+          "https://zachwills.net/how-to-use-claude-code-subagents-to-parallelize-development/"
+        ]
+      },
+      {
+        "point": "Concrete upper bound for a parallel ticket: break anything bigger than a ~2-day estimate into smaller serial tickets BEFORE parallelizing. This is a usable rule of thumb to pair with the lower bound (don't go so fine that coordination dominates). Together they bracket the sweet spot: bigger than a trivial edit, smaller than a multi-day epic.",
+        "sources": [
+          "https://zachwills.net/how-to-use-claude-code-subagents-to-parallelize-development/"
+        ]
+      },
+      {
+        "point": "End each task in a mergeable state and verify before marking done — this is what keeps parallel slices independent. Anthropic's bar: each session ends with 'code that would be appropriate for merging to a main branch... a developer could easily begin work on a new feature without first having to clean up an unrelated mess,' and features are marked complete only after end-to-end verification (e.g. browser automation), tracked via a feature-registry JSON, a progress log, and git history. Caveat for the talk: the synthesis/'reduce' step that recombines parallel outputs is 'often the most difficult part' and fails without these clear per-task artifacts; parallelism also multiplies token usage and hits caps faster, so it isn't free.",
+        "sources": [
+          "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+          "https://zachwills.net/how-to-use-claude-code-subagents-to-parallelize-development/"
+        ]
+      }
+    ]
+  },
+  {
+    "angle": "Using Claude itself to propose the task breakdown — have it draft the split from a spec — and how reliable that is. Anthropic's own docs treat Claude-drafted decomposition as a real workflow, but gate it with human review (plan mode), strong specs, and adversarial verification, because the split is only as good as the spec and coordination is non-deterministic.",
+    "points": [
+      {
+        "point": "Drive the breakdown from a Claude-authored spec, not a one-line prompt. Anthropic's recommended pattern: give a minimal description, then ask Claude to interview you using the AskUserQuestion tool ('Ask about technical implementation, UI/UX, edge cases, concerns, and tradeoffs... dig into the hard parts I might not have considered'), and have it write the result to SPEC.md. Then start a FRESH session to execute, so implementation has clean context and a written artifact to reference. This is Claude proposing the breakdown — the interview surfaces the seams and out-of-scope boundaries before any split is committed.",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "The quality of the resulting split is bounded by the spec's clarity and by how honestly you answer the interview. A vague or half-answered interview yields a plausible-but-wrong decomposition."
+      },
+      {
+        "point": "What makes a Claude-drafted split have CLEAN SEAMS is the spec content, per Anthropic: 'The most useful specs are self-contained: they name the files and interfaces involved, state what is out of scope, and end with an end-to-end verification step that proves the feature works.' Naming files/interfaces is exactly what lets independent tasks not collide; stating out-of-scope prevents overlap; the verification step defines 'done' per task. 'Time spent making the spec precise pays off more than time spent watching the implementation.'",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "Naming interfaces up front only helps if those interfaces are actually stable; if two parallel tasks both need to change a shared interface, they are not truly independent and the seam is illusory."
+      },
+      {
+        "point": "Use plan mode as the human gate on Claude's proposed split — this is review BEFORE anything touches disk. Enter plan mode (Shift+Tab or claude --permission-mode plan): Claude reads files and proposes a plan but makes no edits until you approve. Press Ctrl+G to open the plan in your editor and correct the decomposition before execution. The documented four-phase loop is Explore -> Plan -> Code -> Commit, explicitly to 'separate research and planning from implementation to avoid solving the wrong problem.'",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices",
+          "https://code.claude.com/docs/en/common-workflows"
+        ],
+        "caveat": "Anthropic notes plan mode 'adds overhead' — skip it for changes you could describe in one sentence. It pays off when the change spans multiple files or the code is unfamiliar, which is exactly the parallelizable case."
+      },
+      {
+        "point": "For true parallel execution of the split, isolate each task in its own git worktree so concurrent edits don't collide: 'claude --worktree feature-auth' in one terminal, a different name in another. Each worktree is a separate checkout on its own branch. This is the concrete mechanism for keeping independent tasks independent at the filesystem level, rather than relying on agents to politely avoid each other.",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices",
+          "https://code.claude.com/docs/en/common-workflows"
+        ],
+        "caveat": "Worktrees prevent edit collisions but not logical conflicts — two branches can both compile and pass their own tests yet be incompatible at integration. Clean filesystem seams do not guarantee clean semantic seams."
+      },
+      {
+        "point": "For batch-style parallelism (many similar files rather than one feature with distinct parts), Anthropic documents a fan-out pattern: have Claude generate the task list ('list all 2,000 Python files that need migrating'), then loop 'claude -p' over each file with '--allowedTools' scoping permissions. Critically: 'Test on a few files... Refine your prompt based on what goes wrong with the first 2-3 files, then run at scale.' Treat Claude's proposed task list as a draft to validate on a small sample before trusting it across the whole set.",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "Fan-out fits independent, homogeneous units; it does not handle cross-file dependencies. A feature with shared state across the 'independent' tasks will silently break when each invocation can't see the others' changes."
+      },
+      {
+        "point": "Reliability of multi-agent coordination is explicitly non-deterministic. A practitioner deep-dive on agent teams: the orchestrator 'reads the task, applies judgment about how to break it into parts, identifies dependencies,' but 'agents are reasoning models making judgment calls, coordination isn't perfectly predictable,' debugging is 'harder to trace than a sequential failure,' and conflicts are handled 'through careful task decomposition and through file locking when overlap is unavoidable.' Note: the orchestrator's own review is POST-execution ('reviewing what was built, running tests') — it is not a pre-execution approval of the split.",
+        "sources": [
+          "https://www.mindstudio.ai/blog/claude-code-agent-teams-parallel-shared-task-list"
+        ],
+        "caveat": "Because the orchestrator only reviews after building, a bad split isn't caught until work is wasted. The pre-execution gate has to come from YOU (plan mode), not from the orchestrator agent."
+      },
+      {
+        "point": "Always add an independent verification step Claude can run, and an adversarial reviewer in a FRESH context, before trusting either the split or the build. Anthropic: a reviewer 'running in a fresh subagent context sees only the diff and the criteria you give it, not the reasoning that produced the change.' Concretely: 'Use a subagent to review the rate limiter diff against PLAN.md. Check that every requirement is implemented, the listed edge cases have tests, and nothing outside the task's scope changed. Report gaps.' A fresh-context reviewer is also less biased toward code it just wrote.",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "Anthropic warns of the inverse failure: 'A reviewer prompted to find gaps will usually report some, even when the work is sound... Chasing every finding leads to over-engineering.' Tell the reviewer to flag only correctness/requirement gaps, not style."
+      },
+      {
+        "point": "Name the headline reliability risk for the talk directly — the 'trust-then-verify gap': 'Claude produces a plausible-looking implementation that doesn't handle edge cases.' The same applies one level up to the breakdown itself: a Claude-drafted split looks complete and well-partitioned but quietly omits a task or mis-draws a seam. Anthropic's stated fix: 'Always provide verification (tests, scripts, screenshots). If you can't verify it, don't ship it.' So Claude-proposed decomposition is useful as a first draft you review and gate, not as an authority you execute unread.",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "A plan reviewed only by reading is weakly verified — plausibility is exactly what LLMs optimize. The strongest gate is a spec that ends in an end-to-end check, so a missing or mis-seamed task shows up as a failing verification rather than as reviewer intuition."
+      }
+    ]
+  },
+  {
+    "angle": "Failure modes of decomposition: hidden coupling, integration/reintegration pain, and the hard truth that most coding is not truly parallelizable. Concrete, source-backed guidance for the \"break down & parallelize\" phase with Claude.",
+    "points": [
+      {
+        "point": "Anthropic's own engineering team states the core caveat plainly: \"most coding tasks involve fewer truly parallelizable tasks than research, and LLM agents are not yet great at coordinating and delegating to other agents in real time.\" The reason research parallelizes well is that it is read-heavy (independent exploration across separate context windows), whereas a feature is write-heavy and write actions conflict. Treat parallelization as the exception you justify, not the default.",
+        "sources": [
+          "https://www.anthropic.com/engineering/multi-agent-research-system"
+        ]
+      },
+      {
+        "point": "The sharpest real-world demonstration of the limit: in Anthropic's C-compiler build, task-based parallelism worked great while there were many independent failing tests (each agent claimed a different one via a current_tasks/ lock file). But compiling the Linux kernel was \"one giant task\" with shared coupling — \"Every agent would hit the same bug, fix that bug, and then overwrite each other's changes,\" and \"having 16 agents running didn't help because each was stuck solving the same task.\" Hidden coupling collapses parallelism back to serial.",
+        "sources": [
+          "https://www.anthropic.com/engineering/building-c-compiler"
+        ]
+      },
+      {
+        "point": "Reintegration is a first-class cost, not an afterthought. In the same compiler project, merge conflicts were frequent — each agent had to \"pull from upstream, merge changes from other agents, push\" — and \"integration of new features frequently broke existing functionality,\" forcing continuous-integration enforcement rather than pure parallelism. Budget explicitly for a serial merge+validation tail; the parallel speedup is partly eaten by reconciliation.",
+        "sources": [
+          "https://www.anthropic.com/engineering/building-c-compiler"
+        ]
+      },
+      {
+        "point": "The #1 decomposition failure is letting agents invent shared contracts independently. Define the seams sequentially in the main session BEFORE dispatching: API request/response schemas, DB migration design, event names/formats, error conventions, and non-overlapping directory ownership. \"Do not let multiple agents invent shared contracts independently.\" Then protect those files from agent edits. A types-agent and an API-agent running in parallel with no agreed interface shape is the classic integration blowup.",
+        "sources": [
+          "https://www.aakashx.com/blog/parallel-claude-code-agents/"
+        ]
+      },
+      {
+        "point": "Green-in-isolation is a lie at the system level. Each agent's slice can pass its own tests while the merged system fails on logical incompatibilities, so always run an integrated validation pass with one agent (or the main session) as designated validator. Enforce a dependency-driven merge order: contracts/shared types first, then backend, then frontend, then tests, then docs, then refactors — never merge in finish order.",
+        "sources": [
+          "https://www.aakashx.com/blog/parallel-claude-code-agents/"
+        ]
+      },
+      {
+        "point": "Have a checklist for when NOT to parallelize: task under ~5 minutes, unknown root cause (subtle bugs), architecture redesign, work needing tight sequencing, work you can't split cleanly by directory/layer/test-surface, or no final validation gate. If three or more of these are true, defer parallelization. Also: let Claude propose the split (it can inspect the repo for natural boundaries), but a human must approve ownership, contracts, and merge order before agents execute — ownership must be concrete dirs/layers, never abstract labels like \"do auth.\"",
+        "sources": [
+          "https://www.aakashx.com/blog/parallel-claude-code-agents/"
+        ]
+      },
+      {
+        "point": "Parallelism is not free even when it works: \"running ten agents in parallel uses quota roughly ten times as fast as running one\" — there is no shared-context discount, so cost scales linearly with agent count. Agents are also \"eager to build adjacent features\" and will scope-creep past their slice unless acceptance criteria in the task card are tight. Each agent should report assigned scope, files changed, commands run, test results, and unresolved risks before its work is merged.",
+        "sources": [
+          "https://findskill.ai/blog/claude-code-10-parallel-agents-week-1/",
+          "https://www.aakashx.com/blog/parallel-claude-code-agents/"
+        ],
+        "caveat": "The 'ten times as fast' figure is a community/practitioner report, not a vendor benchmark; treat the multiplier as directional."
+      },
+      {
+        "point": "Don't misuse the impressive numbers. Anthropic's headline result — a multi-agent system outperforming single-agent Opus 4 by 90.2%, at the cost of ~4x tokens for single agents and ~15x for multi-agent systems — comes from their RESEARCH system, and the same article argues coding is LESS parallelizable than research. Citing 90.2% to justify parallelizing a coding feature inverts the source's own argument. Use it only to make the cost point (token blowup), not the speed promise.",
+        "sources": [
+          "https://www.anthropic.com/engineering/multi-agent-research-system"
+        ],
+        "caveat": "These metrics are from a research/search workload, explicitly NOT coding; the same post says coding parallelizes worse. Do not present them as evidence that feature decomposition pays off."
+      }
+    ]
+  },
+  {
+    "angle": "Mapping decomposed feature-tasks to git worktrees/branches with Claude Code, and reintegrating them cleanly",
+    "points": [
+      {
+        "point": "Decompose by domain/module boundaries, not by file — assign each parallel agent a cohesive system (e.g. Agent 1: auth module, Agent 2: payments, Agent 3: dashboard UI). The explicit anti-pattern is two agents touching the same file (Agent 1 adds validation to utils.ts while Agent 2 refactors error handling in utils.ts), which guarantees conflicts. Clean seams up front are what make worktree isolation actually pay off.",
+        "sources": [
+          "https://www.mindstudio.ai/blog/git-worktrees-parallel-ai-coding-agents"
+        ]
+      },
+      {
+        "point": "Claude Code has built-in worktree support: `claude --worktree feature-auth` (or `-w`) creates an isolated worktree under `.claude/worktrees/<name>/` on a new branch `worktree-<name>`, branched fresh from `origin/HEAD`. Run it again with a different name in another terminal for a second isolated session. You can also branch from a PR with `claude --worktree \"#1234\"`, or set `worktree.baseRef: \"head\"` in settings to carry your unpushed work into the worktree.",
+        "sources": [
+          "https://code.claude.com/docs/en/worktrees"
+        ]
+      },
+      {
+        "point": "To parallelize subagents instead of terminals, add `isolation: worktree` to a custom subagent's frontmatter (or just ask Claude to \"use worktrees for your agents\"). Each subagent gets a temporary worktree that is auto-removed when it finishes without changes — this maps one decomposed task to one isolated checkout automatically.",
+        "sources": [
+          "https://code.claude.com/docs/en/worktrees"
+        ]
+      },
+      {
+        "point": "A worktree is a fresh checkout, so gitignored local config (.env, secrets) is NOT carried over. Add a `.worktreeinclude` file (gitignore syntax) at the repo root to auto-copy those into every new worktree, and remember to re-run dependency install / env setup in each one. Also add `.claude/worktrees/` to `.gitignore` so worktree contents don't show as untracked in the main checkout.",
+        "sources": [
+          "https://code.claude.com/docs/en/worktrees"
+        ]
+      },
+      {
+        "point": "Reintegrate via a staging/integration branch rather than merging each branch straight to main: `git checkout -b integration main`, then `git merge feat/auth`, `git merge refactor/api`, etc., run the full test suite there to catch cross-branch contradictions, and only then `git checkout main && git merge integration`. Merge in dependency order — foundational branch first — and have dependent worktrees `git pull origin main` before they continue. Don't merge agent output blindly; review the diff for half-finished work and unexpected file changes.",
+        "sources": [
+          "https://www.mindstudio.ai/blog/git-worktrees-parallel-ai-coding-agents"
+        ]
+      },
+      {
+        "point": "For runtime isolation (not just files), give each worktree its own ports and database. The article suggests deriving ports as `SERVICE_PORT = BASE_PORT + (WORKTREE_INDEX * 10) + SERVICE_OFFSET` and per-worktree DB instances / Docker volumes, since dev servers all default to 3000/5432/8080 and two agents mutating shared DB state at once creates race conditions.",
+        "sources": [
+          "https://developer.upsun.com/posts/ai/git-worktrees-for-parallel-ai-coding-agents"
+        ]
+      },
+      {
+        "point": "Manual git equivalent for full control / talk demo: `git worktree add -b feature-a ../project-feature-a main`, `cd ../project-feature-a && claude`, track with `git worktree list`, and clean up after merging with `git worktree remove ../project-feature-a` then `git worktree prune`. Claude locks an active worktree (`git worktree lock`) so concurrent cleanup can't remove it mid-run.",
+        "sources": [
+          "https://code.claude.com/docs/en/worktrees",
+          "https://developer.upsun.com/posts/ai/git-worktrees-for-parallel-ai-coding-agents"
+        ]
+      },
+      {
+        "point": "Honest failure modes to state in the talk: (a) worktrees isolate FILES but not coordination — agents are blind to each other and can create conflicts \"without knowing,\" which only surface at merge time; (b) disk usage balloons (Upsun cites Cursor-forum users reporting a ~2GB codebase consuming 9.82GB of worktrees in a 20-minute session); (c) tooling friction — Claude Code's `/ide` command can fail to recognize a worktree, reporting 'No available IDEs detected'; (d) worktrees don't fix LLM context degradation in long sessions — agents can silently produce wrong output from corrupted context.",
+        "sources": [
+          "https://developer.upsun.com/posts/ai/git-worktrees-for-parallel-ai-coding-agents",
+          "https://www.mindstudio.ai/blog/git-worktrees-parallel-ai-coding-agents"
+        ],
+        "caveat": "The 9.82GB/2GB/20-min figure is attributed by Upsun to Cursor-forum users (about automatic worktree creation), not a controlled benchmark — cite it as an anecdote, not a hard stat. The `/ide` failure may already be fixed in newer Claude Code versions; verify against your installed version before demoing."
+      },
+      {
+        "point": "Cleanup semantics are conditional, which matters when scripting parallel runs: a worktree with no uncommitted changes/untracked files/new commits is removed automatically on exit; one with changes prompts you to keep or remove (remove discards the work). Non-interactive `claude -p --worktree` runs are NOT auto-cleaned — you must `git worktree remove` (add `--force` for uncommitted changes) yourself.",
+        "sources": [
+          "https://code.claude.com/docs/en/worktrees"
+        ]
+      }
+    ]
+  }
+]

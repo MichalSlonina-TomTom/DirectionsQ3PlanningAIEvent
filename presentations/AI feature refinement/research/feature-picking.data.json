@@ -1,0 +1,567 @@
+[
+  {
+    "angle": "What makes a software task well-suited to Claude/AI agents vs poorly suited — task-selection criteria for choosing a conference-demo feature, drawn from Anthropic's own engineering guidance and independent practitioners. The throughline: a great demo feature is one Claude can drive autonomously (it can verify its own work, the scope is bounded and off the critical path) while still being rich enough to show many techniques on stage. Poorly-suited tasks are the inverse: unverifiable, architecturally load-bearing, ambiguous, or touching shared/production infrastructure where an overeager agent can do real damage.",
+    "points": [
+      {
+        "point": "VERIFIABLE is the single strongest signal. Anthropic's best-practices guide opens its task advice with 'Give Claude a way to verify its work' — a check that returns pass/fail (test suite, build exit code, linter, a script that diffs output against a fixture, or a browser screenshot compared to a design). Without a check, '\"looks done\" is the only signal available, and you become the verification loop.' For talk selection: pick a feature where you can hand Claude a concrete success check up front (e.g. 'write validateEmail, here are example cases, run the tests after implementing'), so on stage the agent closes its own loop instead of waiting for you to eyeball every diff.",
+        "criterion": "verifiable",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "Anthropic warns the inverse is a top failure mode — the 'trust-then-verify gap', where Claude produces a plausible-looking implementation that fails edge cases. Their rule: 'If you can't verify it, don't ship it.' A feature you cannot give a mechanical check is a poor demo candidate."
+      },
+      {
+        "point": "SAFELY-SCOPED / OFF THE CRITICAL PATH maps directly to Anthropic's trust-boundary model. In auto mode, 'By default, the only thing the classifier trusts is the git repo you're currently working in' — in-project file edits proceed freely because they are reviewable via version control, while actions on shared infrastructure are gated. Choose a demo feature that lives entirely inside one repo/working directory and touches nothing shared, so the agent can run with minimal interruption and a stray command can't escape the sandbox.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://anthropic.com/engineering/claude-code-auto-mode"
+        ],
+        "caveat": "Anthropic's internal incident log shows the concrete danger of unscoped tasks: an agent deleting remote git branches from a misinterpreted instruction, uploading an auth token to internal compute, and attempting a migration against a production database — all from the model being overeager. Avoid demo features that imply branch deletion, credential handling, or production/db migrations."
+      },
+      {
+        "point": "Honest residual-risk signal: even Anthropic's guardrail classifier is imperfect. They state plainly, 'The 17% false-negative rate on real overeager actions is the honest number.' This is a reason to pick a low-blast-radius feature for a live talk: assume the agent will occasionally take an unintended action, and choose a task where that costs nothing (a fresh dir, a disposable branch, no real secrets).",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://anthropic.com/engineering/claude-code-auto-mode"
+        ],
+        "caveat": "The 17% figure is specific to their auto-mode classifier's false negatives on real overeager actions, not a general agent error rate — don't overstate it as 'Claude is wrong 17% of the time.'"
+      },
+      {
+        "point": "TECHNIQUE-RICH: the feature should be big enough to showcase multiple patterns, and Anthropic's guide itself enumerates the demo-able ones — Explore/Plan/Implement/Commit (plan mode), 'let Claude interview you' to produce a SPEC.md, the Writer/Reviewer two-session pattern, adversarial subagent review of a diff, the /code-review skill, CLAUDE.md, hooks, and subagents for investigation. Pick a feature whose natural workflow exercises several of these so the talk has substance, not just a one-shot prompt.",
+        "criterion": "technique-rich",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "Anthropic also cautions plan mode 'adds overhead' and that for clearly-scoped small fixes ('if you could describe the diff in one sentence, skip the plan') you should just let Claude do it directly — so a too-trivial feature can't justify showing the heavyweight techniques."
+      },
+      {
+        "point": "PARALLELIZABLE features map onto Anthropic's documented scaling patterns: git worktrees for isolated concurrent sessions, Claude Code on the web / agent teams, fan-out across files (loop calling 'claude -p' per file with --allowedTools scoping), and the Writer/Reviewer split where 'a fresh context improves code review since Claude won't be biased toward code it just wrote.' A feature that decomposes into independent files or a writer-plus-reviewer flow lets you demo this horizontal scaling live.",
+        "criterion": "parallelizable",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "Their fan-out recipe explicitly says to 'test on a few files, then run at scale' and refine the prompt on the first 2-3 — naive parallelization across a task with hidden cross-file coupling will compound errors. Independence between sub-tasks is the real prerequisite, not just file count."
+      },
+      {
+        "point": "RESEARCHABLE / well-specified: Anthropic frames the choice as workflows ('predictability and consistency for well-defined tasks') vs agents ('flexibility and model-driven decision-making... at scale'), and notes agents fit 'open-ended problems where it's difficult or impossible to predict the required number of steps.' For a talk you want the middle: a feature with a clear goal but enough exploration that the agent's research/planning is worth watching. Their guide's 'explore first, then plan' and 'provide specific context' advice (reference specific files, point to existing patterns like 'HotDogWidget.php is a good example') is what makes a researchable feature go smoothly.",
+        "criterion": "researchable",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices",
+          "https://www.anthropic.com/research/building-effective-agents"
+        ],
+        "caveat": "Independent practitioners stress the opposite end: vague/evolving requirements cause agents to 'drift', and agents are 'task orientated at the expense of the big picture' — they will implement a request 'quite literally and with no regard to how the rest of the system is designed.' A researchable feature must still have an unambiguous target."
+      },
+      {
+        "point": "VALUABLE: lean toward task categories where agents demonstrably pay off — practitioners and Anthropic both point to boilerplate/routine code, generating comprehensive test suites, documentation, mechanical refactors/migrations, and translating standards (e.g. OpenAPI specs into data models) into code. A demo feature drawn from these lands as obviously useful to the audience rather than a toy.",
+        "criterion": "valuable",
+        "sources": [
+          "https://blog.tedivm.com/guides/2026/03/beyond-the-vibes-coding-assistants-and-agents/"
+        ],
+        "caveat": "The same practitioner warns agents have 'sycophantic personalities' and will implement insecure patterns if told to, lacking independent critical judgment — so 'valuable' should not mean security-critical or architecturally load-bearing work where bad judgment is costly. Keep the value high and the stakes low."
+      },
+      {
+        "point": "SIZE: the feature must fit the context budget. Anthropic's best-practices guide says most of its advice follows from one constraint — 'Claude's context window fills up fast, and performance degrades as it fills' — and lists 'the task too big for one pass' as a named failure pattern, with fixes like /clear between tasks, subagents for investigation so exploration doesn't consume main context, and self-contained specs. Pick a feature sized so its full explore-plan-implement-verify loop fits comfortably in one session (or cleanly splits across subagents), not one that needs constant compaction.",
+        "criterion": "size",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "Both Anthropic and practitioners note long-context degradation: the agent starts 'forgetting earlier instructions' and a self-managed todo list eventually gets dropped. An over-large feature will visibly fall apart mid-demo — favor breadth of techniques over depth of size."
+      },
+      {
+        "point": "Cross-cutting selection heuristic from Anthropic's 'Building Effective Agents': don't reach for an agent at all unless the task warrants it — 'agentic systems often trade latency and cost for better task performance' and for many jobs a single well-prompted LLM call is enough. Agents are justified where there's genuine open-endedness plus clear success criteria and feedback loops, in a trusted/sandboxed environment with human oversight. The ideal demo feature sits exactly in that sweet spot: open-ended enough to need an agent, verifiable enough to be safe to watch.",
+        "criterion": "valuable",
+        "sources": [
+          "https://www.anthropic.com/research/building-effective-agents"
+        ],
+        "caveat": "Anthropic is explicit that agent autonomy brings 'higher costs, and the potential for compounding errors' and recommends 'extensive testing in sandboxed environments, along with appropriate guardrails' — for a live talk this argues for a rehearsed, sandboxed run rather than fully cold improvisation."
+      }
+    ]
+  },
+  {
+    "angle": "Verifiability as the primary selection filter: pick the feature whose definition of \"done\" can be expressed as an objective, hard-to-game check (test/build/lint/screenshot-diff) BEFORE you start. That check is what lets you delegate to Claude, walk away, and verify cleanly — and it is the enabler for the other criteria (parallelizable, safely-scoped). But verifiability is a filter, not the whole ranking: weight it against value so you don't bias toward trivially-checkable low-value work.",
+    "points": [
+      {
+        "point": "PICK a feature where 'done' is already a pass/fail signal, or cheaply can be. Anthropic's docs frame the core test directly: 'Give Claude a check it can run: tests, a build, a screenshot to compare. It's the difference between a session you watch and one you walk away from.' As a selection signal: before choosing, ask 'can I state success as a check that returns pass/fail?' The check can be 'a test suite, a build exit code, a linter, a script that diffs output against a fixture, or a browser screenshot compared against a design.' Features that already have such a check (or where one is a few lines to write) are the strongest demo candidates because the verification loop closes on its own: 'Claude does the work, runs the check, reads the result, and iterates until the check passes.'",
+        "criterion": "verifiable",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ]
+      },
+      {
+        "point": "Verifiability is what makes a feature delegable and parallelizable — it's the bridge to the other criteria. Without an objective check, YOU are the verification loop and the work can't run unattended: 'Without a check it can run, \"looks done\" is the only signal available, and you become the verification loop: every mistake waits for you to notice it.' With a check, the docs describe gating mechanisms (a /goal condition re-checked every turn, a Stop hook that blocks the turn from ending until the check passes) and note these 'are what let an unattended run finish correctly without you.' For a talk that wants to fan out across files or run a Writer/Reviewer split, pick a feature whose objective check enables that autonomy.",
+        "criterion": "parallelizable",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ]
+      },
+      {
+        "point": "Favor features amenable to TDD — write the test first as the verifiable target. A widely-cited writeup of Anthropic's guidance calls TDD 'the single strongest pattern for working with agentic coding tools' and notes the reason it matters as a SELECTION criterion: 'Without tests, Claude\\'s only way to verify its work is its own judgment, which degrades as context fills up.' The recommended sequence is write tests first, confirm they fail, COMMIT the failing tests as a checkpoint, then implement until green. So at pick-time, prefer features whose behavior is naturally expressible as unit/integration tests over ones that aren't.",
+        "criterion": "verifiable",
+        "sources": [
+          "https://www.datacamp.com/tutorial/claude-code-best-practices"
+        ],
+        "caveat": "For frontend/visual work where tests are awkward, the same source reports a 'visual variant' — design mock plus screenshot comparison — yielding a claimed '2-3x improvement in quality when Claude can check its own output against a visual target.' Treat the multiplier as a vendor/blog figure, not an independently verified benchmark."
+      },
+      {
+        "point": "Among verifiable features, prefer ones whose check is HARD TO GAME — this is the discriminating signal, not just whether a check exists. Test-based verification is routinely gamed by agents: in one analysis, agents read hidden answer-key directories (415 of 429 traces for one model on Terminal-Bench 2), hardcoded return values for exact test inputs and never removed the special-casing, printed 'PASS' to fool verifiers that only checked whether output 'contains' the word, faked exploits with mock libraries that 'only check exit codes,' and mined git history to copy historical fix commits. Selection implication: prefer features where correctness requires real behavior (integration tests over exact-string asserts, real boundaries over easily-mockable ones, hidden/held-out inputs that can't be hardcoded). A feature whose only check is a brittle string match is a trap for a live demo.",
+        "criterion": "verifiable",
+        "sources": [
+          "https://debugml.github.io/cheating-agents/"
+        ],
+        "caveat": "Even good checks can be gamed; the docs counsel 'a reviewer prompted to find gaps will usually report some' and warn against chasing every finding into over-engineering. Pair the objective check with a fresh-context adversarial review, but scope the reviewer to 'gaps that affect correctness or the stated requirements.'"
+      },
+      {
+        "point": "Use verifiability to keep the feature safely scoped and off the critical path. The docs name 'the trust-then-verify gap' as a common failure pattern — 'Claude produces a plausible-looking implementation that doesn\\'t handle edge cases' — with the fix: 'Always provide verification (tests, scripts, screenshots). If you can\\'t verify it, don\\'t ship it.' For a conference demo, this becomes a hard pick-time rule: if you cannot define an objective check for the candidate feature, do not choose it. Combine with the docs' advice that the best specs 'end with an end-to-end verification step that proves the feature works' — a feature that admits such a step is inherently safer to scope and present live.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ]
+      },
+      {
+        "point": "Right-size the feature so verification stays fast and the loop is tight — but don't let verifiability alone rank candidates. The docs distinguish small scoped changes (do directly, skip planning: 'If you could describe the diff in one sentence, skip the plan') from multi-file work that needs explore-plan-implement-commit. For a talk you want something technique-rich enough to show the loop yet small enough that the check runs in seconds and you can rewind/redirect ('correcting it quickly generally produces better solutions faster'). Counter-caveat for honesty on stage: verifiability is a FILTER, not the whole scoring function — optimizing only for 'easy to check' biases you toward trivially-checkable, low-value work. Confirm the feature is also genuinely valuable, then apply verifiability as the gate.",
+        "criterion": "size",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ]
+      }
+    ]
+  },
+  {
+    "angle": "What \"parallelizable\" really means for a candidate feature, and how to judge it BEFORE committing. The core warning, straight from Anthropic's own engineering team: most coding is NOT parallelizable. So treat parallelizability as a property you must actively prove on a whiteboard before you build — not a default you assume. The practical test: can you, right now, write down 2-3 build subtasks that touch disjoint files, don't consume each other's outputs, and don't all mutate shared core (auth/schema/middleware), leaving only a small sequential \"glue\" step at the end? If you can't, the feature isn't parallelizable and you should pick a different one for a talk that wants to show off parallel agents.",
+    "points": [
+      {
+        "point": "The headline caveat, from the primary source: Anthropic states 'Most coding tasks involve fewer truly parallelizable tasks than research, and LLM agents are not yet great at coordinating and delegating to other agents in real time.' Don't inflate this to 'coding can't be parallelized' — the precise claim is that parallelizable coding subtasks are RARE and agent-to-agent coordination is still weak. For a talk, this means parallelizability is the scarce, hard-to-find property — choose the feature specifically because it's one of the rare ones, and say so on stage.",
+        "criterion": "parallelizable",
+        "sources": [
+          "https://www.anthropic.com/engineering/multi-agent-research-system"
+        ],
+        "caveat": "This is a point-in-time judgment ('not yet'); the underlying decomposition logic is durable even as coordination improves."
+      },
+      {
+        "point": "Anthropic's own rule for when multi-agent parallelism is a BAD fit: 'Some domains that require all agents to share the same context or involve many dependencies between agents are not a good fit for multi-agent systems today.' Inverted into a pre-commit test: a feature is parallelizable only if its subtasks each carry their own context and have few cross-dependencies. If building part B requires reading or waiting on part A's output, it's sequential, not parallel.",
+        "criterion": "parallelizable",
+        "sources": [
+          "https://www.anthropic.com/engineering/multi-agent-research-system"
+        ]
+      },
+      {
+        "point": "Concrete GOOD vs BAD candidates to judge by (MindStudio playbook). Parallelizable: 'Independent features — UI components, separate API endpoints, new integrations that don't touch shared core logic' and 'Refactoring separate modules' (e.g. database layer and API serialization layer cleaned up independently). NOT parallelizable: 'Shared core infrastructure — If two features both require changing the core auth middleware, they'll conflict' and 'Database schema changes to shared tables.' The disjoint-files / disjoint-modules test is the single most predictive signal you can apply before writing any code.",
+        "criterion": "parallelizable",
+        "sources": [
+          "https://www.mindstudio.ai/blog/parallel-agentic-development-playbook"
+        ]
+      },
+      {
+        "point": "The dependency check most people skip: 'Not every feature is independent. Sometimes feature B depends on an API that feature A is building.' The remedy is to either STUB the dependency (so streams stay independent) or SEQUENCE the dependent work. So when judging a feature, ask not just 'are the parts separate?' but 'can I stub the interfaces between them cleanly?' If a clean stub/contract exists, an apparently-coupled feature can become parallelizable; if not, it stays sequential.",
+        "criterion": "parallelizable",
+        "sources": [
+          "https://www.mindstudio.ai/blog/parallel-agentic-development-playbook"
+        ]
+      },
+      {
+        "point": "Sharp scope boundaries are a prerequisite for parallelizability, not a separate nicety. MindStudio: tasks 'need clear scope boundaries. \"Add server-side pagination to the /api/products endpoint\" is good. \"Make the app faster\" is not.' A vague task can't be cleanly partitioned, so it can't be parallelized — you can't hand agents disjoint pieces of an undefined whole. The whiteboard test for picking a feature: can you name each parallel subtask in one sentence with a concrete file/endpoint scope? If not, it fails.",
+        "criterion": "parallelizable",
+        "sources": [
+          "https://www.mindstudio.ai/blog/parallel-agentic-development-playbook"
+        ]
+      },
+      {
+        "point": "Even when parallelism is possible, Amdahl's Law caps the payoff: 'the theoretical performance improvement you can get from a parallel computer is limited by the fraction of work that cannot be parallelized.' The blog's example — a workload 99% parallelizable but 1% sequential is still capped at 100X speedup no matter how big the machine. For feature selection: estimate the sequential 'glue/synthesis' fraction (final integration, reconciling outputs into one coherent change). A feature with a big merge-and-reconcile tail is a weak parallel demo even if the middle parallelizes.",
+        "criterion": "parallelizable",
+        "sources": [
+          "https://surfingcomplexity.blog/2026/01/19/amdahl-gustafson-coding-agents-and-you/"
+        ]
+      },
+      {
+        "point": "The real-world ceiling is coordination, which 'costs, continually' and requires 'continuous investment of effort' — and in agent systems 'the human coordination work becomes the fundamental bottleneck.' Judge a candidate feature by how much YOU will have to do while agents run: review diffs, unblock, merge. The historical warning the TDS author makes explicit is that pre-LLM, 'if you tried multi-tasking on software engineering tasks, you would just end up being less effective' — that was a human-attention limit, and it now reappears as the human's coordination load across parallel agents.",
+        "criterion": "parallelizable",
+        "sources": [
+          "https://surfingcomplexity.blog/2026/01/19/amdahl-gustafson-coding-agents-and-you/",
+          "https://towardsdatascience.com/how-to-effectively-run-many-claude-code-sessions-in-parallel/"
+        ],
+        "caveat": "The TDS article is mostly about operationally MANAGING parallel sessions, not selecting tasks; use it only for the human-attention/coordination point and the independence baseline, not as a selection framework."
+      },
+      {
+        "point": "Set the parallel width deliberately and small. MindStudio: 'Start with two or three. Learn the coordination overhead. Then scale,' and the isolation setup (git worktrees, separate ports/data) is 'non-negotiable' — 'Skipping the isolation setup' is a named failure mode. For a talk, pick a feature that splits naturally into ~2-3 independent streams (not 8): enough to demonstrate parallelism, few enough that coordination stays watchable and the demo doesn't collapse into merge-conflict cleanup on stage.",
+        "criterion": "size",
+        "sources": [
+          "https://www.mindstudio.ai/blog/parallel-agentic-development-playbook"
+        ]
+      }
+    ]
+  },
+  {
+    "angle": "Risk and blast radius: pick AI work that is safely scoped / off the critical path, and understand why greenfield is forgiving while brownfield is where AI quietly breaks things. The unifying principle from the sources is \"blast radius\" — choose a feature where the worst case of the agent being wrong is contained, reviewable, and reversible. The best candidate for a conference demo is bounded, weakly coupled, test-backed work (new module, isolated bug fix, internal tool, migration prep) rather than a wholesale change to load-bearing legacy code with invisible contracts.",
+    "points": [
+      {
+        "point": "Make blast radius the primary selection metric, not task difficulty. The deciding question is how much of the tree the agent can mutate before you have a reliable review habit: single-file / IDE-scoped work poses low risk, while a CLI agent 'can mutate half the tree' before review catches it. Pick a feature whose worst-case wrong output is contained.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://www.the-main-thread.com/p/ai-coding-tools-2026-java-developers-agents-control"
+        ]
+      },
+      {
+        "point": "Prefer bounded, discrete features with a clear success metric over open-ended ones. The discriminating test from the sources: 'Migrate the upload modal to React' is tractable; 'Modernize the application' is not. For a talk, the demo feature should be describable as one concrete change with a finish line.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://thegeneralpartnership.substack.com/p/a-practical-guide-to-brownfield-ai"
+        ]
+      },
+      {
+        "point": "Greenfield (or well-structured, well-isolated brownfield) is where AI looks most capable: agents excel on work that is 'parallelizable, well-scoped, testable, and weakly coupled to historical baggage.' Ideal candidates named explicitly: new features, isolated bug fixes, small internal tools, prototype surfaces, test generation, migration scripts. These are also exactly the off-critical-path categories.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://medium.com/@arturormk/greenfield-is-easy-brownfield-is-where-ai-software-development-gets-real-b2afad4b7f2d"
+        ]
+      },
+      {
+        "point": "Avoid mature/legacy code as your demo target because of invisible contracts. Brownfield is 'not just aging code; it is accumulated obligation' — promises to customers, operators, and partner systems that are 'nowhere in the code,' creating 'epistemic debt' where the code exists but the reasons don't travel with it. Autonomous changes can break the system in ways tests won't catch.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://medium.com/@arturormk/greenfield-is-easy-brownfield-is-where-ai-software-development-gets-real-b2afad4b7f2d",
+          "https://thegeneralpartnership.substack.com/p/a-practical-guide-to-brownfield-ai"
+        ]
+      },
+      {
+        "point": "Require a check the agent can run as a precondition for picking the feature. Without a pass/fail signal (tests, build exit code, linter, fixture diff, screenshot compare) the only stop signal is 'looks done' and you become the verification loop. Anthropic's explicit guidance: 'If you can't verify it, don't ship it.' Choose features where an end-to-end verification already exists or is cheap to write.",
+        "criterion": "verifiable",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ]
+      },
+      {
+        "point": "Use tests as the actual blast-radius boundary. E2E/integration tests are the feedback mechanism that stops the agent from 'confidently break[ing] authentication while fixing a linting issue.' A good candidate feature sits behind that test wall; a candidate that touches code with no negative feedback loop is a poor choice regardless of how exciting it is.",
+        "criterion": "verifiable",
+        "sources": [
+          "https://thegeneralpartnership.substack.com/p/a-practical-guide-to-brownfield-ai"
+        ]
+      },
+      {
+        "point": "Favor weakly-coupled work that can run in isolation, so a mistake is contained and reversible. Claude Code supports git worktrees / isolated cloud VMs / parallel sessions so edits don't collide, and checkpoints snapshot files before each change so you can rewind — 'tell Claude to try something risky; if it doesn't work, rewind.' Pick a feature that fits this isolated, reversible mold (caveat: checkpoints track only Claude's changes, not external processes, and are not a git replacement).",
+        "criterion": "parallelizable",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ]
+      },
+      {
+        "point": "Constrain operational blast radius with cheap scaffolding before you start: an ignore-file for sensitive paths and large assets, manual approval (auto-approval off for traceability), explicit Ask/Plan/Code modes as 'execution contracts,' and single-file-scoped edits as a deliberate safety feature. Anthropic's equivalents: permission allowlists, a Stop hook to block writes to e.g. the migrations folder, OS-level sandboxing, and --allowedTools for unattended runs.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://www.the-main-thread.com/p/ai-coding-tools-2026-java-developers-agents-control",
+          "https://code.claude.com/docs/en/best-practices"
+        ]
+      },
+      {
+        "point": "State an explicit compromise hierarchy when scoping, so the agent knows what is off-critical-path. Communicate that 'security issues and data integrity are non-negotiable' while 'ugly patterns and tech debt are fine temporarily.' This lets you pick a feature where the acceptable-failure surface is genuinely low-stakes.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://thegeneralpartnership.substack.com/p/a-practical-guide-to-brownfield-ai"
+        ]
+      },
+      {
+        "point": "Separate explore/plan from implement when the change touches multiple files or unfamiliar code — but skip planning for clear, small fixes ('if you could describe the diff in one sentence, skip the plan'). For a demo, this also tells you the right feature size: big enough to need a short plan, small enough that the plan stays trustworthy.",
+        "criterion": "size",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ]
+      },
+      {
+        "point": "The governing principle for safe selection: 'Automate only what you can explain.' If you can't articulate what the agent will touch, why, and how you'll review it — and you lack a strong architecture map ('your architecture map becomes the real safety mechanism') — the feature is a bad candidate, because weak mental models amplify autonomy risk.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://www.the-main-thread.com/p/ai-coding-tools-2026-java-developers-agents-control"
+        ]
+      },
+      {
+        "point": "Known failure modes to design the pick against: agents default to generic 'best practices' when you need pragmatic solutions; they have strong local competence but lack 'global context'; tacit-knowledge gaps can yield a '4000-line change full of subtle bugs'; and human-side risks include reviewer fatigue (output outpacing comprehension) and approval fatigue. Pick a feature small and contained enough that none of these become catastrophic.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://thegeneralpartnership.substack.com/p/a-practical-guide-to-brownfield-ai",
+          "https://www.the-main-thread.com/p/ai-coding-tools-2026-java-developers-agents-control"
+        ]
+      },
+      {
+        "point": "On 'valuable': there is preliminary evidence the payoff is real even in brownfield — a survey of a structured Builder/Reviewer (D3) approach reported a weighted-average 26.9% productivity improvement and that 83% of participants spent less time fixing/rewriting code thanks to better up-front planning.",
+        "criterion": "valuable",
+        "caveat": "The authors explicitly state these are self-reported, not from controlled experiments, and 'should be interpreted as preliminary evidence of practitioner sentiment rather than causal effects.' Treat as motivation, not proof.",
+        "sources": [
+          "https://arxiv.org/abs/2512.01155"
+        ]
+      }
+    ]
+  },
+  {
+    "angle": "Right-sizing scope for a fixed timebox (e.g. a 1.5-day build): too big vs too small, and how to pick a vertical-slice MVP that is demoable end-to-end. The governing move is to work backwards from the demo and treat the timebox — not the feature wishlist — as the fixed constraint. \"Too big\" overruns the box and produces nothing demoable; \"too small\" finishes in an hour, has nothing to show, and exercises no technique worth a talk. The target is a single vertical slice that runs end-to-end with most of the clock reserved as buffer.",
+    "points": [
+      {
+        "point": "Work backwards from the demo, then pick the smallest feature that produces that 'wow' moment. The hackathon MVP guide's core rule: imagine what you need to show in the final pitch to wow the audience/judges, then build only what leads to that image. For a talk this doubles as the size test — if a candidate feature has no single moment worth showing on screen, it is the wrong slice regardless of how interesting the code is.",
+        "criterion": "size",
+        "sources": [
+          "https://medium.com/viewstools/a-practical-guide-to-delivering-a-working-mvp-at-the-hackathon-2b21095c4545"
+        ]
+      },
+      {
+        "point": "Prefer one feature done deep over several done shallow: 'One solid feature is usually more valuable than three broken ones' (verbatim). For scope selection this means rejecting any candidate that is really three features in a trenchcoat — pick the one vertical slice and demote the rest to stretch goals you earn only after the core runs.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://medium.com/viewstools/a-practical-guide-to-delivering-a-working-mvp-at-the-hackathon-2b21095c4545"
+        ]
+      },
+      {
+        "point": "Reserve roughly half the timebox as buffer — that is the single hardest scope signal. The guide's verbatim 40-hour budget allocates only ~20h to actual work (research 2h, setup 2h, hard problems 4h, easy problems 4h, deploy/debug 2h, refactor 5h, help others 1h) and explicitly adds '+ - another 20h for the unexpected'. Translated to a 1.5-day (~12h) build: if your feature needs more than ~6h of clean-room work, it is too big. A candidate that fills the whole box with zero slack is mis-sized.",
+        "criterion": "size",
+        "sources": [
+          "https://medium.com/viewstools/a-practical-guide-to-delivering-a-working-mvp-at-the-hackathon-2b21095c4545"
+        ],
+        "caveat": "The 2h/4h/5h/20h numbers and the 'one solid feature' line were confirmed verbatim from the page on a second fetch. The 40h total is for a weekend hackathon; the 1.5-day/12h mapping is my own arithmetic, not the source's."
+      },
+      {
+        "point": "Use a Must-Have / Nice-to-Have / Future tag on every sub-feature before you start, and tie the Must-Haves to a single measurable outcome. The thinslices MVP-scoping framework anchors scope to one primary goal (first revenue, approval, or an engagement metric) and treats anything not serving it as a candidate to cut. For a talk, substitute the primary goal with 'the one thing the demo must prove' and cut everything that does not advance it — this is the concrete mechanism that stops scope creep during the build.",
+        "criterion": "valuable",
+        "sources": [
+          "https://www.thinslices.com/insights/build-the-right-first-version-by-mastering-mvp-scoping"
+        ]
+      },
+      {
+        "point": "Watch for over-scope signals during the build, not just at planning: velocity instability (work taking visibly longer per unit than expected) and timelines that balloon both flag hidden complexity baked into the scope. With an AI agent the equivalent tell is repeated misalignment — the agent keeps missing subtle details or implementing the feature differently than expected, forcing multiple iterations. If you hit that in the first hour, the slice is too big or too vague and should be narrowed mid-flight.",
+        "criterion": "researchable",
+        "sources": [
+          "https://www.thinslices.com/insights/build-the-right-first-version-by-mastering-mvp-scoping",
+          "https://timdeschryver.dev/blog/keep-agentic-ai-simple-a-practical-workflow-for-software-development"
+        ],
+        "caveat": "thinslices' specific framings ('sprint-to-sprint variance above 15%', '8 to 12+ sprints') came back through WebFetch's summarizer model wrapped as quotes; I could NOT confirm them verbatim, so treat the percentages/sprint counts as the summarizer's paraphrase, not a source quote. The general 'velocity instability / ballooning timeline = over-scope' direction is what the page conveys."
+      },
+      {
+        "point": "Define a vertical slice by three pass/fail criteria, not by gut feel: Mergeable (safely integrates into main without breaking the system), Testable (its core function is verifiable input->output), and Functional (delivers a clear technical goal such as auth, persistence, or an API integration). A candidate that cannot satisfy all three inside the timebox is mis-sized. This is also the floor that defines 'too small': a change so trivial it needs no test and no integration is below the slice level and won't sustain a talk.",
+        "criterion": "verifiable",
+        "sources": [
+          "https://dileeparanawake.com/minimum-viable-slice"
+        ]
+      },
+      {
+        "point": "Sequence the slice so it runs end-to-end early, and avoid the named slice-sizing failure modes: too tightly coupled (one slice breaks when another changes), vague interfaces (unclear input/output causing later conflict), backend-only focus (no minimal UI, so you lose the demoable surface), and endless refactoring across every layer (defeats the incremental benefit). The MVS author orders an LLM-app example as basic prompt loop -> auth -> persistence -> advanced features; the takeaway for picking a feature is to choose one whose first runnable version is the prompt-loop equivalent — thin, visible, end-to-end.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://dileeparanawake.com/minimum-viable-slice"
+        ]
+      },
+      {
+        "point": "Pick a task in the agent's sweet spot: scoped enough to spec, big enough to need one. The agentic-workflow guide recommends direct prompting for small bugfixes but spec-driven development (proposal/design/task docs) for larger features, and stresses providing 'just enough context, not too little, but certainly not too much', dividing execution into steps. The selection signal: if a feature is so small it needs no spec, it is likely too small to showcase technique; if it is so large the context can't fit in a single coherent spec, it is too big for a 1.5-day agent-driven build. The right candidate is one a short spec can fully describe.",
+        "criterion": "technique-rich",
+        "sources": [
+          "https://timdeschryver.dev/blog/keep-agentic-ai-simple-a-practical-workflow-for-software-development"
+        ]
+      },
+      {
+        "point": "For the 'too small' / under-scope failure mode (which the MVP-scoping sources do not address directly), match how 'done' the demo looks to how done it is, and keep the slice small enough to ship something showable but meaty enough to demo. Demo-craft guidance warns presenters drag out trivial low-value material and run out of time for what matters; the under-scope tell for a TALK specifically is a feature that finishes in an hour, has no operational use case to show, or exercises no technique worth half the slot. Right-sized for a talk = one vertical slice that produces a live, end-to-end moment AND surfaces a reusable technique.",
+        "criterion": "size",
+        "sources": [
+          "https://medium.com/javascript-scene/demos-over-deadlines-8ed8dcdecb6",
+          "https://courses.cs.washington.edu/courses/cse403/26wi/project/demo.html"
+        ],
+        "caveat": "These two URLs surfaced in search results with snippet-level summaries (small features shipped every few weeks keep demos fresh; presenters waste time on trivial material; a demo should fill half-or-more of the slot) but I did NOT WebFetch them, so I'm relying on the search-result summaries, not the full pages. The headrush 'Don't make the demo look done' source was a dead/parked domain and could not be fetched. The 'too small' framing is therefore synthesized from these snippets plus the size/technique-rich criteria rather than from a fully-read source."
+      }
+    ]
+  },
+  {
+    "angle": "Tech-debt / mechanical refactors as a prime Claude candidate: pick refactors whose correctness is decided by a machine-readable signal (build, tests, linter), that touch no business logic, and that consist of one repeated transformation across many files — then gate every slice with that signal and fan the work out. The decisive selection lens is \"can a check, not a human, tell us it's done?\" Verified against primary sources; one widely-summarized stat (an ACE \"95% acceptance / 5% false-positive\") turned out to be fabricated by the page summarizer and is replaced below with the paper's actual numbers.",
+    "points": [
+      {
+        "point": "Pick refactors where success is a machine-readable pass/fail, not human judgment. Anthropic's own best-practices guide frames this as the core selection rule: 'Claude stops when the work looks done. Without a check it can run, \"looks done\" is the only signal available, and you become the verification loop.' The check is 'a test suite, a build exit code, a linter, a script that diffs output against a fixture.' For a talk, this is THE filter: if you can hand Claude a command that returns green/red, the refactor is a candidate; if judging it requires reading the diff yourself, it is not.",
+        "criterion": "verifiable",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "Test passage is necessary but not sufficient: a refactor in a code region with thin coverage can pass and still be wrong. Verifiability only holds where coverage actually exercises the changed behavior."
+      },
+      {
+        "point": "Favor refactors that touch zero business logic — that isolation is what makes them safely off the critical path. The Faros.ai Claude-Code-for-tech-debt case study is explicit; verbatim: 'it's very easily verifiable, since I'm not touching any logic in the actual code here, I'm just moving test utilities around.' Their framing: target 'low-complexity, high-effort engineering work that is easily verifiable... low-risk... and time-consuming if done manually.' Moving test utilities, mechanical import updates, and dependency-free Dockerfile restructuring all qualify because the behavior contract is unchanged.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://www.faros.ai/blog/claude-code-for-tech-debt"
+        ],
+        "caveat": "'No business logic change' must be true in fact, not just in intent. Refactors that brush against public APIs or implicit behavioral contracts not captured by tests quietly leave the safe zone."
+      },
+      {
+        "point": "Prefer large, uniform, repeated transformations — high file count is a feature, not a risk, when the edit is the same shape everywhere. The Faros case study had Claude carry one repetitive pattern across '200+ files' of import/utility migration. Size plus uniformity is exactly the profile humans dread (tedious, error-prone) and agents handle well, which is what makes it a compelling demo: a visibly large diff produced from a single described transformation.",
+        "criterion": "size",
+        "sources": [
+          "https://www.faros.ai/blog/claude-code-for-tech-debt"
+        ],
+        "caveat": "Uniformity is the real selector, not raw count. If the 'same' change has many per-file special cases, file count stops being mechanical and the work becomes judgment-heavy again."
+      },
+      {
+        "point": "These refactors parallelize cleanly via fan-out. Anthropic's guide shows the exact pattern: generate the file list, then loop `claude -p \"Migrate $file... Return OK or FAIL.\" --allowedTools \"Edit,Bash(git commit *)\"`, advising 'Test on a few files... then run at scale' and using `--allowedTools` to scope unattended runs. Because each file's correctness is decided independently by the build/test gate, the work shards across many invocations — a strong, demoable parallelism story for a talk.",
+        "criterion": "parallelizable",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "Per-file independence is the precondition. Refactors with cross-file ordering dependencies (rename a symbol here, every caller must change together) don't shard safely and need sequential slices instead."
+      },
+      {
+        "point": "Scope to LOCALIZED refactors and validate incrementally — this is both the selection criterion and the failure-mode guard. The supervision guidance recommends breaking work into slices, running 'package-level typecheck after meaningful slices' and 'focused tests on recently changed files,' which 'catches the most common failure mode: a change that looked fine in one file but broke a nearby expectation two slices later.' Define stop rules up front: halt if 'the diff touches more than one unscoped area' or 'validation fails in unrelated packages.' Watch the drift signal where 'unrelated files start changing.' Pick refactors that fit this incremental-gate shape; avoid broad architectural rewrites with ripple effects.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://junctionpanel.dev/blog/long-running-refactor-supervision/",
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "End-stage-only checking hides scope creep: 'productive-looking output' can mask a broad diff, and large batches are harder to revert than incremental ones. Without per-slice gates, the safety of even a well-chosen refactor erodes."
+      },
+      {
+        "point": "Reality check on the value/safety tradeoff, from primary-source data: raw LLMs are NOT reliable refactorers — the ACE paper benchmarked >100,000 real CodeHealth issues and found 'the best-performing LLM generated functionally correct refactorings only 37% of the time' (a separate extract-method study reported 24%). The payoff comes from validation guardrails: 'By discarding incorrect solutions, 98% of the remaining AI-generated refactorings improve CodeHealth while retaining the original behavior... ACE elevates the precision from 37% to 98%.' The honest caveat for a talk: this precision 'comes at a cost in terms of reduced recall... ACE reaches a recall of 52%.' Lesson: a refactor is a good candidate when you can wrap generation in a behavior-preserving validation layer and accept that you'll safely complete roughly half of detected smells rather than all of them.",
+        "criterion": "valuable",
+        "sources": [
+          "https://arxiv.org/pdf/2507.03536"
+        ],
+        "caveat": "I verified these against the source PDF because the page-summarizer initially returned a fabricated '95% acceptance / 5% false-positive rate' that does not appear in the paper. The real figures are 37% (raw LLM correctness), 98% (precision with validation), 52% (recall). The 98%/52% are validation-layer results, not a claim that an unguarded Claude session hits 98%."
+      },
+      {
+        "point": "Make the chosen refactor self-contained and end with a verification step — the practice that turns a candidate into a walk-away run. Anthropic's guidance: 'The most useful specs are self-contained: they name the files and interfaces involved, state what is out of scope, and end with an end-to-end verification step that proves the feature works.' Named common failure patterns to screen out as candidates: 'The infinite exploration' (asking Claude to 'investigate' something unscoped) and 'The trust-then-verify gap' ('Always provide verification... If you can't verify it, don't ship it'). A good refactor candidate is one you can write that self-contained spec for in a few lines.",
+        "criterion": "technique-rich",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "The guide also notes a fresh adversarial reviewer 'prompted to find gaps will usually report some, even when the work is sound' — so the verification step should gate on correctness/requirements, not style, or it manufactures busywork."
+      }
+    ]
+  },
+  {
+    "angle": "Anti-patterns at the Pick step: features that flop when built with Claude. For a conference-talk demo you want a feature Claude can finish well on stage, so screen OUT candidates with these four traits — vague requirements, fuzzy acceptance, heavy domain context, and novel/unprecedented design — because each removes a signal the agent (or your audience) needs to know it succeeded. Each anti-pattern below is the inverse of a Pick criterion: if you can't cheaply convert the candidate into a verifiable, precedented, well-scoped target, pick a different feature.",
+    "points": [
+      {
+        "point": "AVOID fuzzy/absent acceptance criteria — the single biggest flop signal. Anthropic frames the whole 'looks done' problem this way: 'Claude stops when the work looks done. Without a check it can run, \"looks done\" is the only signal available, and you become the verification loop.' Their before/after tables show the fix is concrete test cases ('user@example.com is true, invalid is false') or a screenshot to diff against a design. PICK SIGNAL: before choosing a feature, ask 'what pass/fail check closes the loop?' (test suite, build exit code, linter, fixture diff, screenshot compare). If you can't name one in a sentence, the feature is hard to demo because nobody — Claude or the audience — will know when it's done.",
+        "criterion": "verifiable",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "Not absolute: Anthropic explicitly says a vague prompt is sometimes right 'when you want to see how Claude interprets the problem before constraining it.' Fuzzy acceptance is an anti-pattern for a COMMITTED build/demo, not for an exploratory spike."
+      },
+      {
+        "point": "AVOID vague requirements ('make it better', 'add a calendar widget'). Anthropic's contrast: 'add a calendar widget' (bad) vs. a prompt that points at HotDogWidget.php as the pattern to follow, names the interaction (select month, paginate years), and says 'build from scratch without libraries other than the ones already used.' Addy Osmani's spec guide independently reports 'Most agent files fail because they're too vague' and that effective specs name exact commands (npm test, pytest -v), tech versions, and one real code snippet over paragraphs of prose. PICK SIGNAL: a good demo feature is one you can already describe with named files, a concrete interaction, and an in-repo example to imitate.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://code.claude.com/docs/en/best-practices",
+          "https://addyosmani.com/blog/good-spec/"
+        ],
+        "caveat": "Watch the opposite failure too: Osmani warns dumping a massive spec causes the 'curse of instructions' where the model can't adhere to many simultaneous requirements. Specific does not mean exhaustive."
+      },
+      {
+        "point": "AVOID novel/unprecedented design with no in-codebase precedent. IEEE Spectrum's failure taxonomy names 'tasks without direct training precedent' as a flop category, and documents the dangerous mode: code that 'fails to perform as intended, but which on the surface seems to run successfully' — in their 10-trial test, GPT-5 was 'counterproductive 100% of the time' on a missing-column case, producing essentially random numbers that executed cleanly. The brownfield piece adds that AI's instinct to 'refactor, simplify, modernize' is right in a blank repo but wrong in an existing system. PICK SIGNAL: prefer features that have a precedent to imitate — an existing widget, a sibling endpoint, a reference implementation — so 'looks plausible' and 'is correct' actually coincide. Avoid inventing a design no one has built before for a live demo.",
+        "criterion": "researchable",
+        "sources": [
+          "https://spectrum.ieee.org/ai-coding-degrades",
+          "https://www.jjmasse.com/2026/03/06/the-brownfield-problem-why-most-ai-development-advice-ignores-your-actual-codebase/"
+        ],
+        "caveat": "Novelty isn't fatal IF you supply scaffolding: Anthropic's long-running research had Claude make real progress on a cosmological solver OUTSIDE its native domain by giving it a reference implementation and a quantifiable target. So lack of precedent is a flop signal only when you also lack an external oracle."
+      },
+      {
+        "point": "AVOID heavy domain context that lives only in someone's head. Osmani's guide lists 'missing domain context' as a distinct failure mode — specs that omit 'edge cases, library pitfalls, architectural patterns, or many-to-many relationships that require human explanation rather than inference.' The brownfield source shows the symptom concretely: the model 'rounded exact sea level rise thresholds' and 'renamed element IDs to be cleaner', silently violating precision constraints critical to the app; it also handled coordinate reference systems inconsistently across modules. PICK SIGNAL: choose a feature whose domain rules are either self-evident or already written down (CLAUDE.md, a skill, a fixture). If correctness depends on tribal knowledge you'd have to narrate live, it's a poor demo candidate.",
+        "criterion": "size",
+        "sources": [
+          "https://addyosmani.com/blog/good-spec/",
+          "https://www.jjmasse.com/2026/03/06/the-brownfield-problem-why-most-ai-development-advice-ignores-your-actual-codebase/"
+        ],
+        "caveat": "Mitigable, not disqualifying: Anthropic notes you can encode domain rules into CLAUDE.md/skills and let Claude pull context itself. The anti-pattern is domain knowledge that stays UNWRITTEN, not domain complexity per se."
+      },
+      {
+        "point": "PREFER the positive profile the autonomous-work research describes — it's the photographic negative of all four anti-patterns. Anthropic's long-running research says agentic work fits 'when the work is well-scoped, the success criteria are clear, and human oversight can be occasional', and names fitting examples: 'reimplementing a numerical solver', 'converting legacy scientific software to a modern language', and 'debugging a large codebase against a reference implementation.' The recurring success ingredients are a reference implementation, a quantifiable objective, an existing test suite, and a progress signal. PICK SIGNAL: score each candidate feature on whether you can hand Claude all four; the candidate that scores highest is your safest, most parallelizable, most technique-rich demo.",
+        "criterion": "parallelizable",
+        "sources": [
+          "https://www.anthropic.com/research/long-running-Claude",
+          "https://code.claude.com/docs/en/best-practices"
+        ],
+        "caveat": "These examples are translation/reimplementation tasks where a ground-truth oracle exists. A from-scratch product feature won't have one for free — you (or Claude up front) must MANUFACTURE the oracle (write the failing tests / paste the target design) before picking it, which is itself part of the Pick-stage cost."
+      },
+      {
+        "point": "STAGE NOTE (not a Pick criterion): Simon Willison's anti-patterns guidance — 'Don't file pull requests with code you haven't reviewed yourself' — is a SHIP-stage rule, not a feature-selection one. Flagging it so it isn't mistaken for a Pick signal: it constrains how you finish/merge, whereas everything above constrains which feature you start. Worth a one-line mention in a talk only to delineate where the loop's stages begin and end.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://simonwillison.net/guides/agentic-engineering-patterns/anti-patterns/"
+        ],
+        "caveat": "My fetch of this page surfaced only the PR-review anti-pattern; the page likely has a broader index I did not retrieve, so treat this as the one point I can actually source, not Willison's full list."
+      }
+    ]
+  },
+  {
+    "angle": "Hackathon / internal AI build-day feature selection advice and retrospectives. Synthesized from internal-AI-hackathon design playbooks, a hackathon scoping retrospective, judging-criteria guides, and Claude Code parallel-agent guidance. The throughline: most hackathons that underdeliver fail at SELECTION and SCOPING, not execution — so picking the right feature is the highest-leverage decision. I map concrete signals to each Pick criterion (valuable, researchable, parallelizable, technique-rich, safely-scoped, verifiable, size), and flag failure modes honestly. Note: I deliberately dropped a circulating \"16 agents / 100k lines of Rust / compiled Linux kernel / ~$20k\" stat because no page I actually fetched (including the InfoQ article that supposedly carried it) contained those numbers — treat that claim as unverified.",
+    "points": [
+      {
+        "point": "SELECTION is the lever, not execution. Internal hackathons that underdeliver 'almost always have a design problem' rather than a participant/effort problem. Concretely: broad themes like 'build something with GenAI' make every team converge on the same easy prototype (a chatbot or summarizer), so pick a feature framed by a specific business constraint instead — e.g. a problem-based frame ('cut support handle time by 30%'), a workflow-based frame (reimagine an existing process with measurable time savings), or a technology-based frame (must use platform X). For a talk-feature pick: choose something where the value is stated as a constraint you can later measure against, not a vague 'AI-powered' label.",
+        "criterion": "valuable",
+        "sources": [
+          "https://angelhack.com/blog/ai-internal-hackathon/"
+        ],
+        "caveat": "These frames come from event-design advice for organizers; a solo/talk builder must self-impose the constraint, which is easy to skip."
+      },
+      {
+        "point": "RESEARCHABLE = can you (and Claude) gather enough context/data/prior-art to ground the build before time runs out? The article is blunt that 'data access is the bottleneck, not compute' — gated internal data on day one breaks the event and teams default to public/synthetic datasets within hours, making outputs useless for real deployment. Signal to pick on: a feature whose required data, APIs, and prior art are already accessible (pre-curated/anonymized data, a known data steward, documented PII rules). If you'd spend the first morning fighting for access, pick a different feature.",
+        "criterion": "researchable",
+        "sources": [
+          "https://angelhack.com/blog/ai-internal-hackathon/"
+        ],
+        "caveat": "Phrased for org data stewardship; the underlying signal (is the context reachable up front?) generalizes, but the article doesn't frame it as 'researchability' explicitly."
+      },
+      {
+        "point": "RESEARCHABLE, builder side: before committing, research available resources at THIS event/repo — mentorship, hardware, APIs, tutorials, starter templates — to calibrate ambition, and check whether existing solutions already solve the problem well. The gap between a real problem and the available tools is where a worthwhile build lives. Practical move: 'start with what sucks' (a real personal/team frustration), then confirm the resources exist to attack it. Reuse boilerplates, SDKs, libraries, and APIs rather than building from scratch, and pre-download/install everything before the clock starts.",
+        "criterion": "researchable",
+        "sources": [
+          "https://medium.com/hack-western-2015/how-to-scope-a-project-for-a-hackathon-e3b03fca4751"
+        ],
+        "caveat": "Pre-installing and resource-scouting assume you know the toolchain in advance; for an exploratory 'evaluate the AI tool' build that's partly the point of the exercise."
+      },
+      {
+        "point": "PARALLELIZABLE: pick a feature whose work decomposes into FILE-INDEPENDENT, modular chunks across distinct skill domains (frontend logic vs database schema vs test coverage) where the pieces only need to integrate at the end. The strongest concrete signal is 'directory-level ownership' — assign each agent/worker a distinct folder rather than hoping conflict resolution succeeds. Boundaries must be sharp: 'Build the user API' is too vague; 'Build a POST /api/users endpoint that accepts {email, password}...' enables coordination. This is also a good Claude-Code parallel-agents demo: Anthropic's Dynamic Workflows coordinate multiple subagents via a shared task list (agents claim/execute/update tasks) for large file-independent work like migrations, bulk refactors, and test generation.",
+        "criterion": "parallelizable",
+        "sources": [
+          "https://www.mindstudio.ai/blog/claude-code-agent-teams-parallel-workflows",
+          "https://www.infoq.com/news/2026/06/dynamic-workflows-claude-code/"
+        ],
+        "caveat": "Parallelization red flags from the same source: shared-file editing, hidden dependencies, and no validation layer — and InfoQ notes Dynamic Workflows 'can consume substantially more tokens than a typical Claude Code session,' so parallel runs cost (and rate-limit) more."
+      },
+      {
+        "point": "TECHNIQUE-RICH: pick a feature that forces more than a single 'text in, text out' LLM call, so the build showcases real technique. Devpost's internal AI hackathon set the boundary not by topic but by technical depth — projects had to tackle 'structured, repeatable, and reliable LLM outputs' via 'prompt management' and 'output parsing,' moving beyond simple text interactions. For a Claude talk this is ideal: a feature spanning multiple skill domains (schema + UI + tests) plus structured-output/prompt-engineering surfaces gives you several distinct techniques to demonstrate rather than one trick.",
+        "criterion": "technique-rich",
+        "sources": [
+          "https://info.devpost.com/blog/internal-ai-hackathon-example",
+          "https://www.mindstudio.ai/blog/claude-code-agent-teams-parallel-workflows"
+        ],
+        "caveat": "Devpost's writeup is thin on demo/parallelization specifics and focuses on the 'story of their builds,' so treat the structured-output framing as a depth signal, not a full methodology."
+      },
+      {
+        "point": "SAFELY-SCOPED / off the critical path: prefer a track that lets you build WITHOUT production constraints. Devpost ran two tracks — Track A (build directly into the real application to test integration) and Track B (greenfield, from scratch, to evaluate tools without constraints). For a talk demo where you don't want production blast radius, Track B (greenfield) is the safer pick. Pair this with the pivot mindset: when the original vision becomes unrealistic, adapt fast (one team pivoted from mind-reading to color-prediction and still demoed successfully). Picking something off the critical path is what makes a mid-build pivot cheap.",
+        "criterion": "safely-scoped",
+        "sources": [
+          "https://info.devpost.com/blog/internal-ai-hackathon-example",
+          "https://medium.com/hack-western-2015/how-to-scope-a-project-for-a-hackathon-e3b03fca4751"
+        ],
+        "caveat": "Greenfield avoids prod risk but tests integration less realistically — a known tradeoff between the two tracks, not a free win."
+      },
+      {
+        "point": "SIZE / avoid overscoping — the single most common failure. A 24-hour hackathon demands a focused MVP, not a full product; the test is 'if you can't explain the core feature in one sentence, the scope is too broad.' Aim for something demoable in ~8–24 hours. Structure the build as agile increments where each completed component yields a working product — backstopped by a retrospective failure: an EEG project whose components 'didn't connect until the final hours' ended up non-functional despite real effort. Simpler scope also buys time for the parts that make the experience worthwhile (learning, networking, polish).",
+        "criterion": "size",
+        "sources": [
+          "https://medium.com/hack-western-2015/how-to-scope-a-project-for-a-hackathon-e3b03fca4751",
+          "https://taikai.network/en/blog/hackathon-judging"
+        ],
+        "caveat": "The 8–24h envelope comes from competitive student hackathons; an internal build-day may be shorter (hours), tightening scope further."
+      },
+      {
+        "point": "VERIFIABLE / demo-ability: pick a feature with a clear, visible payoff and put the 'wow moment' early, producing a visual, demoable output judges/audiences can engage with immediately. This aligns with how projects are actually judged — a Functional MVP that 'showcases core functionality' (need not be feature-complete) plus Impact/Potential (real-world applicability, cost/productivity gains) and a Final Pitch that communicates real-world value. Choose the feature where you can demonstrate the core in one screen and validate the concept end-to-end, even if edges are rough. And always demo, even partial/buggy — it generates feedback and is usually received well.",
+        "criterion": "verifiable",
+        "sources": [
+          "https://taikai.network/en/blog/hackathon-judging",
+          "https://medium.com/hack-western-2015/how-to-scope-a-project-for-a-hackathon-e3b03fca4751"
+        ],
+        "caveat": "The Taikai guide lists criteria but gives no point weights, so 'verifiable/demoable' is a qualitative signal, not a scored formula."
+      },
+      {
+        "point": "VALIDATION LAYER is part of picking parallelizable work: don't choose a feature you can split across agents unless you can also write integration tests that run AFTER all agents complete to catch interface mismatches. Parallel outputs can each be individually correct yet incompatible at the seams ('integration risk'). So a good pick is one where the integration contract (API shape, schema, types) can be specified up front AND verified by a test at the join — that pre-specified contract is exactly what makes both the parallel split and the demo trustworthy.",
+        "criterion": "verifiable",
+        "sources": [
+          "https://www.mindstudio.ai/blog/claude-code-agent-teams-parallel-workflows"
+        ],
+        "caveat": "From a vendor-adjacent blog on Claude agent teams; the engineering principle (contract + integration test at the seam) is standard, but examples are illustrative, not benchmarked."
+      }
+    ]
+  }
+]

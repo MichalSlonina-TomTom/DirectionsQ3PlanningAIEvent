@@ -77,11 +77,11 @@ Run by **Danna & Serj** in **Tuesday afternoon's parallel block**. Two parts:
 
 ## Lightning Talks
 
-Lightning talks run **Tuesday morning, 10:45–12:00 (~75 minutes)** — right after Sai's *POC for Dual Discrete Map* (10:30–10:45). Each talk **defaults to 5 minutes** — set your own in the *Expected talk time* column if you need more or less. **Leave at least 3 minutes after every talk for Q&A and mic handover**, so a default talk takes roughly an 8-minute slot. The **Start** column below accounts for each talk's length plus ~3 minutes for Q&A; with the current lineup the talks run to ~11:56, so timing is tight.
+Lightning talks run **Tuesday morning, 10:45–12:00 (~75 minutes)** — right after Sai's *POC for Dual Discrete Map* (10:30–10:45). Each talk **defaults to 5 minutes** — set your own in the *Expected talk time* column if you need more or less. **Leave at least 3 minutes after every talk for Q&A and mic handover**, so a default talk takes roughly an 8-minute slot. The **Start** column below accounts for each talk's length plus ~3 minutes for Q&A; **the current lineup runs to ~12:28, past the 12:00 lunch** (see the note below the table) — the running order and what to trim are for the AI champions to settle.
 
 The talks below already have a speaker; the order is **provisional** — our AI champions finalise it just before the offsite. Need a **fixed time slot** (e.g. to plan travel or a remote join)? Message **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** and we'll lock one in.
 
-**Still want in?** The morning is tight, but grab a topic from **[Ideas for talks](#ideas-for-talks)** and message us — we'll fit you in by trimming a slot, bumping the tentative talk, or finding another moment. **Topics don't have to be about AI** — anything worth sharing with the room is welcome.
+**Still want in?** The morning is now over-subscribed, but grab a topic from **[Ideas for talks](#ideas-for-talks)** and message us — we'll find you a moment (another slot, Day 2, or a fixed time). **Topics don't have to be about AI** — anything worth sharing with the room is welcome.
 
 | # | Start | Speaker | Talk | Topics covered | Links | Expected talk time (default 5 mins) |
 |---|-------|---------|------|----------------|-------|-------------------------------------|
@@ -92,6 +92,12 @@ The talks below already have a speaker; the order is **provisional** — our AI 
 | 5 | 11:32 | Milica Markov | Using Claude to Write a Solution Design |  |  | 5 min |
 | 6 | 11:40 | Andrii Kasilov | Spec-Driven Development + CLAUDE.md — from a written spec to working code with Claude |  |  | 5 min |
 | 7 | 11:48 | Borys Zhdanov *(tentative)* | How to Build and Evaluate Skills — authoring, testing, and measuring quality |  |  | 5 min |
+| 8 | 11:56 | Petru-Nicu Dumitrache | Generate beautiful visual aids with Claude |  |  |  |
+| 9 | 12:04 | Petru-Nicu Dumitrache | Organizing your todos with Claude |  |  |  |
+| 10 | 12:12 | Oleksandr Kuzubov | TomTom Marketplaces and Skills — what's available and how to use them (based on nds-map-packaging skill experience) |  |  |  |
+| 11 | 12:20 | Oleksandr Kuzubov | Script It vs. Re-Running Workflows (based on nds-map-packaging skill experience) |  |  |  |
+
+> ⚠️ **The lineup currently overruns the 12:00 lunch** — with Sai's POC, the longer talks (Alexey 10 min, Yasemin 15 min), and 11 lightning talks, the morning runs to ~12:28. Something needs trimming: shorten talks, drop the tentative one, move a couple to Day 2, or start earlier. AI champions to resolve before the offsite.
 
 *Suggested arc: hooks & workflow control (1) → unify design and build (2) → reusable skills, applied then DIY (3–4) → plan then spec, with CLAUDE.md setup folded into Andrii's talk (5–6) → evaluating skills (7, tentative). Order is provisional — per the speakers' latest plan, Luka covers hooks (1) and Andrii folds CLAUDE.md into his Spec-Driven Development talk (6); Borys's two talks (4, 7) are spaced so no one runs back-to-back. New sign-ups slot in wherever they fit best.*
 
@@ -180,7 +186,7 @@ Propose a feature your team could build at the event. Add a row with an owner, a
 
 ## Ideas for talks
 
-Unclaimed topic ideas, grouped by goal. Tuesday morning's lightning block is tight, but we'll make room for a good talk (see [Lightning Talks](#lightning-talks)). **Want to present?** Steal an idea from below — put your name on it and DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** — or come up with your own (it doesn't have to be about AI). No need to ask anyone first.
+Unclaimed topic ideas, grouped by goal. Tuesday morning's lightning block is over-subscribed (see [Lightning Talks](#lightning-talks)), but if a topic below is worth it we'll find a moment. **Want to present?** Steal an idea from below — put your name on it and DM **[Michał Słonina](https://tomtomslack.slack.com/team/U8TC6HW5A)** — or come up with your own (it doesn't have to be about AI). No need to ask anyone first.
 
 #### Goal A — Lower the entry barrier (get productive fast)
 - TomTom Marketplaces and Skills — what's available and how to use them
